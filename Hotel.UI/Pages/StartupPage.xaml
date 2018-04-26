@@ -1,0 +1,62 @@
+﻿<local:BasePage x:Class="Hotel.UI.Pages.StartupPage"
+                x:TypeArguments="vm:StartPageViewModel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:Hotel.UI.Pages"
+                xmlns:conv="clr-namespace:Hotel.UI.ValueConverters"
+                xmlns:vm="clr-namespace:Hotel.Core.ViewModels;assembly=Hotel.Core"
+                xmlns:c="clr-namespace:Hotel.UI.ValueConverters"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800"
+                Title="StartPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ItemsControl ItemsSource="{Binding Categories}"
+                      Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="20 0 20 0">
+                        <StackPanel>
+                            <Border BorderThickness="0 0 0 1" 
+                                BorderBrush="{StaticResource BackgroundBlueLightBrush}"
+                                Margin="-10 0 0 20">
+                                <TextBlock Text="{Binding Title}" 
+                                       FontSize="{StaticResource FontSizeXLarge}"
+                                       Foreground="#65c3ff" FontWeight="SemiBold"/>
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding CategoryItems}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="0 0 0 15" Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Tag, Converter={c:ButtonTagToFontAwesomeConverter}}" 
+                                                   FontFamily="{StaticResource FontAwesome}"
+                                                   Foreground="{StaticResource ForegroundLightBrush}"
+                                                   FontSize="{StaticResource FontSizeLarge}"
+                                                   Margin="0 0 10 0"/>
+                                            <Button Style="{StaticResource LinkButton}"
+                                                Content="{Binding Title}"
+                                                FontSize="{StaticResource FontSizeLarge}"
+                                                Command="{Binding Command}"
+                                                CommandParameter="{Binding CommandParameter}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</local:BasePage>

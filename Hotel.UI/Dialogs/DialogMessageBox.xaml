@@ -1,0 +1,21 @@
+﻿<local:BaseDialogUserControl x:Class="Hotel.UI.Dialogs.DialogMessageBox"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                             xmlns:local="clr-namespace:Hotel.UI.Dialogs"
+                             xmlns:dm="clr-namespace:Hotel.Core.DesignModels;assembly=Hotel.Core"
+                             mc:Ignorable="d">
+    <StackPanel Background="{StaticResource BackgroundLightBrush}"
+                d:DataContext="{x:Static dm:MessageBoxDialogDesignModel.Instance}">
+        <TextBlock Text="{Binding Message}" 
+                   Padding="5"
+                   FontSize="{StaticResource FontSizeRegular}"
+                   Foreground="{StaticResource ForegroundSemiLightBrush}"/>
+        <Button Content="{Binding OkText}"
+                FontSize="{StaticResource FontSizeRegular}"
+                Style="{StaticResource SmallControlButton}"
+                HorizontalAlignment="Center"
+                Command="{Binding CloseCommand, RelativeSource={RelativeSource AncestorType=local:BaseDialogUserControl}}"/>
+    </StackPanel>
+</local:BaseDialogUserControl>
