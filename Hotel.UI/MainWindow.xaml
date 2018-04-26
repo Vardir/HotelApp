@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:Hotel.UI"
         xmlns:ctr="clr-namespace:Hotel.UI.Controls"
         mc:Ignorable="d"
-        WindowStyle="None" Title="ES Tool"
+        WindowStyle="None" Title="Hotel App"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         MinWidth="{Binding WindowMinimumWidth}"
@@ -62,7 +62,7 @@
                                         <!--Icon-->
                                         <Button Grid.Column="0" Style="{StaticResource SystemIconButton}"
                                             Command="{Binding MenuCommand}">
-                                            <TextBlock Text="ES" VerticalAlignment="Center"
+                                            <TextBlock Text="{Binding Title}" VerticalAlignment="Center"
                                                        Foreground="{StaticResource ForegroundLightBlueBrush}"
                                                        FontWeight="SemiBold" FontSize="{StaticResource FontSizeLarge}"/>
                                         </Button>
@@ -111,7 +111,7 @@
         <Border Panel.ZIndex="10"
                     Grid.ColumnSpan="2"
                     Opacity="0.3">
-            <Border Background="{StaticResource BackgroundVeryDarkBrush}"
+            <Border Background="{StaticResource BackgroundUltraLightBrush}"
                         ap:AnimateFadeInProperty.Value="{Binding DimmableOverlayVisible}"/>
         </Border>
 

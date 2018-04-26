@@ -12,6 +12,7 @@ namespace Hotel.UI.ViewModels
     {
         int outerMarginSize = 10;
         bool dimmableOverlayVisible;
+        string title;
         Window window;
         WindowDockPosition dockPosition = WindowDockPosition.Undocked;
 
@@ -37,6 +38,18 @@ namespace Hotel.UI.ViewModels
         public int TitleHight { get; set; } = 30;
         public double WindowMinimumWidth { get; set; } = 800;
         public double WindowMinimumHeight { get; set; } = 500;
+        public string Title
+        {
+            get => title;
+            set
+            {
+                if (title != value)
+                {
+                    title = value;
+                    OnPropertyChanged(nameof(Title));
+                }
+            }
+        }
         public GridLength TitleHeightGridLength => new GridLength(TitleHight + ResizeBorder);
         public Thickness ResizeBorderThickness => new Thickness(ResizeBorder + OuterMarginSize);
         public Thickness OuterMarginSizeThickness => new Thickness(OuterMarginSize);
@@ -50,6 +63,7 @@ namespace Hotel.UI.ViewModels
         public WindowViewModel(Window window)
         {
             this.window = window;
+            Title = "Hotels Manager";
 
             window.StateChanged += (sender, e) =>
             {

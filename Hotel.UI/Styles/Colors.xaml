@@ -35,28 +35,31 @@
     <Color x:Key="BackgroundWhite">#ffffff</Color>
     <SolidColorBrush x:Key="BackgroundWhiteBrush" Color="{StaticResource BackgroundWhite}" />
 
-    <Color x:Key="BackgroundUltraLight">#888888</Color>
+    <Color x:Key="BackgroundUltraLight">#dddddd</Color>
     <SolidColorBrush x:Key="BackgroundUltraLightBrush" Color="{StaticResource BackgroundUltraLight}" />
 
-    <Color x:Key="BackgroundVeryLight">#7B7B7B</Color>
-    <SolidColorBrush x:Key="BackgroundVeryLightBrush" Color="{StaticResource BackgroundVeryLight}" />
-
-    <Color x:Key="BackgroundLight">#535353</Color>
+    <Color x:Key="BackgroundLight">#38414b</Color>
     <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
 
-    <Color x:Key="BackgroundBlueLight">#67BAF2</Color>
+    <Color x:Key="BackgroundBlueLight">#19d1d1</Color>
     <SolidColorBrush x:Key="BackgroundBlueLightBrush" Color="{StaticResource BackgroundBlueLight}" />
+
+    <Color x:Key="BackgroundGreenLight">#62c495</Color>
+    <SolidColorBrush x:Key="BackgroundGreenLightBrush" Color="{StaticResource BackgroundGreenLight}" />
+
+    <Color x:Key="BackgroundGreenUltraLight">#7cc4a1</Color>
+    <SolidColorBrush x:Key="BackgroundGreenUltraLightBrush" Color="{StaticResource BackgroundGreenUltraLight}" />
+
+    <Color x:Key="BackgroundGreenSmokyLight">#94c1ab</Color>
+    <SolidColorBrush x:Key="BackgroundGreenSmokyLightBrush" Color="{StaticResource BackgroundGreenSmokyLight}" />
 
     <Color x:Key="BackgroundGreenSemiDark">#38543f</Color>
     <SolidColorBrush x:Key="BackgroundGreenSemiDarkBrush" Color="{StaticResource BackgroundGreenSemiDark}" />
 
-    <Color x:Key="BackgroundSemiLight">#3A3A3A</Color>
-    <SolidColorBrush x:Key="BackgroundSemiLightBrush" Color="{StaticResource BackgroundSemiLight}" />
-
-    <Color x:Key="BackgroundNormal">#353535</Color>
+    <Color x:Key="BackgroundNormal">#222c37</Color>
     <SolidColorBrush x:Key="BackgroundNormalBrush" Color="{StaticResource BackgroundNormal}" />
 
-    <Color x:Key="BackgroundDark">#282828</Color>
+    <Color x:Key="BackgroundDark">#111b26</Color>
     <SolidColorBrush x:Key="BackgroundDarkBrush" Color="{StaticResource BackgroundDark}" />
 
     <Color x:Key="BackgroundVeryDark">#000000</Color>

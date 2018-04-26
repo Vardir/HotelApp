@@ -11,7 +11,7 @@
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800"
                 Title="StartPage">
-    <Grid>
+    <Grid Background="{StaticResource BackgroundUltraLightBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -58,5 +58,54 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="TEST"/>
+
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}"
+                       Text="TEST" Grid.Row="1"/>
+            <TextBox Text="TEST" Grid.Row="2"/>
+
+            <ListBox Grid.Row="3">
+                <ListBox.Items>
+                    <ListBoxItem Content="item1"/>
+                    <ListBoxItem Content="item2"/>
+                    <ListBoxItem Content="item2"/>
+                </ListBox.Items>
+            </ListBox>
+
+            <TreeView Grid.Row="4">
+                <TreeView.Items>
+                    <TreeViewItem Header="item1">
+                        <TreeViewItem Header="Subitem 1"/>
+                        <TreeViewItem Header="Subitem 2"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="item2"/>
+                    <TreeViewItem Header="item2"/>
+                </TreeView.Items>
+            </TreeView>
+
+            <ComboBox Grid.Row="5" SelectedIndex="0">
+                <ComboBox.Items>
+                    <ComboBoxItem Content="item1"/>
+                    <ComboBoxItem Content="item2"/>
+                    <ComboBoxItem Content="item3"/>
+                </ComboBox.Items>
+            </ComboBox>
+        </Grid>
     </Grid>
 </local:BasePage>
