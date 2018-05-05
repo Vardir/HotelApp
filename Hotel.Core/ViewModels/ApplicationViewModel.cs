@@ -1,4 +1,5 @@
 ﻿using Hotel.Core.DataModels.Page;
+using Hotel.Core.DBTools;
 
 namespace Hotel.Core.ViewModels
 {
@@ -52,6 +53,11 @@ namespace Hotel.Core.ViewModels
             CurrentPage = page;
             CurrentTransitionOptions = options;
             CurrentPageContext = viewModel;
+        }
+        public void ReadConfig(string path)
+        {
+            Connection connection = new Connection(path);
+
         }
     }
 }

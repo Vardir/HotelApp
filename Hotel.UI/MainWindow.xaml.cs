@@ -12,6 +12,7 @@ namespace Hotel.UI
         {
             InitializeComponent();
             DataContext = new WindowViewModel(this);
+            ViewModelLocator.Application.ReadConfig("config.xml");
         }
 
         void Window_Deactivated(object sender, System.EventArgs e)

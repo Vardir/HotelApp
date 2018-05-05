@@ -18,11 +18,11 @@
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="DefaultTextBlock">
-        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
         <Setter Property="Margin" Value="5"/>
     </Style>
-
+    
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Grid>
             <Grid.ColumnDefinitions>

@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Styles/Texts.xaml"/>
                 <ResourceDictionary Source="Styles/Lists.xaml"/>
                 <ResourceDictionary Source="Styles/Tree.xaml"/>
+                <ResourceDictionary Source="Styles/Grids.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

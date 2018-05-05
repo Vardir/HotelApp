@@ -5,21 +5,8 @@ namespace Hotel.UI.ViewModels
 {
     public class DialogWindowViewModel : WindowViewModel
     {
-        string title;
         Control contentControl;
 
-        public string Title
-        {
-            get => title;
-            set
-            {
-                if (title != value)
-                {
-                    title = value;
-                    OnPropertyChanged(nameof(Title));
-                }
-            }
-        }
         public Control Content
         {
             get => contentControl;

@@ -63,49 +63,61 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="TEST"/>
+            <Button Content="{StaticResource KeyIcon}" Style="{StaticResource CommandButton}"
+                    HorizontalAlignment="Right" Grid.Column="2"
+                    FontFamily="{StaticResource FontAwesome}" 
+                    FontSize="{StaticResource FontSizeLarge}"/>
 
-            <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                       Text="TEST" Grid.Row="1"/>
-            <TextBox Text="TEST" Grid.Row="2"/>
+            <Border Grid.ColumnSpan="3" HorizontalAlignment="Center"
+                    Padding="15 0 15 0"
+                    BorderThickness="0 0 0 1" BorderBrush="{StaticResource BackgroundVeryDarkBrush}">
+                <TextBlock Text="Welcome!" Style="{StaticResource BaseTextBlockStyle}"
+                           FontSize="{StaticResource FontSizeXLarge}"/>
+            </Border>
 
-            <ListBox Grid.Row="3">
-                <ListBox.Items>
-                    <ListBoxItem Content="item1"/>
-                    <ListBoxItem Content="item2"/>
-                    <ListBoxItem Content="item2"/>
-                </ListBox.Items>
-            </ListBox>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right"
+                        Grid.Column="2" Orientation="Horizontal">
+                <TextBlock Text="Filter by" Style="{StaticResource DefaultTextBlock}"/>
+                <ComboBox SelectedIndex="0">
+                    <ComboBox.Items>
+                        <ComboBoxItem Content="Average price"/>
+                        <ComboBoxItem Content="Available rooms"/>
+                        <ComboBoxItem Content="Reputation"/>
+                    </ComboBox.Items>
+                </ComboBox>
+            </StackPanel>
 
-            <TreeView Grid.Row="4">
-                <TreeView.Items>
-                    <TreeViewItem Header="item1">
-                        <TreeViewItem Header="Subitem 1"/>
-                        <TreeViewItem Header="Subitem 2"/>
-                    </TreeViewItem>
-                    <TreeViewItem Header="item2"/>
-                    <TreeViewItem Header="item2"/>
-                </TreeView.Items>
-            </TreeView>
-
-            <ComboBox Grid.Row="5" SelectedIndex="0">
-                <ComboBox.Items>
-                    <ComboBoxItem Content="item1"/>
-                    <ComboBoxItem Content="item2"/>
-                    <ComboBoxItem Content="item3"/>
-                </ComboBox.Items>
-            </ComboBox>
+            <DataGrid Grid.Row="2" Grid.ColumnSpan="3"
+                      Margin="5" FontSize="18">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Path=Title}"
+                                        Width="*" CanUserSort="False"/>
+                    <DataGridTextColumn Header="Avg. price"
+                                        Binding="{Binding Path=AvgPrices}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="Available rooms" CanUserSort="False"
+                                        Binding="{Binding Path=AvailableRooms}"/>
+                    <DataGridTextColumn Header="Reputation" CanUserSort="False"
+                                        Binding="{Binding Path=Reputation}"/>
+                </DataGrid.Columns>
+                <DataGrid.Items>
+                    <vm:Hotel Title="Hotel 1" AvgPrices="150.3" 
+                              AvailableRooms="15" Reputation="97"  />
+                    <vm:Hotel Title="Hotel 2" AvgPrices="170.3" 
+                              AvailableRooms="53" Reputation="64"  />
+                    <vm:Hotel Title="Hotel 3" AvgPrices="100.3"
+                              AvailableRooms="25" Reputation="85"  />
+                </DataGrid.Items>
+            </DataGrid>
         </Grid>
     </Grid>
 </local:BasePage>
