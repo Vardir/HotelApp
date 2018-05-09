@@ -7,8 +7,8 @@
     <ProjectGuid>{15FD9E75-03F4-42E8-9AAD-8ED44DC35369}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hotel.Core</RootNamespace>
-    <AssemblyName>Hotel.Core</AssemblyName>
+    <RootNamespace>HotelsApp.Core</RootNamespace>
+    <AssemblyName>HotelsApp.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,8 +46,11 @@
     <Compile Include="DataModels\Page\ApplicationPage.cs" />
     <Compile Include="DataModels\Page\PageCommand.cs" />
     <Compile Include="DataModels\Page\TransitionOptions.cs" />
-    <Compile Include="DBTools\Connection.cs" />
+    <Compile Include="DBTools\ConnectionInfo.cs" />
+    <Compile Include="DBTools\SqlAdapter.cs" />
+    <Compile Include="DesignModels\HotelDesingModel.cs" />
     <Compile Include="DesignModels\MessageBoxDialogDesignModel.cs" />
+    <Compile Include="DesignModels\StartPageDesignModel.cs" />
     <Compile Include="Expressions\ExpressionHelpers.cs" />
     <Compile Include="Extensions\EnumerableHelpers.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
@@ -62,15 +65,15 @@
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\MessageBoxDialogViewModel.cs" />
-    <Compile Include="ViewModels\Hotels\Activity.cs" />
-    <Compile Include="ViewModels\Hotels\CreditCard.cs" />
-    <Compile Include="ViewModels\Hotels\Customer.cs" />
-    <Compile Include="ViewModels\Hotels\Hotel.cs" />
-    <Compile Include="ViewModels\Hotels\Option.cs" />
-    <Compile Include="ViewModels\Hotels\Order.cs" />
-    <Compile Include="ViewModels\Hotels\Personnel.cs" />
-    <Compile Include="ViewModels\Hotels\Room.cs" />
-    <Compile Include="ViewModels\Hotels\RoomType.cs" />
+    <Compile Include="DataModels\Items\Activity.cs" />
+    <Compile Include="DataModels\Items\CreditCard.cs" />
+    <Compile Include="DataModels\Items\Customer.cs" />
+    <Compile Include="DataModels\Items\Hotel.cs" />
+    <Compile Include="DataModels\Items\Option.cs" />
+    <Compile Include="DataModels\Items\Order.cs" />
+    <Compile Include="DataModels\Items\Personnel.cs" />
+    <Compile Include="DataModels\Items\Room.cs" />
+    <Compile Include="DataModels\Items\RoomType.cs" />
     <Compile Include="ViewModels\Pages\BasePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\StartPageViewModel.cs" />
   </ItemGroup>

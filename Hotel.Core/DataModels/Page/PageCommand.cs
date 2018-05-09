@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Hotel.Core.DataModels.Page
+namespace HotelsApp.Core.DataModels.Page
 {
     public class PageCommand
     {

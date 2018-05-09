@@ -1,9 +1,9 @@
-﻿using Hotel.UI.IoC;
-using Hotel.Core.IoC;
+﻿using HotelsApp.UI.IoC;
+using HotelsApp.Core.IoC;
 using System.Windows;
-using Hotel.Core.IoC.Interfaces;
+using HotelsApp.Core.IoC.Interfaces;
 
-namespace Hotel.UI
+namespace HotelsApp.UI
 {
     /// <summary>
     /// Interaction logic for App.xaml

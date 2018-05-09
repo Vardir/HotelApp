@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Hotel.UI.ViewModels;
+using HotelsApp.UI.ViewModels;
 
-namespace Hotel.UI.Dialogs
+namespace HotelsApp.UI.Dialogs
 {
     /// <summary>
     /// Interaction logic for DialogWindow.xaml

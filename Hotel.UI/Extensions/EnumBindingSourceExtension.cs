@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Markup;
 
-namespace Hotel.UI.Extensions
+namespace HotelsApp.UI.Extensions
 {
     /// <summary>
     /// Use for binding any <see cref="ItemsControl"/> to <see cref="Enum"/> type elements

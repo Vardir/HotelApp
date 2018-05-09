@@ -1,8 +1,11 @@
 ﻿using System.Windows.Input;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using HotelsApp.Core.IoC;
+using HotelsApp.Core.DataModels;
+using System.Data;
 
-namespace Hotel.Core.ViewModels
+namespace HotelsApp.Core.ViewModels
 {
     public class Category
     {
@@ -34,17 +37,44 @@ namespace Hotel.Core.ViewModels
     
     public class StartPageViewModel : BasePageViewModel
     {
+        public ObservableCollection<Hotel> Hotels { get; }
         public List<Category> Categories { get; }
 
         public StartPageViewModel()
         {
+            Hotels = new ObservableCollection<Hotel>();
             Categories = new List<Category>();
-            InitializeCommands();            
+            InitializeCommands();
         }
         
-        void InitializeCommands()
+        protected override void InitializeCommands()
         {
 
+        }
+
+        public void Refresh()
+        {
+            Hotels.Clear();
+            var dataSet = IoCContainer.Application.ExecuteQuery("SELECT * FROM hotel");
+            if (dataSet.Tables.Count != 0)
+            {
+                var table = dataSet.Tables[0];
+                foreach (DataRow row in table.Rows)
+                {
+                    Hotels.Add(new Hotel
+                    {
+                        Id = (int)row["id"],
+                        Title = row["title"] as string,
+                        Adress = row["adress"] as string,
+                        Image = row["image"] as string,
+                        Rating = (double)row["rating"],
+                        Reviews = (int)row["reviews"],
+                        Stars = (byte)row["stars"],
+                        //AvailableRooms = (int)row["available"],
+                        //AvgPrices = (double)row["avgprice"]
+                    });
+                }
+            }
         }
     }
 }

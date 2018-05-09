@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
-using Hotel.UI.WindowTools;
-using Hotel.Core.ViewModels;
+using HotelsApp.UI.WindowTools;
+using HotelsApp.Core.ViewModels;
 using System.Windows.Input;
-using Hotel.Core.RelayCommands;
+using HotelsApp.Core.RelayCommands;
 using System.Runtime.InteropServices;
 
-namespace Hotel.UI.ViewModels
+namespace HotelsApp.UI.ViewModels
 {
     public class WindowViewModel : BaseViewModel
     {

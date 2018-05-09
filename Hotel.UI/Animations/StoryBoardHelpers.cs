@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Media.Animation;
 using System.Runtime.CompilerServices;
 
-namespace Hotel.UI.Animations
+namespace HotelsApp.UI.Animations
 {
     public static class StoryBoardHelpers
     {

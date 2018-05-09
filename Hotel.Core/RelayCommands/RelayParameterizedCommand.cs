@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Hotel.Core.RelayCommands
+namespace HotelsApp.Core.RelayCommands
 {
     public class RelayParameterizedCommand : ICommand
     {

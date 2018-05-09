@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hotel.Core.ViewModels
+namespace HotelsApp.Core.DataModels
 {
     public class Order
     {

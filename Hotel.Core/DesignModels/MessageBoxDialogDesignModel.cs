@@ -1,6 +1,6 @@
-﻿using Hotel.Core.ViewModels.Dialogs;
+﻿using HotelsApp.Core.ViewModels.Dialogs;
 
-namespace Hotel.Core.DesignModels
+namespace HotelsApp.Core.DesignModels
 {
     public class MessageBoxDialogDesignModel : MessageBoxDialogViewModel
     {

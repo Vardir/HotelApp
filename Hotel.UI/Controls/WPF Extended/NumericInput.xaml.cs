@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Hotel.UI.Controls
+namespace HotelsApp.UI.Controls
 {
     /// <summary>
     /// Interaction logic for NumericInput.xaml

@@ -1,6 +1,6 @@
-﻿using Hotel.Core.ViewModels;
+﻿using HotelsApp.Core.ViewModels;
 
-namespace Hotel.UI.Pages
+namespace HotelsApp.UI.Pages
 {
     /// <summary>
     /// Interaction logic for StartupPage.xaml
@@ -11,6 +11,12 @@ namespace Hotel.UI.Pages
         {
             InitializeComponent();
             Title = "Start page";
+            Loaded += StartupPage_Loaded;
+        }
+
+        void StartupPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ViewModel.Refresh();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Windows.Media;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
 
-namespace Hotel.UI.WindowTools
+namespace HotelsApp.UI.WindowTools
 {
     /// <summary>
     /// The dock position of the window

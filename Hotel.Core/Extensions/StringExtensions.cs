@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 
-namespace Hotel.Core.Extensions
+namespace HotelsApp.Core.Extensions
 {
     public static class StringHelpers
     {

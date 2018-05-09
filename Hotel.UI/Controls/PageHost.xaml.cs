@@ -1,10 +1,10 @@
-﻿using Hotel.UI.Pages;
+﻿using HotelsApp.UI.Pages;
 using System.Windows;
-using Hotel.Core.ViewModels;
+using HotelsApp.Core.ViewModels;
 using System.Windows.Controls;
-using Hotel.Core.DataModels.Page;
+using HotelsApp.Core.DataModels.Page;
 
-namespace Hotel.UI.Controls
+namespace HotelsApp.UI.Controls
 {
     /// <summary>
     /// Interaction logic for PageHost.xaml

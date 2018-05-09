@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Hotel.UI.Extensions
+namespace HotelsApp.UI.Extensions
 {
     public static class FrameworkElementExtensions
     {

@@ -1,4 +1,4 @@
-﻿namespace Hotel.UI.Animations
+﻿namespace HotelsApp.UI.Animations
 {
     public enum PageAnimation
     {

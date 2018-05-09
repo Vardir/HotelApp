@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Hotel.UI.Animations;
+using HotelsApp.UI.Animations;
 
-namespace Hotel.UI.AttachedProperties
+namespace HotelsApp.UI.AttachedProperties
 {
     public abstract class AnimateBaseProperty<TParent> : BaseAttachedProperty<TParent, bool>
        where TParent : BaseAttachedProperty<TParent, bool>, new()

@@ -26,9 +26,10 @@
     <system:String x:Key="OpenIcon">&#xf07c;</system:String>
     <system:String x:Key="CreateIcon">&#xf14b;</system:String>
     <system:String x:Key="BookIcon">&#xf02d;</system:String>
-    <system:String x:Key="LightbulbIcon">&#xf0eb;</system:String>
+    <system:String x:Key="LightbulbIcon">&#xf0eb;</system:String> 
     <system:String x:Key="RefreshIcon">&#xf021;</system:String>
     <system:String x:Key="KeyIcon">&#xf13e;</system:String>
+    <system:String x:Key="StarIcon">&#xf005;</system:String>
 
     <system:String x:Key="FullnessIcon">&#xf240;</system:String>
     <system:String x:Key="UngroupIcon">&#xf248;</system:String>

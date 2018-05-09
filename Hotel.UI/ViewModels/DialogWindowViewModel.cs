@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Hotel.UI.ViewModels
+namespace HotelsApp.UI.ViewModels
 {
     public class DialogWindowViewModel : WindowViewModel
     {

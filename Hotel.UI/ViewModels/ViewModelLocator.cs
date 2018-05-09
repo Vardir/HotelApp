@@ -1,7 +1,7 @@
-﻿using Hotel.Core.IoC;
-using Hotel.Core.ViewModels;
+﻿using HotelsApp.Core.IoC;
+using HotelsApp.Core.ViewModels;
 
-namespace Hotel.UI.ViewModels
+namespace HotelsApp.UI.ViewModels
 {
     public class ViewModelLocator
     {

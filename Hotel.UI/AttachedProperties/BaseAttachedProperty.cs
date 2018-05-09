@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Hotel.UI.AttachedProperties
+namespace HotelsApp.UI.AttachedProperties
 {
     public abstract class BaseAttachedProperty<TParent, TProperty>
         where TParent : new()

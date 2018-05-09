@@ -1,4 +1,4 @@
-﻿namespace Hotel.UI.Dialogs
+﻿namespace HotelsApp.UI.Dialogs
 {
     /// <summary>
     /// Interaction logic for DialogMessageBox.xaml

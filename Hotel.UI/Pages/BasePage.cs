@@ -1,8 +1,8 @@
 ﻿using System;
-using Hotel.Core.ViewModels;
+using HotelsApp.Core.ViewModels;
 using System.Windows.Controls;
 
-namespace Hotel.UI.Pages
+namespace HotelsApp.UI.Pages
 {
     public abstract class BasePage : Page
     {

@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using System.Collections.Generic;
 
-namespace Hotel.UI.Extensions
+namespace HotelsApp.UI.Extensions
 {
     public static class DependencyObjectExtensions
     {

@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Linq.Expressions;
 
-namespace Hotel.Core.Expressions
+namespace HotelsApp.Core.Expressions
 {
     public static class ExpressionHelpers
     {

@@ -1,14 +1,16 @@
-﻿<local:BasePage x:Class="Hotel.UI.Pages.StartupPage"
+﻿<local:BasePage x:Class="HotelsApp.UI.Pages.StartupPage"
                 x:TypeArguments="vm:StartPageViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                xmlns:local="clr-namespace:Hotel.UI.Pages"
-                xmlns:conv="clr-namespace:Hotel.UI.ValueConverters"
-                xmlns:vm="clr-namespace:Hotel.Core.ViewModels;assembly=Hotel.Core"
-                xmlns:c="clr-namespace:Hotel.UI.ValueConverters"
-                mc:Ignorable="d" 
+                xmlns:local="clr-namespace:HotelsApp.UI.Pages"
+                xmlns:conv="clr-namespace:HotelsApp.UI.ValueConverters"
+                xmlns:vm="clr-namespace:HotelsApp.Core.ViewModels;assembly=HotelsApp.Core"
+                xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
+                xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
+                xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
+                mc:Ignorable="d" d:DataContext="{x:Static dm:StartPageDesignModel.Instance}"
                 d:DesignHeight="450" d:DesignWidth="800"
                 Title="StartPage">
     <Grid Background="{StaticResource BackgroundUltraLightBrush}">
@@ -97,8 +99,12 @@
                 </ComboBox>
             </StackPanel>
 
-            <DataGrid Grid.Row="2" Grid.ColumnSpan="3"
-                      Margin="5" FontSize="18">
+            <!--<DataGrid Grid.Row="2" Grid.ColumnSpan="3" Margin="5" FontSize="18" 
+                      ItemsSource="{Binding Hotels}"
+                      AutoGenerateColumns="False" CanUserAddRows="False"
+                      CanUserDeleteRows="False" CanUserReorderColumns="False"
+                      CanUserResizeRows="False" IsReadOnly="True"
+                      CanUserSortColumns="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Title" Binding="{Binding Path=Title}"
                                         Width="*" CanUserSort="False"/>
@@ -106,18 +112,17 @@
                                         Binding="{Binding Path=AvgPrices}" CanUserSort="False"/>
                     <DataGridTextColumn Header="Available rooms" CanUserSort="False"
                                         Binding="{Binding Path=AvailableRooms}"/>
-                    <DataGridTextColumn Header="Reputation" CanUserSort="False"
-                                        Binding="{Binding Path=Reputation}"/>
                 </DataGrid.Columns>
-                <DataGrid.Items>
-                    <vm:Hotel Title="Hotel 1" AvgPrices="150.3" 
-                              AvailableRooms="15" Reputation="97"  />
-                    <vm:Hotel Title="Hotel 2" AvgPrices="170.3" 
-                              AvailableRooms="53" Reputation="64"  />
-                    <vm:Hotel Title="Hotel 3" AvgPrices="100.3"
-                              AvailableRooms="25" Reputation="85"  />
-                </DataGrid.Items>
-            </DataGrid>
+            </DataGrid>-->
+
+            <ItemsControl ItemsSource="{Binding Hotels}" Grid.Row="2" Grid.ColumnSpan="3">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ctr:HotelItem DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
         </Grid>
     </Grid>
 </local:BasePage>

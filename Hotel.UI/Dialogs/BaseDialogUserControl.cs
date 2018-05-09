@@ -1,12 +1,12 @@
 ﻿using System.Windows;
-using Hotel.UI.ViewModels;
+using HotelsApp.UI.ViewModels;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using Hotel.Core.RelayCommands;
-using Hotel.Core.ViewModels.Dialogs;
+using HotelsApp.Core.RelayCommands;
+using HotelsApp.Core.ViewModels.Dialogs;
 
-namespace Hotel.UI.Dialogs
+namespace HotelsApp.UI.Dialogs
 {
     public class BaseDialogUserControl : UserControl
     {

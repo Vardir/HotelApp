@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Globalization;
 using System.ComponentModel;
 
-namespace Hotel.UI.ValueConverters
+namespace HotelsApp.UI.ValueConverters
 {
     /// <summary>
     /// Use to extract <see cref="DescriptionAttribute"/> text of <see cref="Enum"/> type elements

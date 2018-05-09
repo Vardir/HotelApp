@@ -1,4 +1,4 @@
-﻿namespace Hotel.Core.ViewModels.Dialogs
+﻿namespace HotelsApp.Core.ViewModels.Dialogs
 {
     public class BaseDialogViewModel : BaseViewModel
     {

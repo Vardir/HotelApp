@@ -2,7 +2,7 @@
 using System.Security;
 using System.Runtime.InteropServices;
 
-namespace Hotel.Core.Security
+namespace HotelsApp.Core.Security
 {
     public static class SecureStringHelpers
     {

@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Globalization;
 
-namespace Hotel.UI.ValueConverters
+namespace HotelsApp.UI.ValueConverters
 {
     public class NullableToVisibilityConverter : BaseValueConverter<NullableToVisibilityConverter>
     {

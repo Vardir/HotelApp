@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Hotel.Core.ViewModels.Dialogs;
+using HotelsApp.Core.ViewModels.Dialogs;
 
-namespace Hotel.Core.IoC.Interfaces
+namespace HotelsApp.Core.IoC.Interfaces
 {
     public interface IUIManager
     {

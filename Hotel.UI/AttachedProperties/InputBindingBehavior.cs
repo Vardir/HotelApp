@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Hotel.UI.AttachedProperties
+namespace HotelsApp.UI.AttachedProperties
 {
     public class InputBindingBehavior
     {

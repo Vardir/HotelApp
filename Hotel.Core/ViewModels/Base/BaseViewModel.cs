@@ -1,10 +1,10 @@
 ﻿using System;
-using Hotel.Core.Expressions;
+using HotelsApp.Core.Expressions;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
 
-namespace Hotel.Core.ViewModels
+namespace HotelsApp.Core.ViewModels
 {
     [Serializable]
     public class BaseViewModel : INotifyPropertyChanged

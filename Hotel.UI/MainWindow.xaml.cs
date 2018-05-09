@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Hotel.UI.ViewModels;
+using HotelsApp.UI.ViewModels;
 
-namespace Hotel.UI
+namespace HotelsApp.UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

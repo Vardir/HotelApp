@@ -1,9 +1,9 @@
-﻿using Hotel.UI.Dialogs;
+﻿using HotelsApp.UI.Dialogs;
 using System.Threading.Tasks;
-using Hotel.Core.IoC.Interfaces;
-using Hotel.Core.ViewModels.Dialogs;
+using HotelsApp.Core.IoC.Interfaces;
+using HotelsApp.Core.ViewModels.Dialogs;
 
-namespace Hotel.UI.IoC
+namespace HotelsApp.UI.IoC
 {
     public class UIManager : IUIManager
     {        

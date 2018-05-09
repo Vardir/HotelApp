@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Input;
 
-namespace Hotel.UI.ValueConverters
+namespace HotelsApp.UI.ValueConverters
 {
     public struct CommandKeys
     {

@@ -1,4 +1,4 @@
-﻿namespace Hotel.Core.DataModels.Page
+﻿namespace HotelsApp.Core.DataModels.Page
 {
     public enum TransitionOptions
     {

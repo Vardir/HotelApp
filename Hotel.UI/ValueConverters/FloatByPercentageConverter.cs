@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Hotel.UI.ValueConverters
+namespace HotelsApp.UI.ValueConverters
 {
     public class FloatByPercentageConverter : BaseValueConverter<FloatByPercentageConverter>
     {

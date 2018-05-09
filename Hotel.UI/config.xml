@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <connection db="access" user="admin" pass="1234" source="data/Hotel.accdb" provider="Provider=Microsoft.Jet.OLEDB.4.0"/>
+  <!--<connection db="access" user="" pass="" source="data/Hotel.mdb" driver="Microsoft Access Driver (*.mdb)"/>-->
+  <!--<connection db="access" user="" pass="" source="data/Hotel.mdb" driver="Microsoft Access Driver (*.mdb, *.accdb)"/>-->
+  <!--<connection db="access2" user="" pass="" source="data/Hotel.accdb" provider="Microsoft.ACE.OLEDB.12.0"/>-->
+  <!--<connection db="mysql" user="" pass="" source="Hotels" server="VARMACH" driver="SQL Driver"/>-->
+  <connection db="sql" source="Hotels" server="VARMACH" user="" pass=""/>
 </root>

@@ -1,7 +1,7 @@
-﻿using Hotel.Core.DataModels.Page;
+﻿using HotelsApp.Core.DataModels.Page;
 using System.Collections.Generic;
 
-namespace Hotel.UI.Pages
+namespace HotelsApp.UI.Pages
 {
     public class PageManager
     {

@@ -1,8 +1,7 @@
-﻿using Hotel.Core.DataModels;
-using Hotel.Core.DataModels.Page;
+﻿using HotelsApp.Core.DataModels.Page;
 using System.Collections.Generic;
 
-namespace Hotel.Core.ViewModels
+namespace HotelsApp.Core.ViewModels
 {
     public class BasePageViewModel : BaseViewModel
     {
@@ -37,6 +36,9 @@ namespace Hotel.Core.ViewModels
         public BasePageViewModel()
         {
             Commands = new List<PageCommand>();
+            InitializeCommands();
         }
+
+        virtual protected void InitializeCommands() { }
     }
 }

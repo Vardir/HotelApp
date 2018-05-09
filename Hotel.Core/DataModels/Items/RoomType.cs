@@ -1,4 +1,4 @@
-﻿namespace Hotel.Core.ViewModels.Hotels
+﻿namespace HotelsApp.Core.DataModels
 {
     public class RoomType
     {

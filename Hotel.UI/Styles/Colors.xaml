@@ -21,6 +21,9 @@
     <Color x:Key="ForegroundLight">#FFFFFF</Color>
     <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
 
+    <Color x:Key="ForegroundBlue">#003580</Color>
+    <SolidColorBrush x:Key="ForegroundBlueBrush" Color="{StaticResource ForegroundBlue}" />
+
     <Color x:Key="ForegroundSemiLight">#BCBCBC</Color>
     <SolidColorBrush x:Key="ForegroundSemiLightBrush" Color="{StaticResource ForegroundSemiLight}" />
 
@@ -41,7 +44,7 @@
     <Color x:Key="BackgroundLight">#38414b</Color>
     <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
 
-    <Color x:Key="BackgroundBlueLight">#19d1d1</Color>
+    <Color x:Key="BackgroundBlueLight">#228AE6</Color>
     <SolidColorBrush x:Key="BackgroundBlueLightBrush" Color="{StaticResource BackgroundBlueLight}" />
 
     <Color x:Key="BackgroundGreenLight">#62c495</Color>
@@ -56,6 +59,9 @@
     <Color x:Key="BackgroundGreenSemiDark">#38543f</Color>
     <SolidColorBrush x:Key="BackgroundGreenSemiDarkBrush" Color="{StaticResource BackgroundGreenSemiDark}" />
 
+    <Color x:Key="BackgroundBlue">#003580</Color>
+    <SolidColorBrush x:Key="BackgroundBlueBrush" Color="{StaticResource BackgroundBlue}" />
+    
     <Color x:Key="BackgroundNormal">#222c37</Color>
     <SolidColorBrush x:Key="BackgroundNormalBrush" Color="{StaticResource BackgroundNormal}" />
 

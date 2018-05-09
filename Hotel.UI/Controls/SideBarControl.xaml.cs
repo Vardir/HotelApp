@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hotel.UI.Controls
+namespace HotelsApp.UI.Controls
 {
     /// <summary>
     /// Interaction logic for SideBarControl.xaml

@@ -1,8 +1,8 @@
 ﻿using Ninject;
-using Hotel.Core.ViewModels;
-using Hotel.Core.IoC.Interfaces;
+using HotelsApp.Core.ViewModels;
+using HotelsApp.Core.IoC.Interfaces;
 
-namespace Hotel.Core.IoC
+namespace HotelsApp.Core.IoC
 {
     public static class IoCContainer
     {

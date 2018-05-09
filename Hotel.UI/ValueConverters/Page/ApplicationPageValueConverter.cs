@@ -1,9 +1,9 @@
 ﻿using System;
-using Hotel.UI.Pages;
+using HotelsApp.UI.Pages;
 using System.Globalization;
-using Hotel.Core.DataModels.Page;
+using HotelsApp.Core.DataModels.Page;
 
-namespace Hotel.UI.ValueConverters.Page
+namespace HotelsApp.UI.ValueConverters.Page
 {
     public class ApplicationPageValueConverter : BaseValueConverter<ApplicationPageValueConverter>
     {

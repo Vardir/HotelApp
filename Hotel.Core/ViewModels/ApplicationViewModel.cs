@@ -1,13 +1,15 @@
-﻿using Hotel.Core.DataModels.Page;
-using Hotel.Core.DBTools;
+﻿using System.Data;
+using HotelsApp.Core.DBTools;
+using HotelsApp.Core.DataModels.Page;
 
-namespace Hotel.Core.ViewModels
+namespace HotelsApp.Core.ViewModels
 {
     public class ApplicationViewModel : BaseViewModel
     {
         ApplicationPage currentPage;
         TransitionOptions currentTransitionOptions;
         BaseViewModel currentPageContext;
+        SqlAdapter dbAdapter;
 
         public ApplicationPage CurrentPage
         {
@@ -56,8 +58,9 @@ namespace Hotel.Core.ViewModels
         }
         public void ReadConfig(string path)
         {
-            Connection connection = new Connection(path);
-
+            dbAdapter = new SqlAdapter(new ConnectionInfo(path));
         }
+
+        public DataSet ExecuteQuery(string sqlQuery) => dbAdapter.ReadData(sqlQuery);
     }
 }

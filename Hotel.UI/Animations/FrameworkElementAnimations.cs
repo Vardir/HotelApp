@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
 
-namespace Hotel.UI.Animations
+namespace HotelsApp.UI.Animations
 {
     public static class FrameworkElementAnimations
     {

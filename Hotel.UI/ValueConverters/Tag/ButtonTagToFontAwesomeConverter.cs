@@ -3,7 +3,7 @@ using System.Windows;
 using System.Globalization;
 using System.Collections.Generic;
 
-namespace Hotel.UI.ValueConverters
+namespace HotelsApp.UI.ValueConverters
 {
     public class ButtonTagToFontAwesomeConverter : BaseValueConverter<ButtonTagToFontAwesomeConverter>
     {
