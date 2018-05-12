@@ -42,9 +42,15 @@
     <system:String x:Key="PetIcon">&#xf1b0;</system:String>
     <system:String x:Key="AirportIcon">&#xf072;</system:String> 
     <system:String x:Key="WaterIcon">&#xf043;</system:String>
-    <system:String x:Key="ServiceIcon">&#xf4fd;</system:String> 
-    <system:String x:Key="FitnessIcon">&#xf1ae;</system:String>
+    <system:String x:Key="ServiceIcon">&#xf4fd;</system:String>
+    <system:String x:Key="FitnessIcon">&#xf1ae;</system:String> 
     <system:String x:Key="BathIcon">&#xf2cd;</system:String>
+    <system:String x:Key="CupIcon">&#xf0f4;</system:String>
+    <system:String x:Key="SafeIcon">&#xf187;</system:String>
+    <system:String x:Key="PhoneIcon">&#xf098;</system:String>
+    <system:String x:Key="TVIcon">&#xf26c;</system:String> 
+    <system:String x:Key="SoundOffIcon">&#xf026;</system:String>
+    <system:String x:Key="HotIcon">&#xf06d;</system:String>
 
     <system:String x:Key="FullnessIcon">&#xf240;</system:String>
     <system:String x:Key="UngroupIcon">&#xf248;</system:String>

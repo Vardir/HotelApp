@@ -1,27 +1,65 @@
-﻿using HotelsApp.Core.ViewModels;
+﻿using HotelsApp.Core.DataModels;
+using HotelsApp.Core.Extensions;
+using HotelsApp.Core.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace HotelsApp.Core.DesignModels
 {
-    public class HotelPageDesignModel : HotelPageViewModel
+    public class HotelPageDesignModel
     {
         static HotelPageDesignModel instance;
         public static HotelPageDesignModel Instance => instance ?? (instance = new HotelPageDesignModel());
+        
+        public HotelViewModel Hotel { get; }
+        public ObservableCollection<Facility> Facilities { get; }
+        public ObservableCollection<RoomTypeViewModel> RoomTypes { get; }
 
         private HotelPageDesignModel()
         {
-            Hotel.Title = "Tourist Hotel Complex";
-            Hotel.Adress = "Dniprovskyj, Kiev";
-            Hotel.Reviews = 4747;
-            Hotel.Rating = 7.8;
-            Hotel.Stars = 3;
-            Hotel.Description = @"This property is a 9-minute walk from the beach. Located beside Livoberezhna Metro Station in Kiev, this modern, 3-star hotel offers 2 international restaurants, and a 24-hour reception. The International Exhibition Centre is a 7-minute walk away.
-                                The Tourist Hotel Complex has classic-style rooms and suites with satellite TV, refrigerator, and desk. Wi - Fi is available in the property free of charge.
-                                The restaurant serves Ukrainian and European specialities.Japanese food can be enjoyed in the sushi bar. Fine drinks are served in the snack bar on the 20th floor. Several restaurants, supermarkets, bars, and eateries are in the vicinity of Tourist Hotel Complex.
-                                Kiev Central Station is a 15 minutes' drive away by metro. Borispol Airport is a 40 minutes' drive away. Public parking spaces are available outside Tourist Hotel Complex on request.
-                                Dniprovskyj is a great choice for travelers interested in sightseeing, friendly locals and history.
-                                Couples in particular like the location – they rated it 8.3 for a two-person trip.
-                                We speak your language!";
-
+            Hotel = new HotelViewModel
+            {
+                Title = HotelDesingModel.Instance.Title,
+                Adress = HotelDesingModel.Instance.Adress,
+                Reviews = HotelDesingModel.Instance.Reviews,
+                Rating = HotelDesingModel.Instance.Rating,
+                Stars = HotelDesingModel.Instance.Stars,
+                Description = HotelDesingModel.Instance.Description,
+                Image = "131133997.jpg"
+            };
+            Facilities = new ObservableCollection<Facility>
+            {
+                new Facility() {Title = "Facility 1", Tag = "snow"},
+                new Facility() {Title = "Facility 2", Tag = "snow"},
+                new Facility() {Title = "Facility 3", Tag = "snow"},
+            };
+            RoomTypes = new ObservableCollection<RoomTypeViewModel>
+            {
+                new RoomTypeViewModel(new RoomType()
+                {
+                    Title = "Room type 1", Description = "Description Description Description Description Description",
+                    Area = 15.5, Fits = 2, NeedsPrepay = false, PricePerFit = 150
+                }),
+                new RoomTypeViewModel(new RoomType()
+                {
+                    Title = "Room type 2", Description = "Description Description Description Description Description",
+                    Area = 15.5, Fits = 2, NeedsPrepay = false, PricePerFit = 150
+                }),
+                new RoomTypeViewModel(new RoomType()
+                {
+                    Title = "Room type 3", Description = "Description Description Description Description Description",
+                    Area = 15.5, Fits = 2, NeedsPrepay = false, PricePerFit = 150
+                }),
+            };
+            RoomTypes[0].Options.AddRange(new Option[]
+            {
+                new Option() { Content = "Option 1", Tag = "snow"},
+                new Option() { Content = "Option 2", Tag = "snow"},
+                new Option() { Content = "Option 3", Tag = "snow"},
+                new Option() { Content = "Option 4", Tag = "snow"},
+                new Option() { Content = "Option 5", Tag = "snow"},
+                new Option() { Content = "Option 6", Tag = "snow"},
+                new Option() { Content = "Option 7", Tag = "snow"},
+            });
         }
     }
 }

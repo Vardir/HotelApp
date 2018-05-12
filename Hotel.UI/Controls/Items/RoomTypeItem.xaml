@@ -12,9 +12,9 @@
              d:DataContext="{x:Static dm:RoomTypeDesignModel.Instance}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -42,10 +42,10 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Margin="5 0"
-                                       Foreground="{StaticResource ForegroundGreenBrush}"
-                                       FontSize="{StaticResource FontSizeRegular}">
-                                <Run Text="{Binding Tag, Converter={c:TagToFontAwesomeConverter}}"
-                                     FontFamily="{StaticResource FontAwesome}"/> <Run Text="{Binding Content}" />
+                               Foreground="{StaticResource ForegroundGreenBrush}"
+                               FontSize="{StaticResource FontSizeRegular}">                        
+                        <Run Text="{Binding Tag, Converter={c:TagToFontAwesomeConverter}}"
+                             FontFamily="{StaticResource FontAwesome}"/> <Run Text="{Binding Content}" />
                     </TextBlock>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

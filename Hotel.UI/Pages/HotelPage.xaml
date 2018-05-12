@@ -39,6 +39,10 @@
 
             <Image Source="{Binding Hotel.Image, Converter={c:PathToImageConverter}}" />
             <Grid Grid.Column="1" Margin="5 0 5 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -71,6 +75,10 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+
+                <ctr:HotelRating Rating="{Binding Hotel.Rating}" 
+                                 Reviews="{Binding Hotel.Reviews}"
+                                 Grid.Column="2" HorizontalAlignment="Right"/>
             </Grid>
             <Border BorderThickness="1" BorderBrush="{StaticResource BackgroundDarkBrush}"
                     Grid.Row="2" Grid.ColumnSpan="2" Margin="0 10 0 0">
@@ -84,7 +92,10 @@
             <ItemsControl ItemsSource="{Binding RoomTypes}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <ctr:RoomTypeItem DataContext="{Binding}"/>
+                        <Border BorderThickness="0 0 0 1" Margin="0 0 0 10" 
+                                BorderBrush="{StaticResource BackgroundDarkBrush}">
+                            <ctr:RoomTypeItem DataContext="{Binding}"/>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

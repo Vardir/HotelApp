@@ -66,6 +66,9 @@
     <Compile Include="Controls\Items\HotelItem.xaml.cs">
       <DependentUpon>HotelItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Items\HotelRating.xaml.cs">
+      <DependentUpon>HotelRating.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Items\RoomTypeItem.xaml.cs">
       <DependentUpon>RoomTypeItem.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="WindowTools\WindowResizer.cs" />
     <Page Include="Controls\Items\HotelItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Items\HotelRating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
