@@ -50,15 +50,15 @@ namespace HotelsApp.Core.DesignModels
                     Area = 15.5, Fits = 2, NeedsPrepay = false, PricePerFit = 150
                 }),
             };
-            RoomTypes[0].Options.AddRange(new Option[]
+            RoomTypes[0].Facilities.AddRange(new Facility[]
             {
-                new Option() { Content = "Option 1", Tag = "snow"},
-                new Option() { Content = "Option 2", Tag = "snow"},
-                new Option() { Content = "Option 3", Tag = "snow"},
-                new Option() { Content = "Option 4", Tag = "snow"},
-                new Option() { Content = "Option 5", Tag = "snow"},
-                new Option() { Content = "Option 6", Tag = "snow"},
-                new Option() { Content = "Option 7", Tag = "snow"},
+                new Facility() { Title = "Option 1", Tag = "snow"},
+                new Facility() { Title = "Option 2", Tag = "snow"},
+                new Facility() { Title = "Option 3", Tag = "snow"},
+                new Facility() { Title = "Option 4", Tag = "snow"},
+                new Facility() { Title = "Option 5", Tag = "snow"},
+                new Facility() { Title = "Option 6", Tag = "snow"},
+                new Facility() { Title = "Option 7", Tag = "snow"},
             });
         }
     }

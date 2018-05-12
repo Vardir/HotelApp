@@ -55,13 +55,13 @@ namespace HotelsApp.Core.ViewModels
                 {
                     var roomType = new RoomTypeViewModel(ItemsFactory.GetRoomType(row));
                     RoomTypes.Add(roomType);
-                    var optionsSet = IoCContainer.Application.ExecuteQuery($"SELECT * FROM GetRoomTypeOptions({roomType.Id})");
+                    var optionsSet = IoCContainer.Application.ExecuteQuery($"SELECT * FROM GetRoomTypeFacilities({roomType.Id})");
                     if (optionsSet.Tables.Count == 1)
                     {
                         var optionsTable = optionsSet.Tables[0];
                         foreach (DataRow optionRow in optionsTable.Rows)
                         {
-                            roomType.Options.Add(ItemsFactory.GetOption(optionRow));
+                            roomType.Facilities.Add(ItemsFactory.GetOption(optionRow));
                         }
                     }
                 }

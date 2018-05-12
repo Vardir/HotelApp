@@ -32,7 +32,7 @@
                    Grid.Row="2">
             <Run Text="{Binding Fits}"/> <Run Text="fits"/>
         </TextBlock>
-        <ItemsControl ItemsSource="{Binding Options}"
+        <ItemsControl ItemsSource="{Binding Facilities}"
                       Margin="0 10 0 0" Grid.Row="4">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -45,7 +45,7 @@
                                Foreground="{StaticResource ForegroundGreenBrush}"
                                FontSize="{StaticResource FontSizeRegular}">                        
                         <Run Text="{Binding Tag, Converter={c:TagToFontAwesomeConverter}}"
-                             FontFamily="{StaticResource FontAwesome}"/> <Run Text="{Binding Content}" />
+                             FontFamily="{StaticResource FontAwesome}"/> <Run Text="{Binding Title}" />
                     </TextBlock>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

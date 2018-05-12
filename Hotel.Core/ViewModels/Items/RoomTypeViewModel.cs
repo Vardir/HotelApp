@@ -92,12 +92,12 @@ namespace HotelsApp.Core.ViewModels
             }
         }
 
-        public ObservableCollection<Option> Options { get; }
+        public ObservableCollection<Facility> Facilities { get; }
 
         public RoomTypeViewModel(RoomType type = null)
         {
             actualData = type ?? new RoomType();
-            Options = new ObservableCollection<Option>();
+            Facilities = new ObservableCollection<Facility>();
         }
     }
 }

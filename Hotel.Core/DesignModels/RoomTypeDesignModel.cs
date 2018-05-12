@@ -14,9 +14,9 @@ namespace HotelsApp.Core.DesignModels
             PricePerFit = 200;
             Area = 15.2;
             Fits = 2;
-            Options.Add(new DataModels.Option() { Content = "Option 1", Tag = "snow" });
-            Options.Add(new DataModels.Option() { Content = "Option 2", Tag = "snow" });
-            Options.Add(new DataModels.Option() { Content = "Option 3", Tag = "snow" });
+            Facilities.Add(new DataModels.Facility() { Title = "Option 1", Tag = "snow" });
+            Facilities.Add(new DataModels.Facility() { Title = "Option 2", Tag = "snow" });
+            Facilities.Add(new DataModels.Facility() { Title = "Option 3", Tag = "snow" });
         }
     }
 }

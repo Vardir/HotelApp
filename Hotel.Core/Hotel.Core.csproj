@@ -73,7 +73,6 @@
     <Compile Include="DataModels\Items\CreditCard.cs" />
     <Compile Include="DataModels\Items\Customer.cs" />
     <Compile Include="DataModels\Items\Hotel.cs" />
-    <Compile Include="DataModels\Items\Option.cs" />
     <Compile Include="DataModels\Items\Order.cs" />
     <Compile Include="DataModels\Items\Personnel.cs" />
     <Compile Include="DataModels\Items\Room.cs" />

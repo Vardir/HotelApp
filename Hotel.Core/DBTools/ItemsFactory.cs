@@ -46,13 +46,13 @@ namespace HotelsApp.Core.DBTools
                 Area = Unbox<double>(extracted[6])
             };
         }
-        public static Option GetOption(DataRow row)
+        public static Facility GetOption(DataRow row)
         {
-            var extracted = Extract(row, "id", "content", "tag");
-            return new Option
+            var extracted = Extract(row, "id", "title", "tag");
+            return new Facility
             {
                 Id = Unbox<int>(extracted[0]),
-                Content = Unbox<string>(extracted[1]),
+                Title = Unbox<string>(extracted[1]),
                 Tag = Unbox<string>(extracted[2])
             };
         }
