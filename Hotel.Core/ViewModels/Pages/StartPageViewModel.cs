@@ -1,55 +1,23 @@
-﻿using System.Windows.Input;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Data;
 using HotelsApp.Core.IoC;
-using HotelsApp.Core.DataModels;
-using System.Data;
+using HotelsApp.Core.DBTools;
+using HotelsApp.Core.RelayCommands;
+using System.Collections.ObjectModel;
+using HotelsApp.Core.DataModels.Page;
 
 namespace HotelsApp.Core.ViewModels
 {
-    public class Category
-    {
-        public string Title { get; set; }
-        public string Tag { get; }
-        public ObservableCollection<CategoryItem> CategoryItems { get; set; }
-
-        public Category(string title, string tag)
-        {
-
-            Title = title;
-            Tag = tag;
-        }
-    }
-    public class CategoryItem
-    {
-        public string Title { get; set; }
-        public string Tag { get; set; }
-        public object CommandParameter { get; set; }
-        public ICommand Command { get; set; }
-
-        public CategoryItem(string title, string tag, ICommand command)
-        {
-            Title = title;
-            Tag = tag;
-            Command = command;
-        }
-    }
-    
     public class StartPageViewModel : BasePageViewModel
     {
-        public ObservableCollection<Hotel> Hotels { get; }
-        public List<Category> Categories { get; }
+        public ObservableCollection<HotelViewModel> Hotels { get; }
 
         public StartPageViewModel()
         {
-            Hotels = new ObservableCollection<Hotel>();
-            Categories = new List<Category>();
-            InitializeCommands();
+            Hotels = new ObservableCollection<HotelViewModel>();
         }
         
         protected override void InitializeCommands()
         {
-
         }
 
         public void Refresh()
@@ -61,19 +29,18 @@ namespace HotelsApp.Core.ViewModels
                 var table = dataSet.Tables[0];
                 foreach (DataRow row in table.Rows)
                 {
-                    Hotels.Add(new Hotel
+                    Hotels.Add(new HotelViewModel(ItemsFactory.GetHotel(row))
                     {
-                        Id = (int)row["id"],
-                        Title = row["title"] as string,
-                        Adress = row["adress"] as string,
-                        Image = row["image"] as string,
-                        Rating = (double)row["rating"],
-                        Reviews = (int)row["reviews"],
-                        Stars = (byte)row["stars"],
-                        //AvailableRooms = (int)row["available"],
-                        //AvgPrices = (double)row["avgprice"]
+                        SelectCommand = new RelayParameterizedCommand(SelectHotel)
                     });
                 }
+            }
+        }
+        public void SelectHotel(object obj)
+        {
+            if (obj is HotelViewModel hotel)
+            {
+                IoCContainer.Application.GoTo(ApplicationPage.HotelPage, hotel);
             }
         }
     }

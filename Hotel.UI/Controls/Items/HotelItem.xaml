@@ -20,12 +20,15 @@
 
             <Image Source="{Binding Image, Converter={c:PathToImageConverter}}" />
             <StackPanel Grid.Column="1" Margin="5 0 5 0">
-                <TextBlock FontSize="{StaticResource FontSizeXLarge}"
-                           Foreground="{StaticResource BackgroundGreenSemiDarkBrush}">
-                    <Run Text="{Binding Title}"/> <Run FontFamily="{StaticResource FontAwesome}" 
-                                                       Foreground="{StaticResource ForegroundOrangeBrush}" 
-                                                       Text="{Binding Stars, Converter={c:StarsToFontAwesomeConverter}}"/>
-                </TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                    <Button FontSize="{StaticResource FontSizeXLarge}" 
+                            Foreground="{StaticResource BackgroundGreenSemiDarkBrush}"
+                            Content="{Binding Title}" Style="{StaticResource LinkButton}"
+                            Command="{Binding SelectCommand}" CommandParameter="{Binding}"/>
+                    <TextBlock FontSize="{StaticResource FontSizeXLarge}" Margin="10 0 0 0"
+                               Foreground="{StaticResource ForegroundOrangeBrush}" FontFamily="{StaticResource FontAwesome}"
+                               Text="{Binding Stars, Converter={c:StarsToFontAwesomeConverter}}"/>
+                </StackPanel>
                 <TextBlock Text="{Binding Adress}" FontSize="{StaticResource FontSizeRegular}"/>
             </StackPanel>
             <Grid Grid.Column="2">

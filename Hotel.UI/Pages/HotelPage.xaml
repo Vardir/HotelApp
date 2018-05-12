@@ -1,0 +1,93 @@
+﻿<local:BasePage x:Class="HotelsApp.UI.Pages.HotelPage"
+                x:TypeArguments="vm:HotelPageViewModel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:HotelsApp.UI.Pages"
+                xmlns:conv="clr-namespace:HotelsApp.UI.ValueConverters"
+                xmlns:vm="clr-namespace:HotelsApp.Core.ViewModels;assembly=HotelsApp.Core"
+                xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
+                xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
+                xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
+                mc:Ignorable="d"
+                d:DataContext="{x:Static dm:HotelPageDesignModel.Instance}"
+                d:DesignHeight="450" d:DesignWidth="800"
+                Title="StartPage">
+    <Grid Background="{StaticResource BackgroundUltraLightBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Content="{StaticResource KeyIcon}" Style="{StaticResource CommandButton}"
+                HorizontalAlignment="Right"
+                FontFamily="{StaticResource FontAwesome}" 
+                FontSize="{StaticResource FontSizeLarge}"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="{Binding Hotel.Image, Converter={c:PathToImageConverter}}" />
+            <Grid Grid.Column="1" Margin="5 0 5 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock FontSize="{StaticResource FontSizeXLarge}"
+                           Foreground="{StaticResource BackgroundGreenSemiDarkBrush}">
+                    <Run Text="{Binding Hotel.Title}"/> <Run FontFamily="{StaticResource FontAwesome}" 
+                                                             Foreground="{StaticResource ForegroundOrangeBrush}" 
+                                                             Text="{Binding Hotel.Stars, Converter={c:StarsToFontAwesomeConverter}}"/>
+                </TextBlock>
+                <TextBlock Text="{Binding Hotel.Adress}" Grid.Row="1"
+                           FontSize="{StaticResource FontSizeRegular}"/>
+                <ItemsControl ItemsSource="{Binding Facilities}"
+                              Margin="0 10 0 0" Grid.Row="2">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="5 0"
+                                       Foreground="{StaticResource ForegroundGreenBrush}"
+                                       FontSize="{StaticResource FontSizeRegular}">
+                                <Run Text="{Binding Tag, Converter={c:TagToFontAwesomeConverter}}"
+                                     FontFamily="{StaticResource FontAwesome}"/> <Run Text="{Binding Title}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+            <Border BorderThickness="1" BorderBrush="{StaticResource BackgroundDarkBrush}"
+                    Grid.Row="2" Grid.ColumnSpan="2" Margin="0 10 0 0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <TextBlock Text="{Binding Hotel.Description}" TextWrapping="Wrap"
+                               Padding="5"/>
+                </ScrollViewer>
+            </Border>           
+        </Grid>
+        <ScrollViewer Margin="0 10 0 0" Grid.Row="3" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding RoomTypes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ctr:RoomTypeItem DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</local:BasePage>

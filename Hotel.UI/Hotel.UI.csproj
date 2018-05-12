@@ -66,6 +66,9 @@
     <Compile Include="Controls\Items\HotelItem.xaml.cs">
       <DependentUpon>HotelItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Items\RoomTypeItem.xaml.cs">
+      <DependentUpon>RoomTypeItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SideBarControl.xaml.cs">
       <DependentUpon>SideBarControl.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,9 @@
     <Compile Include="IoC\UIManager.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\PageManager.cs" />
+    <Compile Include="Pages\HotelPage.xaml.cs">
+      <DependentUpon>HotelPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StartupPage.xaml.cs">
       <DependentUpon>StartupPage.xaml</DependentUpon>
     </Compile>
@@ -104,6 +110,7 @@
     <Compile Include="ValueConverters\Page\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\Tag\ButtonTagToFontAwesomeConverter.cs" />
     <Compile Include="ValueConverters\Tag\CommandTagConverters.cs" />
+    <Compile Include="ValueConverters\Tag\TagToFontAwesomeConverter.cs" />
     <Compile Include="ValueConverters\Visibility\IndexToBoolConverter.cs" />
     <Compile Include="ValueConverters\Visibility\IntToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\Visibility\NullableToVisibilityConverter.cs" />
@@ -112,6 +119,10 @@
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="WindowTools\WindowResizer.cs" />
     <Page Include="Controls\Items\HotelItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Items\RoomTypeItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,6 +158,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\HotelPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\StartupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

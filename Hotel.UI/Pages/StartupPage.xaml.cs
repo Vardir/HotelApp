@@ -1,4 +1,5 @@
-﻿using HotelsApp.Core.ViewModels;
+﻿using System.Windows;
+using HotelsApp.Core.ViewModels;
 
 namespace HotelsApp.UI.Pages
 {
@@ -11,10 +12,10 @@ namespace HotelsApp.UI.Pages
         {
             InitializeComponent();
             Title = "Start page";
-            Loaded += StartupPage_Loaded;
+            Loaded += StartupPage_Loaded;            
         }
 
-        void StartupPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        void StartupPage_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.Refresh();
         }

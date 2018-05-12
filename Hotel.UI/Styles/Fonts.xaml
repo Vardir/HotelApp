@@ -29,7 +29,22 @@
     <system:String x:Key="LightbulbIcon">&#xf0eb;</system:String> 
     <system:String x:Key="RefreshIcon">&#xf021;</system:String>
     <system:String x:Key="KeyIcon">&#xf13e;</system:String>
+    
     <system:String x:Key="StarIcon">&#xf005;</system:String>
+    <system:String x:Key="WiFiIcon">&#xf1eb;</system:String>
+    <system:String x:Key="CarIcon">&#xf1b9;</system:String> 
+    <system:String x:Key="FamilyIcon">&#xf0c0;</system:String>
+    <system:String x:Key="DisabledIcon">&#xf193;</system:String>
+    <system:String x:Key="SmokingIcon">&#xf48d;</system:String>
+    <system:String x:Key="RestaurantIcon">&#xf2e7;</system:String>
+    <system:String x:Key="ClockIcon">&#xf017;</system:String>
+    <system:String x:Key="SnowIcon">&#xf2dc;</system:String> 
+    <system:String x:Key="PetIcon">&#xf1b0;</system:String>
+    <system:String x:Key="AirportIcon">&#xf072;</system:String> 
+    <system:String x:Key="WaterIcon">&#xf043;</system:String>
+    <system:String x:Key="ServiceIcon">&#xf4fd;</system:String> 
+    <system:String x:Key="FitnessIcon">&#xf1ae;</system:String>
+    <system:String x:Key="BathIcon">&#xf2cd;</system:String>
 
     <system:String x:Key="FullnessIcon">&#xf240;</system:String>
     <system:String x:Key="UngroupIcon">&#xf248;</system:String>

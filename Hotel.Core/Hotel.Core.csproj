@@ -43,13 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModels\Items\Facility.cs" />
     <Compile Include="DataModels\Page\ApplicationPage.cs" />
     <Compile Include="DataModels\Page\PageCommand.cs" />
     <Compile Include="DataModels\Page\TransitionOptions.cs" />
     <Compile Include="DBTools\ConnectionInfo.cs" />
+    <Compile Include="DBTools\ItemsFactory.cs" />
     <Compile Include="DBTools\SqlAdapter.cs" />
     <Compile Include="DesignModels\HotelDesingModel.cs" />
+    <Compile Include="DesignModels\HotelPageDesignModel.cs" />
     <Compile Include="DesignModels\MessageBoxDialogDesignModel.cs" />
+    <Compile Include="DesignModels\RoomTypeDesignModel.cs" />
     <Compile Include="DesignModels\StartPageDesignModel.cs" />
     <Compile Include="Expressions\ExpressionHelpers.cs" />
     <Compile Include="Extensions\EnumerableHelpers.cs" />
@@ -74,7 +78,10 @@
     <Compile Include="DataModels\Items\Personnel.cs" />
     <Compile Include="DataModels\Items\Room.cs" />
     <Compile Include="DataModels\Items\RoomType.cs" />
+    <Compile Include="ViewModels\Items\HotelViewModel.cs" />
+    <Compile Include="ViewModels\Items\RoomTypeViewModel.cs" />
     <Compile Include="ViewModels\Pages\BasePageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\HotelPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\StartPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

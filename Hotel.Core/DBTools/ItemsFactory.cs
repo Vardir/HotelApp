@@ -1,0 +1,79 @@
+﻿using System.Data;
+using HotelsApp.Core.DataModels;
+
+namespace HotelsApp.Core.DBTools
+{
+    public static class ItemsFactory
+    {
+        public static Facility GetFacility(DataRow row)
+        {
+            var extracted = Extract(row, "id", "title", "tag");
+            return new Facility
+            {
+                Id = Unbox<int>(extracted[0]),
+                Title = Unbox<string>(extracted[1]),
+                Tag = Unbox<string>(extracted[2]),
+            };
+        }
+        public static Hotel GetHotel(DataRow row)
+        {
+            var extracted = Extract(row, "id", "title", "adress", "image", "rating", "reviews", "stars", "description", "available", "avgprice");
+            return new Hotel
+            {
+                Id = Unbox<int>(extracted[0]),
+                Title = Unbox<string>(extracted[1]),
+                Adress = Unbox<string>(extracted[2]),
+                Image = Unbox<string>(extracted[3]),
+                Rating = Unbox<double>(extracted[4]),
+                Reviews = Unbox<int>(extracted[5]),
+                Stars = Unbox<byte>(extracted[6]),
+                Description = Unbox<string>(extracted[7]),
+                AvailableRooms = Unbox<int>(extracted[8]),
+                AvgPrices = Unbox<double>(extracted[9])
+            };
+        }
+        public static RoomType GetRoomType(DataRow row)
+        {
+            var extracted = Extract(row, "id", "title", "description", "fits", "priceperfit", "needsprepay", "area");
+            return new RoomType
+            {
+                Id = Unbox<int>(extracted[0]),
+                Title = Unbox<string>(extracted[1]),
+                Description = Unbox<string>(extracted[2]),
+                Fits = Unbox<int>(extracted[3]),
+                PricePerFit = Unbox<double>(extracted[4]),
+                NeedsPrepay = Unbox<bool>(extracted[5]),
+                Area = Unbox<double>(extracted[6])
+            };
+        }
+        public static Option GetOption(DataRow row)
+        {
+            var extracted = Extract(row, "id", "content", "tag");
+            return new Option
+            {
+                Id = Unbox<int>(extracted[0]),
+                Content = Unbox<string>(extracted[1]),
+                Tag = Unbox<string>(extracted[2])
+            };
+        }
+
+        static T Unbox<T>(object value)
+        {
+            if (value is T result)
+                return result;
+            return default(T);
+        }
+        static bool CanReceive(DataRow row, string column) => row.Table.Columns.Contains(column);
+        static object[] Extract(DataRow row, params string[] columns)
+        {
+            object[] result = new object[columns.Length];
+            for (int i = 0; i < columns.Length; i++)
+            {
+                if (CanReceive(row, columns[i]))
+                    result[i] = row[columns[i]];
+                else result[i] = null;
+            }
+            return result;
+        }
+    }
+}

@@ -7,10 +7,13 @@
     <SolidColorBrush x:Key="ForegroundLightBlueBrush" Color="{StaticResource ForegroundLightBlue}" />
 
     <Color x:Key="ForegroundLightGreen">#56E66E</Color>
-    <SolidColorBrush x:Key="ForegroundLightGreenBrush" Color="{StaticResource ForegroundLightGreen}" />
+    <SolidColorBrush x:Key="ForegroundLightGreenBrush" Color="{StaticResource ForegroundLightGreen}" /> 
 
     <Color x:Key="ForegroundRed">#FF0000</Color>
     <SolidColorBrush x:Key="ForegroundRedBrush" Color="{StaticResource ForegroundRed}" />
+
+    <Color x:Key="ForegroundGreen">#0AB21B</Color>
+    <SolidColorBrush x:Key="ForegroundGreenBrush" Color="{StaticResource ForegroundGreen}" />
 
     <Color x:Key="ForegroundOrange">#FFBF66</Color>
     <SolidColorBrush x:Key="ForegroundOrangeBrush" Color="{StaticResource ForegroundOrange}" />

@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
+using HotelsApp.Core.ViewModels;
 
 namespace HotelsApp.UI.Controls
 {
