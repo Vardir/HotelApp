@@ -37,17 +37,17 @@ namespace HotelsApp.Core.DesignModels
                 new RoomTypeViewModel(new RoomType()
                 {
                     Title = "Room type 1", Description = "Description Description Description Description Description",
-                    Area = 15.5, Fits = 2, NeedsPrepay = false, PricePerFit = 150
+                    Area = 15.5, Fits = 2, NeedsPrepay = true, PricePerFit = 150
                 }),
                 new RoomTypeViewModel(new RoomType()
                 {
                     Title = "Room type 2", Description = "Description Description Description Description Description",
-                    Area = 15.5, Fits = 2, NeedsPrepay = false, PricePerFit = 150
+                    Area = 15.5, Fits = 2, PricePerFit = 150
                 }),
                 new RoomTypeViewModel(new RoomType()
                 {
                     Title = "Room type 3", Description = "Description Description Description Description Description",
-                    Area = 15.5, Fits = 2, NeedsPrepay = false, PricePerFit = 150
+                    Area = 15.5, Fits = 2, PricePerFit = 150
                 }),
             };
             RoomTypes[0].Facilities.AddRange(new Facility[]

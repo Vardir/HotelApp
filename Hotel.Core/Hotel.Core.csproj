@@ -53,6 +53,7 @@
     <Compile Include="DesignModels\HotelDesingModel.cs" />
     <Compile Include="DesignModels\HotelPageDesignModel.cs" />
     <Compile Include="DesignModels\MessageBoxDialogDesignModel.cs" />
+    <Compile Include="DesignModels\OrderPageDesignModel.cs" />
     <Compile Include="DesignModels\RoomTypeDesignModel.cs" />
     <Compile Include="DesignModels\StartPageDesignModel.cs" />
     <Compile Include="Expressions\ExpressionHelpers.cs" />
@@ -78,9 +79,11 @@
     <Compile Include="DataModels\Items\Room.cs" />
     <Compile Include="DataModels\Items\RoomType.cs" />
     <Compile Include="ViewModels\Items\HotelViewModel.cs" />
+    <Compile Include="ViewModels\Items\OrderViewModel.cs" />
     <Compile Include="ViewModels\Items\RoomTypeViewModel.cs" />
     <Compile Include="ViewModels\Pages\BasePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\HotelPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\OrderPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\StartPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,8 +16,10 @@
         <Grid Background="{StaticResource BackgroundUltraLightBrush}"
               Margin="2" Grid.Row="1">
 
-            <Frame x:Name="PageFrame" NavigationUIVisibility="Hidden"
-                   Grid.Row="2" Content="{Binding}"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Frame x:Name="PageFrame" NavigationUIVisibility="Hidden"
+                   Content="{Binding}"/>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

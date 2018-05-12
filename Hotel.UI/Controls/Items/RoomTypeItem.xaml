@@ -6,15 +6,17 @@
              xmlns:local="clr-namespace:HotelsApp.UI.Controls"
              xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
              xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
+             xmlns:ctr="clr-namespace:HotelsApp.UI.ValueConverters"
              mc:Ignorable="d" 
              Background="{StaticResource BackgroundUltraLightBrush}"
-             d:DesignWidth="800"
+             d:DesignWidth="500"
              d:DataContext="{x:Static dm:RoomTypeDesignModel.Instance}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition />
             <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -30,10 +32,11 @@
         <TextBlock FontSize="{StaticResource FontSizeRegular}"
                    Foreground="{StaticResource ForegroundBlueBrush}"
                    Grid.Row="2">
-            <Run Text="{Binding Fits}"/> <Run Text="fits"/>
+            <Run Text="{Binding Fits}"/> <Run Text="fits"/> <Run Text="{StaticResource BedIcon}"
+                                                                 FontFamily="{StaticResource FontAwesome}"/>
         </TextBlock>
         <ItemsControl ItemsSource="{Binding Facilities}"
-                      Margin="0 10 0 0" Grid.Row="4">
+                      Margin="0 10 0 10" Grid.Row="4">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" />
@@ -51,9 +54,21 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <TextBlock Grid.Column="2"
+        <TextBlock Text="NO PREPAYMENT NEEDED – pay at the property" 
+                   Visibility="{Binding NeedsPrepay, Converter={ctr:BoolToVisibilityConverter}, ConverterParameter=True}"
+                   TextWrapping="Wrap" HorizontalAlignment="Center"
+                   Foreground="{StaticResource ForegroundGreenBrush}"
+                   VerticalAlignment="Bottom"
+                   Grid.Column="2"/>
+
+        <TextBlock Grid.Column="2" Grid.Row="2"
                    FontSize="{StaticResource FontSizeLarge}">
-            <Run Text="Price:"/> <Run Text="$"/><Run Text="{Binding PricePerFit}"/>
+            <Run Text="Price for night:"/> <Run Text="$"/><Run Text="{Binding PricePerFit}"/>
         </TextBlock>
+
+        <Button Content="I'll reserve"
+                Grid.Column="2" Grid.Row="4"
+                HorizontalAlignment="Center" Padding="15 5 15 5"
+                Command="{Binding ReserveCommand}" CommandParameter="{Binding}"/>
     </Grid>
 </UserControl>

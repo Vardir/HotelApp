@@ -1,0 +1,87 @@
+﻿<local:BasePage x:Class="HotelsApp.UI.Pages.OrderPage"
+                x:TypeArguments="vm:OrderPageViewModel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:HotelsApp.UI.Pages"
+                xmlns:conv="clr-namespace:HotelsApp.UI.ValueConverters"
+                xmlns:vm="clr-namespace:HotelsApp.Core.ViewModels;assembly=HotelsApp.Core"
+                xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
+                xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
+                xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
+                xmlns:s="clr-namespace:System;assembly=mscorlib"
+                mc:Ignorable="d" 
+                d:DataContext="{x:Static dm:OrderPageDesignModel.Instance}"
+                d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{StaticResource BackgroundUltraLightBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="{StaticResource KeyIcon}" Style="{StaticResource CommandButton}"
+                    HorizontalAlignment="Right" Grid.Column="2"
+                    FontFamily="{StaticResource FontAwesome}" 
+                    FontSize="{StaticResource FontSizeLarge}"/>
+
+            <Border Grid.ColumnSpan="3" HorizontalAlignment="Center"
+                    Padding="15 0 15 0"
+                    BorderThickness="0 0 0 1" BorderBrush="{StaticResource BackgroundVeryDarkBrush}">
+                <TextBlock Text="Order" Style="{StaticResource BaseTextBlockStyle}"
+                           FontSize="{StaticResource FontSizeXLarge}"/>
+            </Border>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.ColumnSpan="3"
+                        BorderBrush="{StaticResource BackgroundDarkBrush}"
+                        BorderThickness="0 0 0 1"
+                        Margin="0 0 0 10">
+                    <TextBlock Text="Select period:"                           
+                           FontSize="{StaticResource FontSizeLarge}"/>
+                </Border>
+                <TextBlock Text="Check-in date"
+                           Grid.Row="1" FontSize="{StaticResource FontSizeRegular}"/>
+                <DatePicker IsTodayHighlighted="True" SelectedDateFormat="Short"
+                            x:Name="checkInDate" Grid.Row="2"
+                            SelectedDate="{Binding Order.CheckInDate}"/>
+                <TextBlock Text="Check-out date"
+                           Grid.Row="1" Grid.Column="2"
+                           FontSize="{StaticResource FontSizeRegular}"/>
+                <DatePicker IsTodayHighlighted="True" SelectedDateFormat="Short"
+                            x:Name="checkOutDate" Margin="5 0 0 0"
+                            Grid.Row="2" Grid.Column="2"
+                            SelectedDate="{Binding Order.CheckOutDate}"
+                            DisplayDateStart="{Binding Order.CheckInDate}"/>
+                <Button Content="Search rooms"
+                        Grid.Row="4" Grid.Column="2"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</local:BasePage>

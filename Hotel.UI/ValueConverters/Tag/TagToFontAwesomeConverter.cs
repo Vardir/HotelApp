@@ -26,11 +26,13 @@ namespace HotelsApp.UI.ValueConverters
             { "spa", "BathIcon" },
             { "bath", "BathIcon" },
             { "safe", "SafeIcon" },
+            { "cup", "CupIcon" },
             { "phone", "PhoneIcon" },
             { "tv", "TVIcon" },
             { "no-sound", "SoundOffIcon" },
             { "hot", "HotIcon" },
         };
+
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string icon = icons["none"];

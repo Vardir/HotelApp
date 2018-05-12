@@ -12,21 +12,27 @@
                 xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
                 mc:Ignorable="d"
                 d:DataContext="{x:Static dm:HotelPageDesignModel.Instance}"
-                d:DesignHeight="450" d:DesignWidth="800"
+                d:DesignWidth="800"
                 Title="StartPage">
     <Grid Background="{StaticResource BackgroundUltraLightBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
         <Button Content="{StaticResource KeyIcon}" Style="{StaticResource CommandButton}"
                 HorizontalAlignment="Right"
                 FontFamily="{StaticResource FontAwesome}" 
-                FontSize="{StaticResource FontSizeLarge}"/>
+                FontSize="{StaticResource FontSizeLarge}"
+                Grid.Column="2"/>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -80,25 +86,25 @@
                                  Reviews="{Binding Hotel.Reviews}"
                                  Grid.Column="2" HorizontalAlignment="Right"/>
             </Grid>
-            <Border BorderThickness="1" BorderBrush="{StaticResource BackgroundDarkBrush}"
-                    Grid.Row="2" Grid.ColumnSpan="2" Margin="0 10 0 0">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <TextBlock Text="{Binding Hotel.Description}" TextWrapping="Wrap"
-                               Padding="5"/>
-                </ScrollViewer>
-            </Border>           
+            <Border Grid.Row="2" Margin="15 10 15 0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="{StaticResource BackgroundDarkBrush}"
+                    BorderThickness="0 0 0 1">
+                <TextBlock Text="{Binding Hotel.Description}" 
+                       TextWrapping="Wrap" FontSize="{StaticResource FontSizeRegular}"
+                       Padding="5"/>
+            </Border>
         </Grid>
-        <ScrollViewer Margin="0 10 0 0" Grid.Row="3" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding RoomTypes}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="0 0 0 1" Margin="0 0 0 10" 
-                                BorderBrush="{StaticResource BackgroundDarkBrush}">
-                            <ctr:RoomTypeItem DataContext="{Binding}"/>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <ItemsControl ItemsSource="{Binding RoomTypes}"
+                      Margin="0 10 0 0" Grid.Row="3" Grid.Column="1">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="0 0 0 1" Margin="0 0 0 10" 
+                            BorderBrush="{StaticResource BackgroundDarkBrush}">
+                        <ctr:RoomTypeItem DataContext="{Binding}"/>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </local:BasePage>

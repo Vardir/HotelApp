@@ -99,6 +99,9 @@
     <Compile Include="Pages\HotelPage.xaml.cs">
       <DependentUpon>HotelPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StartupPage.xaml.cs">
       <DependentUpon>StartupPage.xaml</DependentUpon>
     </Compile>
@@ -114,6 +117,7 @@
     <Compile Include="ValueConverters\Tag\ButtonTagToFontAwesomeConverter.cs" />
     <Compile Include="ValueConverters\Tag\CommandTagConverters.cs" />
     <Compile Include="ValueConverters\Tag\TagToFontAwesomeConverter.cs" />
+    <Compile Include="ValueConverters\Visibility\BoolToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\Visibility\IndexToBoolConverter.cs" />
     <Compile Include="ValueConverters\Visibility\IntToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\Visibility\NullableToVisibilityConverter.cs" />
@@ -166,6 +170,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\HotelPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrderPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

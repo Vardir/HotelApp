@@ -3,6 +3,8 @@ using HotelsApp.Core.IoC;
 using HotelsApp.Core.DataModels;
 using System.Collections.ObjectModel;
 using HotelsApp.Core.DBTools;
+using HotelsApp.Core.RelayCommands;
+using HotelsApp.Core.DataModels.Page;
 
 namespace HotelsApp.Core.ViewModels
 {    
@@ -53,18 +55,29 @@ namespace HotelsApp.Core.ViewModels
                 var table = dataSet.Tables[0];
                 foreach (DataRow row in table.Rows)
                 {
-                    var roomType = new RoomTypeViewModel(ItemsFactory.GetRoomType(row));
-                    RoomTypes.Add(roomType);
-                    var optionsSet = IoCContainer.Application.ExecuteQuery($"SELECT * FROM GetRoomTypeFacilities({roomType.Id})");
-                    if (optionsSet.Tables.Count == 1)
+                    var roomType = new RoomTypeViewModel(ItemsFactory.GetRoomType(row))
                     {
-                        var optionsTable = optionsSet.Tables[0];
-                        foreach (DataRow optionRow in optionsTable.Rows)
+                        HotelId = Hotel.Id,
+                        ReserveCommand = new RelayParameterizedCommand(Reserve)
+                    };
+                    RoomTypes.Add(roomType);
+                    var facilitiesSet = IoCContainer.Application.ExecuteQuery($"SELECT * FROM GetRoomTypeFacilities({roomType.Id})");
+                    if (facilitiesSet.Tables.Count == 1)
+                    {
+                        var facilitiesTable = facilitiesSet.Tables[0];
+                        foreach (DataRow facilityRow in facilitiesTable.Rows)
                         {
-                            roomType.Facilities.Add(ItemsFactory.GetOption(optionRow));
+                            roomType.Facilities.Add(ItemsFactory.GetOption(facilityRow));
                         }
                     }
                 }
+            }
+        }
+        public void Reserve(object obj)
+        {
+            if (obj is RoomTypeViewModel model)
+            {
+                IoCContainer.Application.GoTo(ApplicationPage.OrderPage, model);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using HotelsApp.Core.DataModels;
+﻿using System.Windows.Input;
+using HotelsApp.Core.DataModels;
 using System.Collections.ObjectModel;
 
 namespace HotelsApp.Core.ViewModels
@@ -31,6 +32,7 @@ namespace HotelsApp.Core.ViewModels
                 }
             }
         }
+        public int HotelId { get; set; }
         public int Fits
         {
             get => actualData.Fits;
@@ -93,6 +95,8 @@ namespace HotelsApp.Core.ViewModels
         }
 
         public ObservableCollection<Facility> Facilities { get; }
+
+        public ICommand ReserveCommand { get; set; }
 
         public RoomTypeViewModel(RoomType type = null)
         {
