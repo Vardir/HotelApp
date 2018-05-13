@@ -50,6 +50,7 @@
     <Compile Include="DBTools\ConnectionInfo.cs" />
     <Compile Include="DBTools\ItemsFactory.cs" />
     <Compile Include="DBTools\SqlAdapter.cs" />
+    <Compile Include="DBTools\SQLQuery.cs" />
     <Compile Include="DesignModels\HotelDesingModel.cs" />
     <Compile Include="DesignModels\HotelPageDesignModel.cs" />
     <Compile Include="DesignModels\MessageBoxDialogDesignModel.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="DesignModels\RoomTypeDesignModel.cs" />
     <Compile Include="DesignModels\StartPageDesignModel.cs" />
     <Compile Include="Expressions\ExpressionHelpers.cs" />
+    <Compile Include="Extensions\DateTimeHelpers.cs" />
     <Compile Include="Extensions\EnumerableHelpers.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="ViewModels\Items\HotelViewModel.cs" />
     <Compile Include="ViewModels\Items\OrderViewModel.cs" />
     <Compile Include="ViewModels\Items\RoomTypeViewModel.cs" />
+    <Compile Include="ViewModels\Items\UserViewModel.cs" />
     <Compile Include="ViewModels\Pages\BasePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\HotelPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\OrderPageViewModel.cs" />

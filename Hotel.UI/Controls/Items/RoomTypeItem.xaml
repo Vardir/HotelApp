@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HotelsApp.UI.Controls"
              xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
              xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
-             xmlns:ctr="clr-namespace:HotelsApp.UI.ValueConverters"
+             xmlns:conv="clr-namespace:HotelsApp.UI.ValueConverters"
              mc:Ignorable="d" 
              Background="{StaticResource BackgroundUltraLightBrush}"
              d:DesignWidth="500"
@@ -55,7 +55,7 @@
         </ItemsControl>
 
         <TextBlock Text="NO PREPAYMENT NEEDED – pay at the property" 
-                   Visibility="{Binding NeedsPrepay, Converter={ctr:BoolToVisibilityConverter}, ConverterParameter=True}"
+                   Visibility="{Binding NeedsPrepay, Converter={conv:BoolToVisibilityConverter}, ConverterParameter=True}"
                    TextWrapping="Wrap" HorizontalAlignment="Center"
                    Foreground="{StaticResource ForegroundGreenBrush}"
                    VerticalAlignment="Bottom"

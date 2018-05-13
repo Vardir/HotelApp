@@ -23,7 +23,7 @@ namespace HotelsApp.Core.ViewModels
         public void Refresh()
         {
             Hotels.Clear();
-            var dataSet = IoCContainer.Application.ExecuteQuery("SELECT * FROM hotel");
+            var dataSet = IoCContainer.Application.ExecuteQuery(SQLQuery.GetAllHotels());
             if (dataSet.Tables.Count != 0)
             {
                 var table = dataSet.Tables[0];

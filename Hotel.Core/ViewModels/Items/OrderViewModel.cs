@@ -5,6 +5,7 @@ namespace HotelsApp.Core.ViewModels.Items
 {
     public class OrderViewModel : BaseViewModel
     {
+        int days;
         Order actualData;
 
         public bool IsMoneyPayed
@@ -79,6 +80,18 @@ namespace HotelsApp.Core.ViewModels.Items
                 }
             }
         }
+        public int Days
+        {
+            get => days;
+            private set
+            {
+                if (days != value)
+                {
+                    days = value;
+                    OnPropertyChanged(nameof(Days));
+                }
+            }
+        }
         public double TotalPrice
         {
             get => actualData.TotalPrice;
@@ -101,6 +114,7 @@ namespace HotelsApp.Core.ViewModels.Items
                     actualData.CheckInDate = value;
                     if (value >= actualData.CheckOutDate)
                         CheckOutDate = value.AddDays(1);
+                    Days = CheckOutDate.Subtract(CheckInDate).Days;
                     OnPropertyChanged(nameof(CheckInDate));
                 }
             }
@@ -113,6 +127,7 @@ namespace HotelsApp.Core.ViewModels.Items
                 if (actualData.CheckOutDate != value && actualData.CheckInDate < value)
                 {
                     actualData.CheckOutDate = value;
+                    Days = CheckOutDate.Subtract(CheckInDate).Days;
                     OnPropertyChanged(nameof(CheckOutDate));
                 }
             }

@@ -14,6 +14,14 @@ namespace HotelsApp.UI.Pages
         {
             InitializeComponent();
             Title = "Order page";
+            PageContextChanged += (value) =>
+            {
+                if (value is RoomTypeViewModel roomType)
+                {
+                    ViewModel.RoomType = roomType;
+                    ViewModel.Refresh();
+                }
+            };
             Loaded += StartupPage_Loaded;
             checkInDate.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1)));
             checkOutDate.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, DateTime.Today));

@@ -56,6 +56,17 @@ namespace HotelsApp.Core.DBTools
                 Tag = Unbox<string>(extracted[2])
             };
         }
+        public static Room GetRoom(DataRow row)
+        {
+            var extracted = Extract(row, "id", "hotelid", "typeid", "islocked");
+            return new Room
+            {
+                Id = Unbox<int>(extracted[0]),
+                HotelId = Unbox<int>(extracted[1]),
+                TypeId = Unbox<int>(extracted[2]),
+                IsLocked = Unbox<bool>(extracted[3])
+            };
+        }
 
         static T Unbox<T>(object value)
         {

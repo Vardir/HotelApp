@@ -11,11 +11,13 @@
                 xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
                 xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
                 xmlns:s="clr-namespace:System;assembly=mscorlib"
+                FontSize="{StaticResource FontSizeRegular}"
                 mc:Ignorable="d" 
                 d:DataContext="{x:Static dm:OrderPageDesignModel.Instance}"
                 d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource BackgroundUltraLightBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -79,9 +81,77 @@
                             Grid.Row="2" Grid.Column="2"
                             SelectedDate="{Binding Order.CheckOutDate}"
                             DisplayDateStart="{Binding Order.CheckInDate}"/>
+                <TextBlock Grid.Row="4">
+                    <Run Text="{Binding Order.Days}"/><Run Text="-night stay"/>
+                </TextBlock>
                 <Button Content="Search rooms"
-                        Grid.Row="4" Grid.Column="2"/>
+                        Grid.Row="4" Grid.Column="2"
+                        Command="{Binding SearchCommand}"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="2"
+                  DataContext="{Binding RoomType}">                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock FontSize="{StaticResource FontSizeXLarge}" 
+                               Foreground="{StaticResource ForegroundLightBlueBrush}"
+                               Text="{Binding Title}"
+                               Grid.Column="1"/>
+                <TextBlock FontSize="{StaticResource FontSizeRegular}"
+                            Foreground="{StaticResource ForegroundBlueBrush}"
+                            Grid.Row="2" Grid.Column="1">
+                            <Run Text="{Binding Fits}"/> <Run Text="fits"/> <Run Text="{StaticResource BedIcon}"
+                                                              FontFamily="{StaticResource FontAwesome}"/>
+                </TextBlock>
+
+                <TextBlock Text="NO PREPAYMENT NEEDED – pay at the property" 
+                            Visibility="{Binding NeedsPrepay, Converter={conv:BoolToVisibilityConverter}, ConverterParameter=True}"
+                            TextWrapping="Wrap" HorizontalAlignment="Center" Grid.Column="3"
+                            Foreground="{StaticResource ForegroundGreenBrush}"/>
+
+                <TextBlock Grid.Column="3" Grid.Row="2"
+                            FontSize="{StaticResource FontSizeLarge}">
+                        <Run Text="Price for night:"/> <Run Text="$"/><Run Text="{Binding PricePerFit}"/>
+                </TextBlock>               
             </Grid>
         </Grid>
+
+        <Border Grid.Row="1"
+                BorderBrush="{StaticResource BackgroundDarkBrush}"
+                BorderThickness="0 1 0 0"
+                Margin="0 10 0 0" Padding="0 10 0 0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Name" VerticalAlignment="Center" />
+                <TextBox Grid.Column="1"/>
+
+                <TextBlock Text="Last name" VerticalAlignment="Center"
+                           Grid.Row="2"/>
+                <TextBox Grid.Column="1" Grid.Row="2"/>
+            </Grid>
+        </Border>
     </Grid>
 </local:BasePage>
