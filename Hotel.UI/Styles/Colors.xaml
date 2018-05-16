@@ -18,6 +18,9 @@
     <Color x:Key="ForegroundOrange">#FFBF66</Color>
     <SolidColorBrush x:Key="ForegroundOrangeBrush" Color="{StaticResource ForegroundOrange}" />
 
+    <Color x:Key="ForegroundSemiLight">#555555</Color>
+    <SolidColorBrush x:Key="ForegroundSemiLightBrush" Color="{StaticResource ForegroundSemiLight}" />
+    
     <Color x:Key="ForegroundUltraLight">#888888</Color>
     <SolidColorBrush x:Key="ForegroundUltraLightBrush" Color="{StaticResource ForegroundUltraLight}" />
 
@@ -27,8 +30,8 @@
     <Color x:Key="ForegroundBlue">#003580</Color>
     <SolidColorBrush x:Key="ForegroundBlueBrush" Color="{StaticResource ForegroundBlue}" />
 
-    <Color x:Key="ForegroundSemiLight">#BCBCBC</Color>
-    <SolidColorBrush x:Key="ForegroundSemiLightBrush" Color="{StaticResource ForegroundSemiLight}" />
+    <!--<Color x:Key="ForegroundSemiLight">#BCBCBC</Color>
+    <SolidColorBrush x:Key="ForegroundSemiLightBrush" Color="{StaticResource ForegroundSemiLight}" />-->
 
     <Color x:Key="ForegroundDark">#9F9F9F</Color>
     <SolidColorBrush x:Key="ForegroundDarkBrush" Color="{StaticResource ForegroundDark}" />

@@ -51,6 +51,7 @@ namespace HotelsApp.Core.ViewModels.Items
             {
                 if (actualData.Fits != value)
                 {
+                    FitsChanged?.Invoke(value);
                     actualData.Fits = value;
                     OnPropertyChanged(nameof(Fits));
                 }
@@ -133,9 +134,19 @@ namespace HotelsApp.Core.ViewModels.Items
             }
         }
 
+        public event Action<int> FitsChanged;
+
         public OrderViewModel(Order order = null)
         {
             actualData = order ?? new Order();
+            Fits = 1;
+        }
+
+        public void UpdateFits(int value)
+        {
+            Fits = value;
+            OnPropertyChanged(nameof(Fits));
+            FitsChanged?.Invoke(value);
         }
     }
 }

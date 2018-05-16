@@ -133,24 +133,99 @@
                 Margin="0 10 0 0" Padding="0 10 0 0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*"/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Name" VerticalAlignment="Center" />
-                <TextBox Grid.Column="1"/>
+                <Border BorderBrush="Silver" BorderThickness="1"
+                        Grid.ColumnSpan="3"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Text="How many fits do you need?"/>
+                    <ctr:NumericUpDown Grid.Row="1" Min="1" Max="100"
+                                       Width="60" HorizontalAlignment="Left"
+                                       Value="{Binding Order.Fits, Mode=TwoWay}"/>
+                    <TextBlock Grid.Column="2">
+                        <Run Text="(Rooms available:"/> <Run Text="{Binding Rooms.Count, Mode=OneWay}"/><Run Text=")"/>
+                    </TextBlock>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Last name" VerticalAlignment="Center"
+                    <TextBlock>
+                        <Run Text="Total rooms:"/> <Run Text="{Binding RoomsCount}"/>
+                    </TextBlock>
+                    <TextBlock Grid.Row="1">
+                        <Run Text="Total price: $"/><Run Text="{Binding Order.TotalPrice}"/>
+                    </TextBlock>
+                    <TextBlock Grid.Column="2" Grid.RowSpan="2"
+                               TextWrapping="Wrap" Foreground="Red"
+                               Text="Cant afford such rooms count"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Text="Name" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1"/>
+
+                    <TextBlock Text="Last name" VerticalAlignment="Center"
                            Grid.Row="2"/>
-                <TextBox Grid.Column="1" Grid.Row="2"/>
+                    <TextBox Grid.Column="1" Grid.Row="2"/>
+                </Grid>
+                <Grid Grid.Column="2" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Email" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1"/>
+
+                    <TextBlock Text="Confirm email" VerticalAlignment="Center"
+                           Grid.Row="2"/>
+                    <TextBox Grid.Column="1" Grid.Row="2"/>
+                </Grid>
+
             </Grid>
         </Border>
     </Grid>

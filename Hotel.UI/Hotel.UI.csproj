@@ -75,8 +75,8 @@
     <Compile Include="Controls\SideBarControl.xaml.cs">
       <DependentUpon>SideBarControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WPF Extended\NumericInput.xaml.cs">
-      <DependentUpon>NumericInput.xaml</DependentUpon>
+    <Compile Include="Controls\WPF Extended\NumericUpDown.xaml.cs">
+      <DependentUpon>NumericUpDown.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
@@ -141,7 +141,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\WPF Extended\NumericInput.xaml">
+    <Page Include="Controls\WPF Extended\NumericUpDown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
