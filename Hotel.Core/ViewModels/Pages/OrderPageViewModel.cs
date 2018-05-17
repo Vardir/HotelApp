@@ -4,7 +4,7 @@ using HotelsApp.Core.IoC;
 using System.Windows.Input;
 using HotelsApp.Core.DBTools;
 using HotelsApp.Core.DataModels;
-using HotelsApp.Core.Extensions;
+using HotelsApp.Core.Validation;
 using HotelsApp.Core.RelayCommands;
 using System.Collections.ObjectModel;
 using HotelsApp.Core.ViewModels.Items;
@@ -15,11 +15,12 @@ namespace HotelsApp.Core.ViewModels
     {
         int rooms;
         string email;
+        string confirmationEmail;
         string customerName;
         string customerLastname;
         RoomTypeViewModel roomType;
 
-        public int RoomsCount
+        public int RoomsOrdered
         {
             get => rooms;
             set
@@ -27,7 +28,7 @@ namespace HotelsApp.Core.ViewModels
                 if (rooms != value)
                 {
                     rooms = value;                    
-                    OnPropertyChanged(nameof(RoomsCount));
+                    OnPropertyChanged(nameof(RoomsOrdered));
                 }
             }
         }
@@ -40,6 +41,18 @@ namespace HotelsApp.Core.ViewModels
                 {
                     email = value;
                     OnPropertyChanged(nameof(Email));
+                }
+            }
+        }
+        public string ConfirmationEmail
+        {
+            get => confirmationEmail;
+            set
+            {
+                if (confirmationEmail != value)
+                {
+                    confirmationEmail = value;
+                    OnPropertyChanged(nameof(ConfirmationEmail));
                 }
             }
         }
@@ -83,6 +96,7 @@ namespace HotelsApp.Core.ViewModels
         public ObservableCollection<Room> Rooms { get; }
 
         public ICommand SearchCommand { get; set; }
+        public ICommand ConfirmCommand { get; set; }
 
         public OrderPageViewModel()
         {
@@ -93,19 +107,28 @@ namespace HotelsApp.Core.ViewModels
                 CheckOutDate = DateTime.Today.AddDays(1),                
             };
             Order.FitsChanged += Order_FitsChanged;
+            Email = string.Empty;
         }
 
         void Order_FitsChanged(int count)
         {
             Order.TotalPrice = RoomType.PricePerFit * count;
-            RoomsCount = (int)Math.Ceiling((double)count / (double)RoomType.Fits);
+            RoomsOrdered = (int)Math.Ceiling((double)count / (double)RoomType.Fits);
         }
 
         protected override void InitializeCommands()
         {
             SearchCommand = new RelayCommand(SearchAvailableRooms);
+            ConfirmCommand = new RelayCommand(Confirm);
         }
 
+        public void Confirm()
+        {
+            if (IsValid())
+            {
+
+            }
+        }
         public void Refresh()
         {
             
@@ -124,6 +147,17 @@ namespace HotelsApp.Core.ViewModels
                 }
                 Order.UpdateFits(Order.Fits);
             }
+        }
+
+        public bool IsValid()
+        {
+            bool value = NameValidationRule.IsValid(CustomerName);
+            value &= NameValidationRule.IsValid(CustomerLastname);
+            value &= EmailValidationRule.IsValid(Email);
+            value &= StringEqualityValidationRule.IsValid(Email, ConfirmationEmail);
+            value &= Rooms.Count >= RoomsOrdered;
+            value &= Rooms.Count > 0;
+            return value;
         }
     }
 }

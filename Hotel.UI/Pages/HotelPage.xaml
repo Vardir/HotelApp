@@ -31,6 +31,11 @@
                 FontFamily="{StaticResource FontAwesome}" 
                 FontSize="{StaticResource FontSizeLarge}"
                 Grid.Column="2"/>
+        <Button Content="{StaticResource KeyBackIcon}"
+                FontFamily="{StaticResource FontAwesome}"
+                Style="{StaticResource CommandButton}"
+                FontSize="{StaticResource FontSizeLarge}"
+                HorizontalAlignment="Left"/>
 
         <Grid Grid.Row="1" Grid.ColumnSpan="3">
             <Grid.RowDefinitions>

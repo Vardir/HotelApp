@@ -111,6 +111,7 @@
     <Compile Include="ValueConverters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="ValueConverters\FloatByPercentageConverter.cs" />
     <Compile Include="ValueConverters\Images\PathToImageConverter.cs" />
+    <Compile Include="ValueConverters\Integer\IsGreaterToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\Integer\RatingToTextConverter.cs" />
     <Compile Include="ValueConverters\Integer\StarsToFontAwesomeConverter.cs" />
     <Compile Include="ValueConverters\Page\ApplicationPageValueConverter.cs" />
