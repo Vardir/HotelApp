@@ -8,11 +8,13 @@ using HotelsApp.Core.Validation;
 using HotelsApp.Core.RelayCommands;
 using System.Collections.ObjectModel;
 using HotelsApp.Core.ViewModels.Items;
+using HotelsApp.Core.DataModels.Page;
 
 namespace HotelsApp.Core.ViewModels
 {    
     public class OrderPageViewModel : BasePageViewModel
     {
+        bool suppressChecks;
         int rooms;
         string email;
         string confirmationEmail;
@@ -25,7 +27,7 @@ namespace HotelsApp.Core.ViewModels
             get => rooms;
             set
             {
-                if (rooms != value)
+                if (rooms != value || suppressChecks)
                 {
                     rooms = value;                    
                     OnPropertyChanged(nameof(RoomsOrdered));
@@ -37,7 +39,7 @@ namespace HotelsApp.Core.ViewModels
             get => email;
             set
             {
-                if (email != value)
+                if (email != value || suppressChecks)
                 {
                     email = value;
                     OnPropertyChanged(nameof(Email));
@@ -49,7 +51,7 @@ namespace HotelsApp.Core.ViewModels
             get => confirmationEmail;
             set
             {
-                if (confirmationEmail != value)
+                if (confirmationEmail != value || suppressChecks)
                 {
                     confirmationEmail = value;
                     OnPropertyChanged(nameof(ConfirmationEmail));
@@ -61,7 +63,7 @@ namespace HotelsApp.Core.ViewModels
             get => customerName;
             set
             {
-                if (customerName != value)
+                if (customerName != value || suppressChecks)
                 {
                     customerName = value;
                     OnPropertyChanged(nameof(CustomerName));
@@ -73,7 +75,7 @@ namespace HotelsApp.Core.ViewModels
             get => customerLastname;
             set
             {
-                if (customerLastname != value)
+                if (customerLastname != value || suppressChecks)
                 {
                     customerLastname = value;
                     OnPropertyChanged(nameof(CustomerLastname));
@@ -97,17 +99,14 @@ namespace HotelsApp.Core.ViewModels
 
         public ICommand SearchCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
 
         public OrderPageViewModel()
         {
             Rooms = new ObservableCollection<Room>();
-            Order = new OrderViewModel
-            {
-                CheckInDate = DateTime.Today,
-                CheckOutDate = DateTime.Today.AddDays(1),                
-            };
+            Order = new OrderViewModel();
             Order.FitsChanged += Order_FitsChanged;
-            Email = string.Empty;
+            Refresh();
         }
 
         void Order_FitsChanged(int count)
@@ -120,8 +119,13 @@ namespace HotelsApp.Core.ViewModels
         {
             SearchCommand = new RelayCommand(SearchAvailableRooms);
             ConfirmCommand = new RelayCommand(Confirm);
+            GoBackCommand = new RelayCommand(GoBack);
         }
 
+        public void GoBack()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.HotelPage, null);
+        }
         public void Confirm()
         {
             if (IsValid())
@@ -131,7 +135,14 @@ namespace HotelsApp.Core.ViewModels
         }
         public void Refresh()
         {
-            
+            suppressChecks = true;
+            CustomerName = null;
+            CustomerLastname = null;
+            Email = null;
+            ConfirmationEmail = null;
+            suppressChecks = false;
+            Rooms.Clear();
+            Order.Clear();
         }
         public void SearchAvailableRooms()
         {

@@ -27,7 +27,7 @@ namespace HotelsApp.Core.Validation
         
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (!(value is string text) || value.Equals(MainValue.Value))
+            if (value == null || !(value is string text) || value.Equals(MainValue.Value))
                 return new ValidationResult(false, "Input value not matches");
             else
                 return new ValidationResult(true, null);

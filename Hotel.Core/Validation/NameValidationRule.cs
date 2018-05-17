@@ -15,7 +15,7 @@ namespace HotelsApp.Core.Validation
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (!(value is string text) || text.Length == 0 || !Regex.IsMatch((string)value, NAME_REGEX))
+            if (value == null || !(value is string text) || text.Length == 0 || !Regex.IsMatch((string)value, NAME_REGEX))
                 return new ValidationResult(false, "Incorrect name format");
             else
                 return new ValidationResult(true, null);

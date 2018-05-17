@@ -8,30 +8,6 @@ namespace HotelsApp.Core.ViewModels.Items
         int days;
         Order actualData;
 
-        public bool IsMoneyPayed
-        {
-            get => actualData.IsMoneyPayed;
-            set
-            {
-                if (actualData.IsMoneyPayed != value)
-                {
-                    actualData.IsMoneyPayed = value;
-                    OnPropertyChanged(nameof(IsMoneyPayed));
-                }
-            }
-        }
-        public bool IsExpiered
-        {
-            get => actualData.IsExpiered;
-            set
-            {
-                if (actualData.IsExpiered != value)
-                {
-                    actualData.IsExpiered = value;
-                    OnPropertyChanged(nameof(IsExpiered));
-                }
-            }
-        }
         public int Id
         {
             get => actualData.Id;
@@ -69,15 +45,15 @@ namespace HotelsApp.Core.ViewModels.Items
                 }
             }
         }
-        public int RoomId
+        public int RoomTypeId
         {
-            get => actualData.RoomId;
+            get => actualData.RoomTypeId;
             set
             {
-                if (actualData.RoomId != value)
+                if (actualData.RoomTypeId != value)
                 {
-                    actualData.RoomId = value;
-                    OnPropertyChanged(nameof(RoomId));
+                    actualData.RoomTypeId = value;
+                    OnPropertyChanged(nameof(RoomTypeId));
                 }
             }
         }
@@ -139,7 +115,7 @@ namespace HotelsApp.Core.ViewModels.Items
         public OrderViewModel(Order order = null)
         {
             actualData = order ?? new Order();
-            Fits = 1;
+            Clear();
         }
 
         public void UpdateFits(int value)
@@ -147,6 +123,16 @@ namespace HotelsApp.Core.ViewModels.Items
             Fits = value;
             OnPropertyChanged(nameof(Fits));
             FitsChanged?.Invoke(value);
+        }
+        public void Clear()
+        {
+            Fits = 1;
+            CustomerId = 0;
+            RoomTypeId = 0;
+            Days = 1;
+            TotalPrice = 0;
+            CheckInDate = DateTime.Today;
+            CheckOutDate = CheckInDate.AddDays(1);
         }
     }
 }

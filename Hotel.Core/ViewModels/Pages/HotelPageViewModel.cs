@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using HotelsApp.Core.DBTools;
 using HotelsApp.Core.RelayCommands;
 using HotelsApp.Core.DataModels.Page;
+using System.Windows.Input;
 
 namespace HotelsApp.Core.ViewModels
 {    
@@ -27,6 +28,8 @@ namespace HotelsApp.Core.ViewModels
         public ObservableCollection<Facility> Facilities { get; }
         public ObservableCollection<RoomTypeViewModel> RoomTypes { get; }
 
+        public ICommand GoBackCommand { get; set; }
+
         public HotelPageViewModel()
         {
             Facilities = new ObservableCollection<Facility>();
@@ -35,11 +38,17 @@ namespace HotelsApp.Core.ViewModels
         
         protected override void InitializeCommands()
         {
+            GoBackCommand = new RelayCommand(GoBack);
         }
 
+        public void GoBack()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
+        }
         public void Refresh()
         {
             Facilities.Clear();
+            RoomTypes.Clear();
             var dataSet = IoCContainer.Application.ExecuteQuery(SQLQuery.GetHotelFacilities(Hotel.Id));
             if (dataSet.Tables.Count == 1)
             {
@@ -77,7 +86,7 @@ namespace HotelsApp.Core.ViewModels
         {
             if (obj is RoomTypeViewModel model)
             {
-                IoCContainer.Application.GoTo(ApplicationPage.OrderPage, model);
+                IoCContainer.Application.GoTo(ApplicationPage.OrderPage, model, TransitionOptions.KeepData);
             }
         }
     }

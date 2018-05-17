@@ -15,7 +15,7 @@ namespace HotelsApp.Core.Validation
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (!(value is string text) || text.Length == 0 || !Regex.IsMatch(text, EMAIL_REGEX))
+            if (value == null || !(value is string text) || text.Length == 0 || !Regex.IsMatch(text, EMAIL_REGEX))
                 return new ValidationResult(false, "Incorrect email format");
             else
                 return new ValidationResult(true, null);
