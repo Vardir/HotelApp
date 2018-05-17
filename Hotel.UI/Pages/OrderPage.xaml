@@ -12,14 +12,17 @@
                 xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
                 xmlns:s="clr-namespace:System;assembly=mscorlib"
                 xmlns:v="clr-namespace:HotelsApp.Core.Validation;assembly=HotelsApp.Core"
+                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                 FontSize="{StaticResource FontSizeRegular}"
                 mc:Ignorable="d" 
                 d:DataContext="{x:Static dm:OrderPageDesignModel.Instance}"
-                d:DesignHeight="450" d:DesignWidth="800">
+                d:DesignWidth="800">
     <Grid Background="{StaticResource BackgroundUltraLightBrush}"
           HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="15"/>
             <RowDefinition Height="auto"/>
@@ -288,7 +291,53 @@
             </Grid>
         </Border>
 
-        <Button Content="Confirm" Grid.Row="3"
+        <Border Grid.Row="3" BorderBrush="Silver" BorderThickness="1"
+                Visibility="{Binding RoomType.NeedsPrepay, Converter={c:BoolToVisibilityConverter}}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Credit card" VerticalAlignment="Center" />
+                <xctk:MaskedTextBox Grid.Column="1" HorizontalAlignment="Left"
+                                    Mask="0000-0000-0000-0000" x:Name="cardCode">
+                    <xctk:MaskedTextBox.Text>
+                        <Binding Path="CardCode" NotifyOnValidationError="True"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                                <v:CreditCardCodeValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </xctk:MaskedTextBox.Text>
+                </xctk:MaskedTextBox>
+                
+                <TextBlock Text="CVV" VerticalAlignment="Center"
+                           Grid.Row="2"/>
+                <xctk:MaskedTextBox Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2"
+                                    Mask="00-00" x:Name="cardCVV">
+                    <xctk:MaskedTextBox.Text>
+                        <Binding Path="CVV" NotifyOnValidationError="True"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                                <v:CVVCodeValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </xctk:MaskedTextBox.Text>
+                </xctk:MaskedTextBox>
+            </Grid>
+        </Border>
+        
+        <Button Content="Confirm" Grid.Row="5"
                 Command="{Binding ConfirmCommand}"
                 HorizontalAlignment="Center" Padding="30 10"/>
     </Grid>

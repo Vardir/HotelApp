@@ -70,6 +70,8 @@
     <Compile Include="RelayCommands\RelayCommand.cs" />
     <Compile Include="RelayCommands\RelayParameterizedCommand.cs" />
     <Compile Include="Security\SecureStringHelpers.cs" />
+    <Compile Include="Validation\CreditCardCodeValidationRule.cs" />
+    <Compile Include="Validation\CVVCodeValidationRule.cs" />
     <Compile Include="Validation\EmailValidationRule.cs" />
     <Compile Include="Validation\NameValidationRule.cs" />
     <Compile Include="Validation\StringEqualityValidationRule.cs" />

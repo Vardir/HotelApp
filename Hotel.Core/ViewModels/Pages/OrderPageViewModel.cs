@@ -20,8 +20,34 @@ namespace HotelsApp.Core.ViewModels
         string confirmationEmail;
         string customerName;
         string customerLastname;
+        string cvvCode;
+        string cardCode;
         RoomTypeViewModel roomType;
-
+        
+        public string CVV
+        {
+            get => cvvCode;
+            set
+            {
+                if (cvvCode != value)
+                {
+                    cvvCode = value;
+                    OnPropertyChanged(nameof(CVV));
+                }
+            }
+        }
+        public string CardCode
+        {
+            get => cardCode;
+            set
+            {
+                if (cardCode != value)
+                {
+                    cardCode = value;
+                    OnPropertyChanged(nameof(CardCode));
+                }
+            }
+        }
         public int RoomsOrdered
         {
             get => rooms;
@@ -140,6 +166,8 @@ namespace HotelsApp.Core.ViewModels
             CustomerLastname = null;
             Email = null;
             ConfirmationEmail = null;
+            CVV = null;//"00-00";
+            CardCode = null;//"0000-0000-0000-0000";
             suppressChecks = false;
             Rooms.Clear();
             Order.Clear();
@@ -168,6 +196,11 @@ namespace HotelsApp.Core.ViewModels
             value &= StringEqualityValidationRule.IsValid(Email, ConfirmationEmail);
             value &= Rooms.Count >= RoomsOrdered;
             value &= Rooms.Count > 0;
+            if (roomType.NeedsPrepay)
+            {
+                value &= CVVCodeValidationRule.IsValid(CVV);
+                value &= CreditCardCodeValidationRule.IsValid(CardCode);
+            }
             return value;
         }
     }

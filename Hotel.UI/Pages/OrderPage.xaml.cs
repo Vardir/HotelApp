@@ -24,8 +24,7 @@ namespace HotelsApp.UI.Pages
             };
             Loaded += StartupPage_Loaded;
             checkInDate.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1)));
-            checkOutDate.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, DateTime.Today));
-            
+            checkOutDate.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, DateTime.Today));            
         }
 
         void StartupPage_Loaded(object sender, RoutedEventArgs e)
@@ -35,6 +34,8 @@ namespace HotelsApp.UI.Pages
             customerLastnameBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();            
             emailBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             emailConfirmationBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            cardCode.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            cardCVV.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }
