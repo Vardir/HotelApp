@@ -45,6 +45,18 @@ namespace HotelsApp.Core.ViewModels.Items
                 }
             }
         }
+        public int HotelId
+        {
+            get => actualData.HotelId;
+            set
+            {
+                if (actualData.HotelId != value)
+                {
+                    actualData.HotelId = value;
+                    OnPropertyChanged(nameof(HotelId));
+                }
+            }
+        }
         public int RoomTypeId
         {
             get => actualData.RoomTypeId;
@@ -133,6 +145,16 @@ namespace HotelsApp.Core.ViewModels.Items
             TotalPrice = 0;
             CheckInDate = DateTime.Today;
             CheckOutDate = CheckInDate.AddDays(1);
+        }
+
+        public Order GetRawData()
+        {
+            return new Order()
+            {
+                Id = Id, Fits = Fits, CheckInDate = CheckInDate, CheckOutDate = CheckOutDate,
+                Comments = actualData.Comments, CustomerId = CustomerId, 
+                HotelId = HotelId, RoomTypeId = RoomTypeId, TotalPrice = TotalPrice
+            };
         }
     }
 }

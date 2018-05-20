@@ -26,6 +26,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="15"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>        
 
@@ -102,13 +104,15 @@
                     BorderBrush="Silver" BorderThickness="1">
                 <Grid DataContext="{Binding RoomType}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="5"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="5"/>
                         <RowDefinition Height="auto"/>
@@ -116,21 +120,20 @@
 
                     <TextBlock FontSize="{StaticResource FontSizeXLarge}" 
                            Foreground="{StaticResource ForegroundLightBlueBrush}"
-                           Text="{Binding Title}"
-                           Grid.Column="1"/>
+                           Text="{Binding Title}"/>
                     <TextBlock FontSize="{StaticResource FontSizeRegular}"
                             Foreground="{StaticResource ForegroundBlueBrush}"
-                            Grid.Row="2" Grid.Column="1">                    
+                            Grid.Row="2" Grid.Column="2">                    
                      <Run Text="{Binding Fits}"/> <Run Text="fits"/> <Run Text="{StaticResource BedIcon}"
                                                        FontFamily="{StaticResource FontAwesome}"/>
                     </TextBlock>
 
                     <TextBlock Text="NO PREPAYMENT NEEDED – pay at the property" 
                            Visibility="{Binding NeedsPrepay, Converter={conv:BoolToVisibilityConverter}, ConverterParameter=True}"
-                           TextWrapping="Wrap" HorizontalAlignment="Center" Grid.Column="3"
+                           TextWrapping="Wrap" HorizontalAlignment="Center" Grid.Row="4"
                            Foreground="{StaticResource ForegroundGreenBrush}"/>
 
-                    <TextBlock Grid.Column="3" Grid.Row="2"
+                    <TextBlock Grid.Row="2"
                            FontSize="{StaticResource FontSizeLarge}">
                     <Run Text="Price for night:"/> <Run Text="$"/><Run Text="{Binding PricePerFit}"/>
                     </TextBlock>
@@ -142,7 +145,7 @@
         <Border Grid.Row="1"
                 BorderBrush="{StaticResource BackgroundDarkBrush}"
                 BorderThickness="0 1 0 0"
-                Margin="0 40 0 0" Padding="0 10 0 0">
+                Margin="0 20 0 0" Padding="0 10 0 0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -333,12 +336,16 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </xctk:MaskedTextBox.Text>
-                </xctk:MaskedTextBox>
+                </xctk:MaskedTextBox>                
             </Grid>
         </Border>
-        
+
         <Button Content="Confirm" Grid.Row="5"
                 Command="{Binding ConfirmCommand}"
-                HorizontalAlignment="Center" Padding="30 10"/>
+                HorizontalAlignment="Center" Padding="30 10"
+                IsEnabled="{Binding RoomsSearched}"/>
+        
+        <TextBlock Foreground="Red" Grid.Row="7"
+                   Text="{Binding ErrorMessage}" HorizontalAlignment="Center"/>
     </Grid>
 </local:BasePage>

@@ -49,7 +49,7 @@ namespace HotelsApp.Core.ViewModels
         {
             Facilities.Clear();
             RoomTypes.Clear();
-            var dataSet = IoCContainer.Application.ExecuteQuery(SQLQuery.GetHotelFacilities(Hotel.Id));
+            var dataSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelFacilities(Hotel.Id), out string _);
             if (dataSet.Tables.Count == 1)
             {
                 var table = dataSet.Tables[0];
@@ -58,7 +58,7 @@ namespace HotelsApp.Core.ViewModels
                     Facilities.Add(ItemsFactory.GetFacility(row));
                 }
             }
-            dataSet = IoCContainer.Application.ExecuteQuery(SQLQuery.GetHotelRoomTypes(Hotel.Id));
+            dataSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelRoomTypes(Hotel.Id), out string _);
             if (dataSet.Tables.Count == 1)
             {
                 var table = dataSet.Tables[0];
@@ -70,7 +70,7 @@ namespace HotelsApp.Core.ViewModels
                         ReserveCommand = new RelayParameterizedCommand(Reserve)
                     };
                     RoomTypes.Add(roomType);
-                    var facilitiesSet = IoCContainer.Application.ExecuteQuery(SQLQuery.GetRoomTypeFacilities(roomType.Id));
+                    var facilitiesSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetRoomTypeFacilities(roomType.Id), out string _);
                     if (facilitiesSet.Tables.Count == 1)
                     {
                         var facilitiesTable = facilitiesSet.Tables[0];

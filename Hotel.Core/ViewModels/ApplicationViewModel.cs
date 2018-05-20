@@ -61,6 +61,7 @@ namespace HotelsApp.Core.ViewModels
             dbAdapter = new SqlAdapter(new ConnectionInfo(path));
         }
 
-        public DataSet ExecuteQuery(string sqlQuery) => dbAdapter.ReadData(sqlQuery);
+        public DataSet ExecuteTableQuery(string sqlQuery, out string error) => dbAdapter.ReadData(sqlQuery, out error);
+        public T ExecuteScalarQuery<T>(string sqlQuery, out string error) => dbAdapter.ReadData<T>(sqlQuery, out error);
     }
 }

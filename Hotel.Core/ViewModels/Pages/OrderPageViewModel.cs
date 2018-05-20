@@ -7,23 +7,54 @@ using HotelsApp.Core.DataModels;
 using HotelsApp.Core.Validation;
 using HotelsApp.Core.RelayCommands;
 using System.Collections.ObjectModel;
-using HotelsApp.Core.ViewModels.Items;
 using HotelsApp.Core.DataModels.Page;
+using HotelsApp.Core.ViewModels.Items;
 
 namespace HotelsApp.Core.ViewModels
 {    
     public class OrderPageViewModel : BasePageViewModel
     {
+        #region Private Fields
         bool suppressChecks;
         int rooms;
+        string errorMessage;
         string email;
         string confirmationEmail;
         string customerName;
         string customerLastname;
         string cvvCode;
         string cardCode;
-        RoomTypeViewModel roomType;
-        
+        DateTime? lastCheckIn;
+        DateTime? lastCheckOut;
+        RoomTypeViewModel roomType; 
+        #endregion
+
+        #region Public Props
+        public bool RoomsSearched => lastCheckIn != null && lastCheckOut != null;
+        public int RoomsOrdered
+        {
+            get => rooms;
+            set
+            {
+                if (rooms != value || suppressChecks)
+                {
+                    rooms = value;
+                    OnPropertyChanged(nameof(RoomsOrdered));
+                }
+            }
+        }
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                if (errorMessage != value)
+                {
+                    errorMessage = value;
+                    OnPropertyChanged(nameof(ErrorMessage));
+                }
+            }
+        }
         public string CVV
         {
             get => cvvCode;
@@ -32,6 +63,7 @@ namespace HotelsApp.Core.ViewModels
                 if (cvvCode != value)
                 {
                     cvvCode = value;
+                    ErrorMessage = null;
                     OnPropertyChanged(nameof(CVV));
                 }
             }
@@ -44,19 +76,8 @@ namespace HotelsApp.Core.ViewModels
                 if (cardCode != value)
                 {
                     cardCode = value;
+                    ErrorMessage = null;
                     OnPropertyChanged(nameof(CardCode));
-                }
-            }
-        }
-        public int RoomsOrdered
-        {
-            get => rooms;
-            set
-            {
-                if (rooms != value || suppressChecks)
-                {
-                    rooms = value;                    
-                    OnPropertyChanged(nameof(RoomsOrdered));
                 }
             }
         }
@@ -68,6 +89,7 @@ namespace HotelsApp.Core.ViewModels
                 if (email != value || suppressChecks)
                 {
                     email = value;
+                    ErrorMessage = null;
                     OnPropertyChanged(nameof(Email));
                 }
             }
@@ -80,6 +102,7 @@ namespace HotelsApp.Core.ViewModels
                 if (confirmationEmail != value || suppressChecks)
                 {
                     confirmationEmail = value;
+                    ErrorMessage = null;
                     OnPropertyChanged(nameof(ConfirmationEmail));
                 }
             }
@@ -92,6 +115,7 @@ namespace HotelsApp.Core.ViewModels
                 if (customerName != value || suppressChecks)
                 {
                     customerName = value;
+                    ErrorMessage = null;
                     OnPropertyChanged(nameof(CustomerName));
                 }
             }
@@ -104,6 +128,7 @@ namespace HotelsApp.Core.ViewModels
                 if (customerLastname != value || suppressChecks)
                 {
                     customerLastname = value;
+                    ErrorMessage = null;
                     OnPropertyChanged(nameof(CustomerLastname));
                 }
             }
@@ -120,12 +145,15 @@ namespace HotelsApp.Core.ViewModels
                 }
             }
         }
-        public OrderViewModel Order { get; }        
-        public ObservableCollection<Room> Rooms { get; }
+        public OrderViewModel Order { get; }
+        public ObservableCollection<Room> Rooms { get; } 
+        #endregion
 
+        #region Commands
         public ICommand SearchCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
-        public ICommand GoBackCommand { get; set; }
+        public ICommand GoBackCommand { get; set; } 
+        #endregion
 
         public OrderPageViewModel()
         {
@@ -156,12 +184,41 @@ namespace HotelsApp.Core.ViewModels
         {
             if (IsValid())
             {
-
+                string query = SQLQuery.RegisterCustomer(customerName, customerLastname, email);
+                int id = IoCContainer.Application.ExecuteScalarQuery<int>(query, out string error);
+                if (error != null)
+                {
+                    ErrorMessage = error;
+                    return;
+                }
+                if (id == -1)
+                {
+                    ErrorMessage = "There is already registered user with such an email. Make sure your credentials is valid";
+                    return;
+                }
+                Order.HotelId = RoomType.HotelId;
+                Order.CustomerId = id;
+                Order.RoomTypeId = RoomType.Id;
+                query = SQLQuery.MakeOrder(Order.GetRawData());
+                int responce = IoCContainer.Application.ExecuteScalarQuery<int>(query, out error);
+                if (error != null)
+                    ErrorMessage = error;                
+                else if (responce == 0)
+                    ErrorMessage = "Can not verify your order. Try search rooms again or check your credentials";
+                else
+                {
+                    ErrorMessage = "Your order confirmed!";
+                }
             }
+            else ErrorMessage = "Verify your credentials again";
         }
         public void Refresh()
         {
             suppressChecks = true;
+            lastCheckIn = null;
+            lastCheckOut = null;
+            OnPropertyChanged(nameof(RoomsSearched));
+            ErrorMessage = null;
             CustomerName = null;
             CustomerLastname = null;
             Email = null;
@@ -173,10 +230,15 @@ namespace HotelsApp.Core.ViewModels
             Order.Clear();
         }
         public void SearchAvailableRooms()
-        {
+        {            
             Rooms.Clear();
+            lastCheckIn = Order.CheckInDate;
+            lastCheckOut = Order.CheckOutDate;
+            OnPropertyChanged(nameof(RoomsSearched));
+
             string query = SQLQuery.GetAvailableRoomsForPeriod(RoomType.HotelId, RoomType.Id, Order.CheckInDate, Order.CheckOutDate);
-            var dataSet = IoCContainer.Application.ExecuteQuery(query);
+            var dataSet = IoCContainer.Application.ExecuteTableQuery(query, out string error);
+            ErrorMessage = error;
             if (dataSet.Tables.Count != 0)
             {
                 var table = dataSet.Tables[0];
@@ -190,7 +252,8 @@ namespace HotelsApp.Core.ViewModels
 
         public bool IsValid()
         {
-            bool value = NameValidationRule.IsValid(CustomerName);
+            bool value = RoomsSearched;
+            value &= NameValidationRule.IsValid(CustomerName);
             value &= NameValidationRule.IsValid(CustomerLastname);
             value &= EmailValidationRule.IsValid(Email);
             value &= StringEqualityValidationRule.IsValid(Email, ConfirmationEmail);

@@ -80,7 +80,6 @@
     <Compile Include="ViewModels\Dialogs\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\MessageBoxDialogViewModel.cs" />
     <Compile Include="DataModels\Items\Activity.cs" />
-    <Compile Include="DataModels\Items\CreditCard.cs" />
     <Compile Include="DataModels\Items\Customer.cs" />
     <Compile Include="DataModels\Items\Hotel.cs" />
     <Compile Include="DataModels\Items\Order.cs" />
