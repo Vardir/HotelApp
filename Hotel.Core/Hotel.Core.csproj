@@ -87,13 +87,15 @@
     <Compile Include="DataModels\Items\Personnel.cs" />
     <Compile Include="DataModels\Items\Room.cs" />
     <Compile Include="DataModels\Items\RoomType.cs" />
+    <Compile Include="ViewModels\Items\FacilityViewModel.cs" />
     <Compile Include="ViewModels\Items\HotelViewModel.cs" />
     <Compile Include="ViewModels\Items\OrderViewModel.cs" />
     <Compile Include="ViewModels\Items\RoomTypeViewModel.cs" />
     <Compile Include="ViewModels\Items\UserViewModel.cs" />
+    <Compile Include="ViewModels\Pages\Admin\HotelEditPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\BasePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\HotelPageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\Admin\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\OrderPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\StartPageViewModel.cs" />
   </ItemGroup>

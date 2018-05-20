@@ -7,7 +7,7 @@
         public int Reviews { get; set; }
         public int Stars { get; set; }
         public double Budget { get; set; }
-        public double AvgPrices { get; set; }
+        public double AvgPrice { get; set; }
         public double AvailableRooms { get; set; }
         public double Rating { get; set; }
         public string Title { get; set; }

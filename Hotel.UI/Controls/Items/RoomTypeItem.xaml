@@ -29,12 +29,17 @@
         <TextBlock FontSize="{StaticResource FontSizeXLarge}" 
                    Foreground="{StaticResource ForegroundLightBlueBrush}"
                    Text="{Binding Title}"/>
-        <TextBlock FontSize="{StaticResource FontSizeRegular}"
-                   Foreground="{StaticResource ForegroundBlueBrush}"
-                   Grid.Row="2">
-            <Run Text="{Binding Fits}"/> <Run Text="fits"/> <Run Text="{StaticResource BedIcon}"
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock FontSize="{StaticResource FontSizeRegular}"
+                   Foreground="{StaticResource ForegroundBlueBrush}">
+                <Run Text="{Binding Fits}"/> <Run Text="fits"/> <Run Text="{StaticResource BedIcon}"
                                                                  FontFamily="{StaticResource FontAwesome}"/>
-        </TextBlock>
+            </TextBlock>
+            <TextBlock FontSize="{StaticResource FontSizeRegular}" Margin="10 0 0 0"
+                   Foreground="{StaticResource ForegroundBlueBrush}">
+                <Run Text="{Binding Area}"/> <Run Text="m&#x00B2;"/>
+            </TextBlock>
+        </StackPanel>
         <ItemsControl ItemsSource="{Binding Facilities}"
                       Margin="0 10 0 10" Grid.Row="4">
             <ItemsControl.ItemsPanel>

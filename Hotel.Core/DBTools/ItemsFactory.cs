@@ -7,12 +7,13 @@ namespace HotelsApp.Core.DBTools
     {
         public static Facility GetFacility(DataRow row)
         {
-            var extracted = Extract(row, "id", "title", "tag");
+            var extracted = Extract(row, "id", "title", "selected", "tag");            
             return new Facility
             {
                 Id = Unbox<int>(extracted[0]),
                 Title = Unbox<string>(extracted[1]),
-                Tag = Unbox<string>(extracted[2]),
+                IsSelected = extracted[2] != null,
+                Tag = Unbox<string>(extracted[3]),
             };
         }
         public static Hotel GetHotel(DataRow row)
@@ -29,7 +30,7 @@ namespace HotelsApp.Core.DBTools
                 Stars = Unbox<byte>(extracted[6]),
                 Description = Unbox<string>(extracted[7]),
                 AvailableRooms = Unbox<int>(extracted[8]),
-                AvgPrices = Unbox<double>(extracted[9])
+                AvgPrice = Unbox<double>(extracted[9])
             };
         }
         public static RoomType GetRoomType(DataRow row)

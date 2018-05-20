@@ -56,7 +56,7 @@
                         <ComboBoxItem Content="Available rooms"/>
                         <ComboBoxItem Content="Reputation"/>
                     </ComboBox.Items>
-                </ComboBox>
+                </ComboBox>                
             </StackPanel>
 
             <!--<DataGrid Grid.Row="2" Grid.ColumnSpan="3" Margin="5" FontSize="18" 

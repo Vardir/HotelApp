@@ -71,12 +71,12 @@ namespace HotelsApp.Core.ViewModels
         }
         public double AvgPrices
         {
-            get => actualData.AvgPrices;
+            get => actualData.AvgPrice;
             set
             {
-                if (actualData.AvgPrices != value)
+                if (actualData.AvgPrice != value)
                 {
-                    actualData.AvgPrices = value;
+                    actualData.AvgPrice = value;
                     OnPropertyChanged(nameof(AvgPrices));
                 }
             }
