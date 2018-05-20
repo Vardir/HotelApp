@@ -1,12 +1,7 @@
-﻿using HotelsApp.Core.IoC;
-using System.Windows.Input;
+﻿using System.Data;
+using HotelsApp.Core.IoC;
 using HotelsApp.Core.DBTools;
-using HotelsApp.Core.Security;
-using HotelsApp.Core.Extensions;
-using HotelsApp.Core.RelayCommands;
 using System.Collections.ObjectModel;
-using HotelsApp.Core.DataModels;
-using System.Data;
 using HotelsApp.Core.ViewModels.Items;
 
 namespace HotelsApp.Core.ViewModels

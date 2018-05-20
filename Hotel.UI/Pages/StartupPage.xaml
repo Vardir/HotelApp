@@ -8,7 +8,10 @@
                 xmlns:conv="clr-namespace:HotelsApp.UI.ValueConverters"
                 xmlns:vm="clr-namespace:HotelsApp.Core.ViewModels;assembly=HotelsApp.Core"
                 xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
+                xmlns:dt="clr-namespace:HotelsApp.Core.DataModels;assembly=HotelsApp.Core"
                 xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
+                xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
+                xmlns:e="clr-namespace:HotelsApp.UI.Extensions"
                 xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
                 mc:Ignorable="d"
                 d:DataContext="{x:Static dm:StartPageDesignModel.Instance}"
@@ -50,13 +53,12 @@
             <StackPanel Grid.Row="1" HorizontalAlignment="Right"
                         Grid.Column="2" Orientation="Horizontal">
                 <TextBlock Text="Filter by" Style="{StaticResource DefaultTextBlock}"/>
-                <ComboBox SelectedIndex="0">
-                    <ComboBox.Items>
-                        <ComboBoxItem Content="Average price"/>
-                        <ComboBoxItem Content="Available rooms"/>
-                        <ComboBoxItem Content="Reputation"/>
-                    </ComboBox.Items>
-                </ComboBox>                
+                <ComboBox SelectedIndex="0"
+                          ItemsSource="{Binding Source={e:EnumBindingSource dt:HotelSortMode}}"
+                          SelectedItem="{Binding SortingMode}"/>
+                <ComboBox SelectedIndex="0"
+                          ItemsSource="{Binding Source={e:EnumBindingSource cm:ListSortDirection}}"
+                          SelectedItem="{Binding SortDirection}"/>
             </StackPanel>
 
             <!--<DataGrid Grid.Row="2" Grid.ColumnSpan="3" Margin="5" FontSize="18" 
@@ -75,7 +77,7 @@
                 </DataGrid.Columns>
             </DataGrid>-->
 
-            <ItemsControl ItemsSource="{Binding Hotels}" Grid.Row="2" Grid.ColumnSpan="3">
+            <ItemsControl ItemsSource="{Binding Hotels.View}" Grid.Row="2" Grid.ColumnSpan="3">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <ctr:HotelItem DataContext="{Binding}"/>

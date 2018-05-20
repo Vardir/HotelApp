@@ -12,7 +12,7 @@ namespace HotelsApp.Core.DBTools
             {
                 Id = Unbox<int>(extracted[0]),
                 Title = Unbox<string>(extracted[1]),
-                IsSelected = extracted[2] != null,
+                IsSelected = extracted[2] is int v && v > 0,
                 Tag = Unbox<string>(extracted[3]),
             };
         }

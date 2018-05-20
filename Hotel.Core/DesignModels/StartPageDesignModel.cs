@@ -10,7 +10,7 @@ namespace HotelsApp.Core.DesignModels
 
         private StartPageDesignModel()
         {
-            Hotels.Add(new HotelViewModel(new Hotel())
+            hotelsList.Add(new HotelViewModel(new Hotel())
             {
                 Title = "Generic hotel"
             });

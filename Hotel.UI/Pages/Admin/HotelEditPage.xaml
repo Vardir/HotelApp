@@ -8,13 +8,13 @@
                 xmlns:conv="clr-namespace:HotelsApp.UI.ValueConverters"
                 xmlns:vm="clr-namespace:HotelsApp.Core.ViewModels;assembly=HotelsApp.Core"
                 xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
-                xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
+                xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"                
                 xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
                 mc:Ignorable="d" FontSize="{StaticResource FontSizeRegular}"
                 d:DesignHeight="450" d:DesignWidth="800"
                 Title="StartPage" x:Name="page">
     <Grid Background="{StaticResource BackgroundUltraLightBrush}"
-          HorizontalAlignment="Center" Width="600">
+          HorizontalAlignment="Center" Width="700">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -43,7 +43,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -72,13 +75,16 @@
             <TextBox Text="{Binding Hotel.Adress}" Grid.Row="6"
                      VerticalAlignment="Top"/>
 
-            <TextBlock Text="Hotel description" Grid.Row="4" Grid.Column="2"/>
-            <TextBox Text="{Binding Hotel.Description}" MinLines="4"
-                     Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="5"/>
+            <TextBlock Text="Hotel description" Grid.Row="7"/>
+            <TextBox Text="{Binding Hotel.Description}" 
+                     MinLines="8" MaxLines="8"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     Grid.Row="8" Grid.ColumnSpan="7"/>
 
-            <TextBlock Text="Hotel facilities" Grid.Row="8"/>
+            <TextBlock Text="Hotel facilities" Grid.Row="10"/>
             <Border BorderBrush="Silver" BorderThickness="1"
-                    Padding="5" Grid.Row="10" Grid.ColumnSpan="7">
+                    Padding="5" Grid.Row="12" Grid.ColumnSpan="7">
                 <ItemsControl ItemsSource="{Binding Facilities}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
