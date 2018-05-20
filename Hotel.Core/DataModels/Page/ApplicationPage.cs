@@ -2,6 +2,6 @@
 {
     public enum ApplicationPage
     {
-        StartPage, HotelPage, OrderPage
+        StartPage, HotelPage, OrderPage, LoginPage
     }
 }

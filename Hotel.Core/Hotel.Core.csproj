@@ -69,6 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelayCommands\RelayCommand.cs" />
     <Compile Include="RelayCommands\RelayParameterizedCommand.cs" />
+    <Compile Include="Security\IHaveSecureString.cs" />
     <Compile Include="Security\SecureStringHelpers.cs" />
     <Compile Include="Validation\CreditCardCodeValidationRule.cs" />
     <Compile Include="Validation\CVVCodeValidationRule.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="ViewModels\Items\UserViewModel.cs" />
     <Compile Include="ViewModels\Pages\BasePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\HotelPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\OrderPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\StartPageViewModel.cs" />
   </ItemGroup>

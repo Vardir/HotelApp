@@ -29,5 +29,10 @@
                 }
             }
         }
+
+        public MessageBoxDialogViewModel()
+        {
+            OkText = "Ok";
+        }
     }
 }

@@ -9,6 +9,7 @@ using HotelsApp.Core.RelayCommands;
 using System.Collections.ObjectModel;
 using HotelsApp.Core.DataModels.Page;
 using HotelsApp.Core.ViewModels.Items;
+using HotelsApp.Core.ViewModels.Dialogs;
 
 namespace HotelsApp.Core.ViewModels
 {    
@@ -180,7 +181,7 @@ namespace HotelsApp.Core.ViewModels
         {
             IoCContainer.Application.GoTo(ApplicationPage.HotelPage, null);
         }
-        public void Confirm()
+        public async void Confirm()
         {
             if (IsValid())
             {
@@ -207,7 +208,8 @@ namespace HotelsApp.Core.ViewModels
                     ErrorMessage = "Can not verify your order. Try search rooms again or check your credentials";
                 else
                 {
-                    ErrorMessage = "Your order confirmed!";
+                    await IoCContainer.UI.ShowMessage(new MessageBoxDialogViewModel() { Message = "Your order confirmed!", Title = "Success" });
+                    IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
                 }
             }
             else ErrorMessage = "Verify your credentials again";

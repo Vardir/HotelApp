@@ -1,11 +1,11 @@
 ﻿using System.Data;
 using HotelsApp.Core.IoC;
-using HotelsApp.Core.DataModels;
-using System.Collections.ObjectModel;
-using HotelsApp.Core.DBTools;
-using HotelsApp.Core.RelayCommands;
-using HotelsApp.Core.DataModels.Page;
 using System.Windows.Input;
+using HotelsApp.Core.DBTools;
+using HotelsApp.Core.DataModels;
+using HotelsApp.Core.RelayCommands;
+using System.Collections.ObjectModel;
+using HotelsApp.Core.DataModels.Page;
 
 namespace HotelsApp.Core.ViewModels
 {    
@@ -29,6 +29,7 @@ namespace HotelsApp.Core.ViewModels
         public ObservableCollection<RoomTypeViewModel> RoomTypes { get; }
 
         public ICommand GoBackCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
 
         public HotelPageViewModel()
         {
@@ -39,8 +40,13 @@ namespace HotelsApp.Core.ViewModels
         protected override void InitializeCommands()
         {
             GoBackCommand = new RelayCommand(GoBack);
+            LoginCommand = new RelayCommand(GoToLogin);
         }
 
+        public void GoToLogin()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.LoginPage, null);
+        }
         public void GoBack()
         {
             IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);

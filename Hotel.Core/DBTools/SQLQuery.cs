@@ -26,5 +26,6 @@ namespace HotelsApp.Core.DBTools
                                   order.CustomerId, order.RoomTypeId, order.HotelId, 
                                   order.CheckInDate.ToSQL(), order.CheckOutDate.ToSQL(), order.TotalPrice, order.Fits);
         }
+        public static string LoginAdmin(string name, string password) => $"SELECT dbo.LoginAdmin('{name}', '{password}')";
     }
 }

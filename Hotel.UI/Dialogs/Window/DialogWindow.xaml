@@ -10,6 +10,7 @@
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False"
         MinHeight="{Binding WindowMinimumHeight}"
         MinWidth="{Binding WindowMinimumWidth}"
         Title="{Binding Title}">
@@ -68,7 +69,7 @@
                                                    Text="{Binding Title, FallbackValue=Hello world}"
                                                    VerticalAlignment="Center"
                                                    FontSize="{StaticResource FontSizeLarge}"
-                                                   Foreground="{StaticResource ForegroundSemiLightBrush}"/>
+                                                   Foreground="{StaticResource ForegroundLightBrush}"/>
 
                                         <!--Menu buttons-->
                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
@@ -110,7 +111,7 @@
     </WindowChrome.WindowChrome>
 
     <!--Window actual contents-->
-    <Border Background="{StaticResource BackgroundLightBrush}"
+    <Border Background="{StaticResource BackgroundUltraLightBrush}"
             Padding="10">
         <ContentControl Content="{Binding Content}"/>
     </Border>

@@ -6,16 +6,17 @@
                              xmlns:local="clr-namespace:HotelsApp.UI.Dialogs"
                              xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
                              mc:Ignorable="d">
-    <StackPanel Background="{StaticResource BackgroundLightBrush}"
+    <StackPanel Background="{StaticResource BackgroundUltraLightBrush}"
                 d:DataContext="{x:Static dm:MessageBoxDialogDesignModel.Instance}">
         <TextBlock Text="{Binding Message}" 
                    Padding="5"
                    FontSize="{StaticResource FontSizeRegular}"
-                   Foreground="{StaticResource ForegroundSemiLightBrush}"/>
+                   Foreground="{StaticResource ForegroundVeryDarkBrush}"/>
         <Button Content="{Binding OkText}"
                 FontSize="{StaticResource FontSizeRegular}"
                 Style="{StaticResource SmallControlButton}"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Center" Padding="5"
+                Cursor="Hand"
                 Command="{Binding CloseCommand, RelativeSource={RelativeSource AncestorType=local:BaseDialogUserControl}}"/>
     </StackPanel>
 </local:BaseDialogUserControl>

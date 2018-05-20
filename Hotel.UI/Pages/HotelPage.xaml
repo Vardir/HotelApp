@@ -29,7 +29,7 @@
                 HorizontalAlignment="Right"
                 FontFamily="{StaticResource FontAwesome}" 
                 FontSize="{StaticResource FontSizeLarge}"
-                Grid.Column="2"/>
+                Grid.Column="2" Command="{Binding LoginCommand}"/>
         <Button Content="{StaticResource KeyBackIcon}"
                 FontFamily="{StaticResource FontAwesome}"
                 Style="{StaticResource CommandButton}"

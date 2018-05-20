@@ -4,12 +4,15 @@ using HotelsApp.Core.DBTools;
 using HotelsApp.Core.RelayCommands;
 using System.Collections.ObjectModel;
 using HotelsApp.Core.DataModels.Page;
+using System.Windows.Input;
 
 namespace HotelsApp.Core.ViewModels
 {
     public class StartPageViewModel : BasePageViewModel
     {
         public ObservableCollection<HotelViewModel> Hotels { get; }
+
+        public ICommand LoginCommand { get; set; }
 
         public StartPageViewModel()
         {
@@ -18,8 +21,13 @@ namespace HotelsApp.Core.ViewModels
         
         protected override void InitializeCommands()
         {
+            LoginCommand = new RelayCommand(GoToLogin);
         }
 
+        public void GoToLogin()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.LoginPage, null);
+        }
         public void Refresh()
         {
             Hotels.Clear();

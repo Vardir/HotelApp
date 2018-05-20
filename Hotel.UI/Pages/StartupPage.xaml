@@ -37,7 +37,8 @@
             <Button Content="{StaticResource KeyIcon}" Style="{StaticResource CommandButton}"
                     HorizontalAlignment="Right" Grid.Column="2"
                     FontFamily="{StaticResource FontAwesome}" 
-                    FontSize="{StaticResource FontSizeLarge}"/>
+                    FontSize="{StaticResource FontSizeLarge}"
+                    Command="{Binding LoginCommand}"/>
 
             <Border Grid.ColumnSpan="3" HorizontalAlignment="Center"
                     Padding="15 0 15 0"

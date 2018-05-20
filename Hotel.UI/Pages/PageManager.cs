@@ -33,6 +33,9 @@ namespace HotelsApp.UI.Pages
                     case ApplicationPage.OrderPage:
                         result = new OrderPage();
                         break;
+                    case ApplicationPage.LoginPage:
+                        result = new LoginPage();
+                        break;
                 }
                 if (result != null)
                     pages.Add(page, result);
@@ -51,6 +54,8 @@ namespace HotelsApp.UI.Pages
                     return ApplicationPage.HotelPage;
                 case OrderPage p:
                     return ApplicationPage.OrderPage;
+                case LoginPage p:
+                    return ApplicationPage.LoginPage;
             }
             return default(ApplicationPage);
         }
