@@ -19,6 +19,13 @@ namespace HotelsApp.UI.Pages
                     ViewModel.Refresh();
                 }
             };
+            Loaded += HotelPage_Loaded;
+        }
+
+        private void HotelPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (ViewModel != null)
+                ViewModel.Refresh();
         }
     }
 }

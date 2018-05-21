@@ -21,18 +21,7 @@ namespace HotelsApp.Core.ViewModels
                 }
             }
         }
-        public int Id
-        {
-            get => actualData.Id;
-            set
-            {
-                if (actualData.Id != value)
-                {
-                    actualData.Id = value;
-                    OnPropertyChanged(nameof(Id));
-                }
-            }
-        }
+        public int Id => actualData.Id;
         public int Reviews
         {
             get => actualData.Reviews;
@@ -57,18 +46,6 @@ namespace HotelsApp.Core.ViewModels
                 }
             }
         }
-        public double Budget
-        {
-            get => actualData.Budget;
-            set
-            {
-                if (actualData.Budget != value)
-                {
-                    actualData.Budget = value;
-                    OnPropertyChanged(nameof(Budget));
-                }
-            }
-        }
         public double AvgPrice
         {
             get => actualData.AvgPrice;
@@ -78,18 +55,6 @@ namespace HotelsApp.Core.ViewModels
                 {
                     actualData.AvgPrice = value;
                     OnPropertyChanged(nameof(AvgPrice));
-                }
-            }
-        }
-        public double AvailableRooms
-        {
-            get => actualData.AvailableRooms;
-            set
-            {
-                if (actualData.AvailableRooms != value)
-                {
-                    actualData.AvailableRooms = value;
-                    OnPropertyChanged(nameof(AvailableRooms));
                 }
             }
         }
@@ -159,6 +124,15 @@ namespace HotelsApp.Core.ViewModels
         public HotelViewModel(Hotel data = null)
         {
             actualData = data ?? new Hotel();
+        }
+
+        public Hotel GetInternalData()
+        {
+            return new Hotel()
+            {
+                Id = Id, Adress = Adress, Description = Description,
+                Title = Title, Image = Image, Stars = Stars
+            };
         }
     }
 }

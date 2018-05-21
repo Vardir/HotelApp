@@ -3,6 +3,11 @@ using HotelsApp.Core.IoC;
 using HotelsApp.Core.DBTools;
 using System.Collections.ObjectModel;
 using HotelsApp.Core.ViewModels.Items;
+using System.Windows.Input;
+using HotelsApp.Core.RelayCommands;
+using HotelsApp.Core.DataModels.Page;
+using HotelsApp.Core.ViewModels.Dialogs;
+using HotelsApp.Core.DataModels;
 
 namespace HotelsApp.Core.ViewModels
 {
@@ -24,6 +29,9 @@ namespace HotelsApp.Core.ViewModels
         }
         public ObservableCollection<FacilityViewModel> Facilities { get; }
 
+        public ICommand GoBackCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
+
         public HotelEditPageViewModel()
         {
             Facilities = new ObservableCollection<FacilityViewModel>();
@@ -31,7 +39,8 @@ namespace HotelsApp.Core.ViewModels
         
         protected override void InitializeCommands()
         {
-            
+            GoBackCommand = new RelayCommand(GoBack);
+            SaveCommand = new RelayCommand(Save);
         }
 
         public void Refresh()
@@ -47,6 +56,19 @@ namespace HotelsApp.Core.ViewModels
                     Facilities.Add(new FacilityViewModel(ItemsFactory.GetFacility(row)));
                 }
             }
+        }
+        public void GoBack()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
+        }
+        public void Save()
+        {
+            var query = SQLQuery.UpdateHotel(Hotel.GetInternalData());
+            IoCContainer.Application.ExecuteTableQuery(query, out string error);
+            if (error != null)
+                IoCContainer.Application.ShowMessage(error, MessageType.Error);
+            else
+                IoCContainer.Application.ShowMessage("Changes committed successfully");            
         }
     }
 }

@@ -18,7 +18,6 @@ namespace HotelsApp.Core.ViewModels
         #region Private Fields
         bool suppressChecks;
         int rooms;
-        string errorMessage;
         string email;
         string confirmationEmail;
         string customerName;
@@ -44,18 +43,6 @@ namespace HotelsApp.Core.ViewModels
                 }
             }
         }
-        public string ErrorMessage
-        {
-            get => errorMessage;
-            set
-            {
-                if (errorMessage != value)
-                {
-                    errorMessage = value;
-                    OnPropertyChanged(nameof(ErrorMessage));
-                }
-            }
-        }
         public string CVV
         {
             get => cvvCode;
@@ -64,7 +51,6 @@ namespace HotelsApp.Core.ViewModels
                 if (cvvCode != value)
                 {
                     cvvCode = value;
-                    ErrorMessage = null;
                     OnPropertyChanged(nameof(CVV));
                 }
             }
@@ -77,7 +63,6 @@ namespace HotelsApp.Core.ViewModels
                 if (cardCode != value)
                 {
                     cardCode = value;
-                    ErrorMessage = null;
                     OnPropertyChanged(nameof(CardCode));
                 }
             }
@@ -90,7 +75,6 @@ namespace HotelsApp.Core.ViewModels
                 if (email != value || suppressChecks)
                 {
                     email = value;
-                    ErrorMessage = null;
                     OnPropertyChanged(nameof(Email));
                 }
             }
@@ -103,7 +87,6 @@ namespace HotelsApp.Core.ViewModels
                 if (confirmationEmail != value || suppressChecks)
                 {
                     confirmationEmail = value;
-                    ErrorMessage = null;
                     OnPropertyChanged(nameof(ConfirmationEmail));
                 }
             }
@@ -116,7 +99,6 @@ namespace HotelsApp.Core.ViewModels
                 if (customerName != value || suppressChecks)
                 {
                     customerName = value;
-                    ErrorMessage = null;
                     OnPropertyChanged(nameof(CustomerName));
                 }
             }
@@ -129,7 +111,6 @@ namespace HotelsApp.Core.ViewModels
                 if (customerLastname != value || suppressChecks)
                 {
                     customerLastname = value;
-                    ErrorMessage = null;
                     OnPropertyChanged(nameof(CustomerLastname));
                 }
             }
@@ -181,7 +162,7 @@ namespace HotelsApp.Core.ViewModels
         {
             IoCContainer.Application.GoTo(ApplicationPage.HotelPage, null);
         }
-        public async void Confirm()
+        public void Confirm()
         {
             if (IsValid())
             {
@@ -189,12 +170,12 @@ namespace HotelsApp.Core.ViewModels
                 int id = IoCContainer.Application.ExecuteScalarQuery<int>(query, out string error);
                 if (error != null)
                 {
-                    ErrorMessage = error;
+                    IoCContainer.Application.ShowMessage(error, MessageType.Error);
                     return;
                 }
                 if (id == -1)
                 {
-                    ErrorMessage = "There is already registered user with such an email. Make sure your credentials is valid";
+                    IoCContainer.Application.ShowMessage("There is already registered user with such an email. Make sure your credentials is valid", MessageType.Warning);
                     return;
                 }
                 Order.HotelId = RoomType.HotelId;
@@ -203,16 +184,16 @@ namespace HotelsApp.Core.ViewModels
                 query = SQLQuery.MakeOrder(Order.GetRawData());
                 int responce = IoCContainer.Application.ExecuteScalarQuery<int>(query, out error);
                 if (error != null)
-                    ErrorMessage = error;                
+                    IoCContainer.Application.ShowMessage(error, MessageType.Error);                
                 else if (responce == 0)
-                    ErrorMessage = "Can not verify your order. Try search rooms again or check your credentials";
+                    IoCContainer.Application.ShowMessage("We can not verify your order. Try search rooms again or check your credentials", MessageType.Warning);
                 else
                 {
-                    await IoCContainer.UI.ShowMessage(new MessageBoxDialogViewModel() { Message = "Your order confirmed!", Title = "Success" });
+                    IoCContainer.UI.ShowMessage(new MessageBoxDialogViewModel() { Message = "Your order confirmed!", Title = "Success" });
                     IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
                 }
             }
-            else ErrorMessage = "Verify your credentials again";
+            else IoCContainer.Application.ShowMessage("Verify your credentials again", MessageType.Warning);
         }
         public void Refresh()
         {
@@ -220,7 +201,6 @@ namespace HotelsApp.Core.ViewModels
             lastCheckIn = null;
             lastCheckOut = null;
             OnPropertyChanged(nameof(RoomsSearched));
-            ErrorMessage = null;
             CustomerName = null;
             CustomerLastname = null;
             Email = null;
@@ -240,7 +220,12 @@ namespace HotelsApp.Core.ViewModels
 
             string query = SQLQuery.GetAvailableRoomsForPeriod(RoomType.HotelId, RoomType.Id, Order.CheckInDate, Order.CheckOutDate);
             var dataSet = IoCContainer.Application.ExecuteTableQuery(query, out string error);
-            ErrorMessage = error;
+            if (error != null)
+            {
+                IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                return;
+            }
+            
             if (dataSet.Tables.Count != 0)
             {
                 var table = dataSet.Tables[0];

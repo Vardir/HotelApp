@@ -25,7 +25,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Content="{StaticResource KeyIcon}" Style="{StaticResource CommandButton}"
+        <Button Content="{StaticResource LockIcon}" Style="{StaticResource CommandButton}"
                 HorizontalAlignment="Right"
                 FontFamily="{StaticResource FontAwesome}" 
                 FontSize="{StaticResource FontSizeLarge}"

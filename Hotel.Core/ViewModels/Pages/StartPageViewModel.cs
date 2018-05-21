@@ -69,7 +69,13 @@ namespace HotelsApp.Core.ViewModels
         public void Refresh()
         {
             hotelsList.Clear();
-            var dataSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetAllHotels(), out string _);
+            
+            var dataSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetAllHotels(), out string error);
+            if (error != null)
+            {
+                IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                return;
+            }
             if (dataSet.Tables.Count != 0)
             {
                 var table = dataSet.Tables[0];
@@ -81,6 +87,7 @@ namespace HotelsApp.Core.ViewModels
                     });
                 }
             }
+            Hotels.View.Refresh();
             SortingMode = HotelSortMode.Rating;
         }
         public void SelectHotel(object obj)

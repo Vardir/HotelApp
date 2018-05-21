@@ -21,7 +21,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+
+        <Button Content="{StaticResource KeyBackIcon}" Style="{StaticResource CommandButton}"
+                HorizontalAlignment="Left" Command="{Binding GoBackCommand}"
+                FontFamily="{StaticResource FontAwesome}" 
+                FontSize="{StaticResource FontSizeLarge}"/>
         <Border Grid.ColumnSpan="3" HorizontalAlignment="Center"
                 Padding="15 0 15 0"
                 BorderThickness="0 0 0 1" BorderBrush="{StaticResource BackgroundVeryDarkBrush}">
@@ -42,8 +46,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="15"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <TextBlock Text="Username"/>
@@ -56,8 +58,6 @@
                     HorizontalAlignment="Center" Padding="25 10"
                     Command="{Binding LoginCommand}"
                     CommandParameter="{Binding ElementName=page}"/>
-            <TextBlock Text="{Binding Message}" Grid.Row="10"
-                       Foreground="Red"/>
         </Grid>
     </Grid>
 </local:BasePage>

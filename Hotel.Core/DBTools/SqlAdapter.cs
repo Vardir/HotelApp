@@ -54,6 +54,6 @@ namespace HotelsApp.Core.DBTools
                 }
             }
             return result;
-        }
+        }        
     }
 }

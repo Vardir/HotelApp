@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="{StaticResource KeyIcon}" Style="{StaticResource CommandButton}"
+            <Button Content="{StaticResource LockIcon}" Style="{StaticResource CommandButton}"
                     HorizontalAlignment="Right" Grid.Column="2"
                     FontFamily="{StaticResource FontAwesome}" 
                     FontSize="{StaticResource FontSizeLarge}"

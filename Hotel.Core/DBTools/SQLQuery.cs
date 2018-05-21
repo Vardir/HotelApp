@@ -28,6 +28,11 @@ namespace HotelsApp.Core.DBTools
                                   order.CustomerId, order.RoomTypeId, order.HotelId, 
                                   order.CheckInDate.ToSQL(), order.CheckOutDate.ToSQL(), order.TotalPrice, order.Fits);
         }
+        public static string UpdateHotel(Hotel hotel)
+        {
+            return string.Format("UPDATE hotel SET Title='{1}', Stars={2}, Image='{3}', Description='{4}', Adress='{5}' WHERE id={0}", 
+                hotel.Id, hotel.Title.Replace("'", "''"), hotel.Stars, hotel.Image, hotel.Description.Replace("'", "''"), hotel.Adress.Replace("'", "''"));
+        }
         public static string LoginAdmin(string name, string password) => $"SELECT dbo.LoginAdmin('{name}', '{password}')";
     }
 }

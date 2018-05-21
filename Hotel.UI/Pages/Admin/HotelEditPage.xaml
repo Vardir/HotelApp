@@ -30,6 +30,15 @@
                         FontSize="{StaticResource FontSizeXLarge}"/>
         </Border>
 
+        <Button Content="{StaticResource KeyBackIcon}" Style="{StaticResource CommandButton}"
+                HorizontalAlignment="Left" Command="{Binding GoBackCommand}"
+                FontFamily="{StaticResource FontAwesome}" 
+                FontSize="{StaticResource FontSizeLarge}"/>
+        <Button Content="{StaticResource KeySaveIcon}" Style="{StaticResource CommandButton}"
+                HorizontalAlignment="Right" Command="{Binding SaveCommand}"
+                FontFamily="{StaticResource FontAwesome}" 
+                FontSize="{StaticResource FontSizeLarge}"/>
+
         <Grid Grid.Row="1" Margin="0 25 0 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

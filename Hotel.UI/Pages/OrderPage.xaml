@@ -26,8 +26,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="15"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>        
 
@@ -344,8 +342,5 @@
                 Command="{Binding ConfirmCommand}"
                 HorizontalAlignment="Center" Padding="30 10"
                 IsEnabled="{Binding RoomsSearched}"/>
-        
-        <TextBlock Foreground="Red" Grid.Row="7"
-                   Text="{Binding ErrorMessage}" HorizontalAlignment="Center"/>
     </Grid>
 </local:BasePage>

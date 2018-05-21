@@ -138,6 +138,8 @@
     <Compile Include="ValueConverters\Integer\IsGreaterToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\Integer\RatingToTextConverter.cs" />
     <Compile Include="ValueConverters\Integer\StarsToFontAwesomeConverter.cs" />
+    <Compile Include="ValueConverters\MessageTypeToForeColorConverter.cs" />
+    <Compile Include="ValueConverters\MessageTypeToIconConverter.cs" />
     <Compile Include="ValueConverters\NullableToBoolConverter.cs" />
     <Compile Include="ValueConverters\Page\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\Tag\ButtonTagToFontAwesomeConverter.cs" />

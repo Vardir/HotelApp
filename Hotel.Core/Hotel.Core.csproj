@@ -48,6 +48,7 @@
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="DataModels\HotelSort.cs" />
     <Compile Include="DataModels\Items\Facility.cs" />
+    <Compile Include="DataModels\MessageType.cs" />
     <Compile Include="DataModels\Page\ApplicationPage.cs" />
     <Compile Include="DataModels\Page\PageCommand.cs" />
     <Compile Include="DataModels\Page\TransitionOptions.cs" />

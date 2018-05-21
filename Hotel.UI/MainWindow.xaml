@@ -7,6 +7,7 @@
         xmlns:ap="clr-namespace:HotelsApp.UI.AttachedProperties"
         xmlns:local="clr-namespace:HotelsApp.UI"
         xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
+        xmlns:conv="clr-namespace:HotelsApp.UI.ValueConverters"
         mc:Ignorable="d"
         WindowStyle="None" Title="Hotel App"
         AllowsTransparency="True"
@@ -106,11 +107,9 @@
     </WindowChrome.WindowChrome>
 
     <!--Window actual contents-->
-    <Grid>
+    <Grid>        
         <!--Dimmed overlay-->
-        <Border Panel.ZIndex="10"
-                    Grid.ColumnSpan="2"
-                    Opacity="0.3">
+        <Border Panel.ZIndex="10" Opacity="0.3">
             <Border Background="{StaticResource BackgroundUltraLightBrush}"
                         ap:AnimateFadeInProperty.Value="{Binding DimmableOverlayVisible}"/>
         </Border>
@@ -118,6 +117,47 @@
         <ctr:PageHost CurrentPage="{Binding Application.CurrentPage,
                                     Source={x:Static vm:ViewModelLocator.Instance}}"
                       PageContext="{Binding Application.CurrentPageContext,
-                                    Source={x:Static vm:ViewModelLocator.Instance}}"/>
+                                    Source={x:Static vm:ViewModelLocator.Instance}}"
+                      Grid.RowSpan="2"/>
+
+        <Border VerticalAlignment="Bottom"
+                Background="{StaticResource BackgroundLightBrush}"
+                BorderBrush="{StaticResource BackgroundBlueBrush}" 
+                BorderThickness="1" Padding="5"
+                ap:AnimateSlideInFromBottomProperty.Value="{Binding Application.ShowMessageBox,
+                                                            Source={x:Static vm:ViewModelLocator.Instance}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Application.MessageType,
+                                  Source={x:Static vm:ViewModelLocator.Instance},
+                                  Converter={conv:MessageTypeToIconConverter}}" 
+                           FontFamily="{StaticResource FontAwesome}"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Foreground="{Binding Application.MessageType,
+                                        Source={x:Static vm:ViewModelLocator.Instance},
+                                        Converter={conv:MessageTypeToForeColorConverter}}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="{StaticResource ThumbIcon}" Style="{StaticResource WindowCloseButton}"
+                            FontFamily="{StaticResource FontAwesome}"
+                            Command="{Binding Application.PinMessageBoxCommand,
+                                      Source={x:Static vm:ViewModelLocator.Instance}}"
+                            FontSize="{StaticResource FontSizeRegular}"/>
+                    <Button Content="X" Style="{StaticResource WindowCloseButton}"
+                            Command="{Binding Application.CloseMessageBoxCommand,
+                                      Source={x:Static vm:ViewModelLocator.Instance}}"
+                        FontSize="{StaticResource FontSizeRegular}"/>
+                </StackPanel>
+                <TextBlock Grid.Row="2" Text="{Binding Application.MessageText,
+                                               Source={x:Static vm:ViewModelLocator.Instance},
+                                               FallbackValue=Message}"
+                           Foreground="{StaticResource ForegroundLightBrush}"
+                           FontSize="{StaticResource FontSizeRegular}"
+                           TextWrapping="Wrap"/>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

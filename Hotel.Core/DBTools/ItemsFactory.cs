@@ -18,7 +18,7 @@ namespace HotelsApp.Core.DBTools
         }
         public static Hotel GetHotel(DataRow row)
         {
-            var extracted = Extract(row, "id", "title", "adress", "image", "rating", "reviews", "stars", "description", "available", "avgprice");
+            var extracted = Extract(row, "id", "title", "adress", "image", "rating", "reviews", "stars", "description", "avgprice");
             return new Hotel
             {
                 Id = Unbox<int>(extracted[0]),
@@ -29,8 +29,7 @@ namespace HotelsApp.Core.DBTools
                 Reviews = Unbox<int>(extracted[5]),
                 Stars = Unbox<byte>(extracted[6]),
                 Description = Unbox<string>(extracted[7]),
-                AvailableRooms = Unbox<int>(extracted[8]),
-                AvgPrice = Unbox<double>(extracted[9])
+                AvgPrice = Unbox<double>(extracted[8])
             };
         }
         public static RoomType GetRoomType(DataRow row)

@@ -5,26 +5,14 @@ using HotelsApp.Core.Security;
 using HotelsApp.Core.Extensions;
 using HotelsApp.Core.RelayCommands;
 using HotelsApp.Core.DataModels.Page;
+using HotelsApp.Core.DataModels;
 
 namespace HotelsApp.Core.ViewModels
 {
     public class LoginPageViewModel : BasePageViewModel
     {
-        string message;
         string username;
 
-        public string Message
-        {
-            get => message;
-            set
-            {
-                if (message != value)
-                {
-                    message = value;
-                    OnPropertyChanged(nameof(Message));
-                }
-            }
-        }
         public string Username
         {
             get => username;
@@ -39,17 +27,22 @@ namespace HotelsApp.Core.ViewModels
         }
 
         public ICommand LoginCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
 
         public LoginPageViewModel(){}
         
         protected override void InitializeCommands()
         {
             LoginCommand = new RelayParameterizedCommand(Login);
+            GoBackCommand = new RelayCommand(GoBack);
         }
 
+        public void GoBack()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
+        }
         public void Refresh()
         {
-            Message = null;
             Username = null;
         }
         public void Login(object param)
@@ -60,15 +53,15 @@ namespace HotelsApp.Core.ViewModels
                 int responce = IoCContainer.Application.ExecuteScalarQuery<int>(query, out string error);
                 if (error != null)
                 {
-                    Message = error;
+                    IoCContainer.Application.ShowMessage(error, MessageType.Error);
                     return;
                 }
                 switch (responce)
                 {
                     case -2:
-                        Message = "Invalid username"; break;
+                        IoCContainer.Application.ShowMessage("Invalid username", MessageType.Warning); break;
                     case -1:
-                        Message = "Invalid password"; break;
+                        IoCContainer.Application.ShowMessage("Invalid password", MessageType.Warning); break;
                     default:
                         OpenHotel(responce);
                         break;
