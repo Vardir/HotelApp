@@ -48,7 +48,7 @@
                 <RowDefinition Height="15"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto" MaxHeight="300"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*"/>
@@ -59,7 +59,7 @@
             <DataGrid Grid.Row="2" AutoGenerateColumns="False"
                       CanUserAddRows="False" CanUserDeleteRows="False"
                       CanUserReorderColumns="False" CanUserSortColumns="False"
-                      ItemsSource="{Binding RoomTypes.DefaultView}">                
+                      ItemsSource="{Binding RoomPrices.DefaultView}">                
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Type" Width="*"
                                         Binding="{Binding Title}" IsReadOnly="True"/>
@@ -72,24 +72,34 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                         Grid.Row="4">
                 <Button Content="{StaticResource PlusIcon}" Style="{StaticResource CommandButton}"
-                        Command="{Binding SaveCommand}"
+                        Command="{Binding InsertRoomCommand}"
                         FontFamily="{StaticResource FontAwesome}" 
                         FontSize="{StaticResource FontSizeRegular}"/>
                 <Button Content="{StaticResource RemoveIcon}" Style="{StaticResource CommandButton}"
-                        Command="{Binding SaveCommand}"
+                        Command="{Binding DeleteRoomCommand}"
+                        CommandParameter="{Binding SelectedIndex, ElementName=rooms}"
                         FontFamily="{StaticResource FontAwesome}" 
                         FontSize="{StaticResource FontSizeRegular}"/>
             </StackPanel>
             <DataGrid Grid.Row="6" AutoGenerateColumns="False"
                       CanUserAddRows="False" CanUserDeleteRows="False"
                       CanUserReorderColumns="False" CanUserSortColumns="False"
-                      ItemsSource="{Binding Rooms.DefaultView}">
+                      ItemsSource="{Binding Rooms.DefaultView}"
+                      x:Name="rooms">
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Width="auto" 
+                                        IsReadOnly="True" Binding="{Binding Id}" />
                     <DataGridTextColumn Header="Code" Width="auto" Binding="{Binding RoomCode}" />
-                    <DataGridComboBoxColumn Header="Type" Width="*"
-                                            ItemsSource="{Binding RoomTypes}"
-                                            SelectedValueBinding="{Binding TypeId}"
-                                            SelectedValuePath="{Binding Id}"/>
+                    <DataGridTemplateColumn Header="Type" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding ViewModel.RoomTypes, ElementName=page}"
+                                          SelectedValue="{Binding TypeId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValuePath="Id"
+                                          DisplayMemberPath="Title"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridCheckBoxColumn Header="Is locked" Binding="{Binding IsLocked}"/>
                 </DataGrid.Columns>
             </DataGrid>

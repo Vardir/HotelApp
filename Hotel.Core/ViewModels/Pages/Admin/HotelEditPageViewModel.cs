@@ -72,9 +72,21 @@ namespace HotelsApp.Core.ViewModels
             var query = SQLQuery.UpdateHotel(Hotel.GetInternalData());
             IoCContainer.Application.ExecuteTableQuery(query, out string error);
             if (error != null)
+            {
                 IoCContainer.Application.ShowMessage(error, MessageType.Error);
-            else
-                IoCContainer.Application.ShowMessage("Changes committed successfully");
+                return;
+            }
+            query = SQLQuery.UpdateFacilities(Hotel.Id, Facilities);
+            if (query != null)
+            {
+                IoCContainer.Application.ExecuteTableQuery(query, out error);
+                if (error != null)
+                {
+                    IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                    return;
+                }
+            }
+            IoCContainer.Application.ShowMessage("Changes committed successfully");
         } 
         #endregion
     }

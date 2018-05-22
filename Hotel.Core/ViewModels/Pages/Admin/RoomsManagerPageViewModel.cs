@@ -3,6 +3,7 @@ using HotelsApp.Core.IoC;
 using System.Windows.Input;
 using HotelsApp.Core.DBTools;
 using HotelsApp.Core.DataModels;
+using System.Collections.Generic;
 using HotelsApp.Core.RelayCommands;
 using HotelsApp.Core.DataModels.Page;
 
@@ -11,7 +12,7 @@ namespace HotelsApp.Core.ViewModels
     public class RoomsManagerPageViewModel : BasePageViewModel
     {
         DataTable rooms;
-        DataTable roomTypes;
+        DataTable roomPrices;
         HotelViewModel hotel;
 
         public DataTable Rooms
@@ -26,18 +27,19 @@ namespace HotelsApp.Core.ViewModels
                 }
             }
         }
-        public DataTable RoomTypes
+        public DataTable RoomPrices
         {
-            get => roomTypes;
+            get => roomPrices;
             set
             {
-                if (roomTypes != value)
+                if (roomPrices != value)
                 {
-                    roomTypes = value;
-                    OnPropertyChanged(nameof(RoomTypes));
+                    roomPrices = value;
+                    OnPropertyChanged(nameof(RoomPrices));
                 }
             }
         }
+        public List<RoomType> RoomTypes { get; }
         public HotelViewModel Hotel
         {
             get => hotel;
@@ -52,15 +54,19 @@ namespace HotelsApp.Core.ViewModels
         }        
 
         public ICommand SaveCommand { get; set; }
+        public ICommand InsertRoomCommand { get; set; }
+        public ICommand DeleteRoomCommand { get; set; }
 
         public RoomsManagerPageViewModel()
         {
-            
+            RoomTypes = new List<RoomType>();
         }
         
         protected override void InitializeCommands()
         {
             SaveCommand = new RelayCommand(Save);
+            InsertRoomCommand = new RelayCommand(InsertRoom);
+            DeleteRoomCommand = new RelayParameterizedCommand(DeleteRoom);
         }
 
         #region Actions
@@ -78,7 +84,19 @@ namespace HotelsApp.Core.ViewModels
                 IoCContainer.Application.ShowMessage(error, MessageType.Error);
                 return;
             }
-            RoomTypes = dataTable;
+            RoomPrices = dataTable;
+
+            dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetRoomTypes(), out error);
+            if (error != null)
+            {
+                IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                return;
+            }
+            RoomTypes.Clear();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                RoomTypes.Add(ItemsFactory.GetRoomType(row));
+            }
 
             dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelRooms(Hotel.Id), out error);            
             if (error != null)
@@ -90,12 +108,36 @@ namespace HotelsApp.Core.ViewModels
         }
         public void Save()
         {
-            var query = SQLQuery.UpdateHotel(Hotel.GetInternalData());
-            IoCContainer.Application.ExecuteTableQuery(query, out string error);
-            if (error != null)
-                IoCContainer.Application.ShowMessage(error, MessageType.Error);
-            else
+            string error = null;
+            bool commited = false;
+            var query = SQLQuery.UpdatePrices(RoomPrices, Hotel.Id);
+            if (query != null)
+            {
+                IoCContainer.Application.ExecuteTableQuery(query, out error);
+                if (error != null)
+                {
+                    IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                    return;
+                }
+                commited = true;
+            }
+            query = SQLQuery.UpdateRooms(Rooms, Hotel.Id);
+            if (query != null)
+            {
+                IoCContainer.Application.ExecuteTableQuery(query, out error);
+                if (error != null)
+                {
+                    IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                    return;
+                }
+                commited = true;
+            }
+            if (commited)
+            {
                 IoCContainer.Application.ShowMessage("Changes committed successfully");
+                Refresh();
+            }
+            else IoCContainer.Application.ShowMessage("No changes was made");
         }
         public void DeleteRoom(object obj)
         {
@@ -106,11 +148,16 @@ namespace HotelsApp.Core.ViewModels
                 row.Delete();
             }
         }
-        public void Insert()
+        public void InsertRoom()
         {
             if (Rooms != null)
             {
-                Rooms.Rows.Add(Rooms.NewRow());
+                var row = Rooms.NewRow();
+                row["hotelid"] = Hotel.Id;
+                row["typeid"] = RoomTypes[0].Id;
+                row["roomcode"] = Rooms.DefaultView.Count != 0 ? ((int)Rooms.DefaultView[Rooms.DefaultView.Count - 1]["roomcode"]) + 1 : 1;
+                row["islocked"] = false;
+                Rooms.Rows.Add(row);
             }
         }
         #endregion

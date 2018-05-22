@@ -19,7 +19,7 @@ namespace HotelsApp.Core.ViewModels.Items
                 }
             }
         }
-        public bool WasSelected { get; }
+        public bool WasSelected { get; set; }
         public string Title
         {
             get => actualData.Title;
