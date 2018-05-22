@@ -1,26 +1,31 @@
 ﻿using System;
 using System.Data;
-using System.Threading;
 using System.Windows.Input;
-using System.Threading.Tasks;
 using HotelsApp.Core.DBTools;
 using HotelsApp.Core.DataModels;
 using HotelsApp.Core.RelayCommands;
 using HotelsApp.Core.DataModels.Page;
+using System.Timers;
 
 namespace HotelsApp.Core.ViewModels
 {
     public class ApplicationViewModel : BaseViewModel
     {
-        bool showMessageBox;
+        #region Private Fields
+        readonly int DefaultMessageDelay = 3000;
+
         bool pinMessageBox;
+        bool showMessageBox;
         MessageType messageType;
         ApplicationPage currentPage;
         TransitionOptions currentTransitionOptions;
         string messageText;
+        Timer messageTimer;
         SqlAdapter dbAdapter;
         BaseViewModel currentPageContext;
+        #endregion
 
+        #region Public Properties
         public bool ShowMessageBox
         {
             get => showMessageBox;
@@ -89,7 +94,8 @@ namespace HotelsApp.Core.ViewModels
                     OnPropertyChanged(nameof(CurrentPageContext));
                 }
             }
-        }
+        } 
+        #endregion
 
         public ICommand CloseMessageBoxCommand { get; set; }
         public ICommand PinMessageBoxCommand { get; set; }
@@ -97,6 +103,13 @@ namespace HotelsApp.Core.ViewModels
         public ApplicationViewModel()
         {
             GoTo(ApplicationPage.StartPage, null);
+
+            messageTimer = new Timer
+            {
+                AutoReset = false
+            };
+            messageTimer.Elapsed += HideMessageBox;
+
             CloseMessageBoxCommand = new RelayCommand(CloseMessageBox);
             PinMessageBoxCommand = new RelayCommand(PinMessageBox);
         }
@@ -109,14 +122,11 @@ namespace HotelsApp.Core.ViewModels
             MessageText = text;
             ShowMessageBox = true;
             MessageType = messageType;
+            
             if (MessageType != MessageType.Error)
             {
-                Task.Run(() =>
-                {
-                    Thread.Sleep(3000);
-                    if (!pinMessageBox) ShowMessageBox = false;
-                    pinMessageBox = false;
-                });
+                messageTimer.Interval = DefaultMessageDelay;
+                messageTimer.Start();
             }
             else pinMessageBox = false;
         }
@@ -132,30 +142,39 @@ namespace HotelsApp.Core.ViewModels
             dbAdapter = new SqlAdapter(new ConnectionInfo(path));
         }
 
-        public DataSet ExecuteTableQuery(string sqlQuery, out string error)
+        public DataTable ExecuteTableQuery(string sqlQuery, out string error)
         {
-            DataSet set = null;
             try
             {
-                set = dbAdapter.ReadData(sqlQuery, out error);
+                var table = dbAdapter.ReadData(sqlQuery, out error);
+                if (error == null)
+                    return table;
             }
             catch(Exception ex)
             {
                 error = ex.Message;
             }
-            return set;
+            return null;
         }
         public T ExecuteScalarQuery<T>(string sqlQuery, out string error)
         {
             try
             {
-                return dbAdapter.ReadData<T>(sqlQuery, out error);
+                T output = dbAdapter.ReadData<T>(sqlQuery, out error);
+                if (error == null)
+                    return output;
             }
             catch (Exception ex)
             {
                 error = ex.Message;
             }
             return default(T);
+        }
+
+        void HideMessageBox(object sender, ElapsedEventArgs eventArgs)
+        {
+            if (!pinMessageBox) ShowMessageBox = false;
+            pinMessageBox = false;
         }
     }
 }

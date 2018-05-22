@@ -22,7 +22,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Content="{StaticResource KeyBackIcon}" Style="{StaticResource CommandButton}"
+        <Button Content="{StaticResource ButtonBackIcon}" Style="{StaticResource CommandButton}"
                 HorizontalAlignment="Left" Command="{Binding GoBackCommand}"
                 FontFamily="{StaticResource FontAwesome}" 
                 FontSize="{StaticResource FontSizeLarge}"/>

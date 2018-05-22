@@ -134,7 +134,6 @@ namespace HotelsApp.Core.ViewModels
         #region Commands
         public ICommand SearchCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
-        public ICommand GoBackCommand { get; set; } 
         #endregion
 
         public OrderPageViewModel()
@@ -155,10 +154,10 @@ namespace HotelsApp.Core.ViewModels
         {
             SearchCommand = new RelayCommand(SearchAvailableRooms);
             ConfirmCommand = new RelayCommand(Confirm);
-            GoBackCommand = new RelayCommand(GoBack);
         }
 
-        public void GoBack()
+        #region Actions
+        public override void GoBack()
         {
             IoCContainer.Application.GoTo(ApplicationPage.HotelPage, null);
         }
@@ -184,7 +183,7 @@ namespace HotelsApp.Core.ViewModels
                 query = SQLQuery.MakeOrder(Order.GetRawData());
                 int responce = IoCContainer.Application.ExecuteScalarQuery<int>(query, out error);
                 if (error != null)
-                    IoCContainer.Application.ShowMessage(error, MessageType.Error);                
+                    IoCContainer.Application.ShowMessage(error, MessageType.Error);
                 else if (responce == 0)
                     IoCContainer.Application.ShowMessage("We can not verify your order. Try search rooms again or check your credentials", MessageType.Warning);
                 else
@@ -212,30 +211,27 @@ namespace HotelsApp.Core.ViewModels
             Order.Clear();
         }
         public void SearchAvailableRooms()
-        {            
+        {
             Rooms.Clear();
             lastCheckIn = Order.CheckInDate;
             lastCheckOut = Order.CheckOutDate;
             OnPropertyChanged(nameof(RoomsSearched));
 
             string query = SQLQuery.GetAvailableRoomsForPeriod(RoomType.HotelId, RoomType.Id, Order.CheckInDate, Order.CheckOutDate);
-            var dataSet = IoCContainer.Application.ExecuteTableQuery(query, out string error);
+            var dataTable = IoCContainer.Application.ExecuteTableQuery(query, out string error);
             if (error != null)
             {
                 IoCContainer.Application.ShowMessage(error, MessageType.Error);
                 return;
             }
-            
-            if (dataSet.Tables.Count != 0)
+
+            foreach (DataRow row in dataTable.Rows)
             {
-                var table = dataSet.Tables[0];
-                foreach (DataRow row in table.Rows)
-                {
-                    Rooms.Add(ItemsFactory.GetRoom(row));
-                }
-                Order.UpdateFits(Order.Fits);
+                Rooms.Add(ItemsFactory.GetRoom(row));
             }
-        }
+            Order.UpdateFits(Order.Fits);
+        } 
+        #endregion
 
         public bool IsValid()
         {

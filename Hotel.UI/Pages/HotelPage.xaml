@@ -30,7 +30,7 @@
                 FontFamily="{StaticResource FontAwesome}" 
                 FontSize="{StaticResource FontSizeLarge}"
                 Grid.Column="2" Command="{Binding LoginCommand}"/>
-        <Button Content="{StaticResource KeyBackIcon}"
+        <Button Content="{StaticResource ButtonBackIcon}"
                 FontFamily="{StaticResource FontAwesome}"
                 Style="{StaticResource CommandButton}"
                 FontSize="{StaticResource FontSizeLarge}"

@@ -8,6 +8,7 @@ namespace HotelsApp.Core.DBTools
     {
         public static string GetAllHotels() => "SELECT * FROM GetHotels()";
         public static string GetHotel(int id) => $"SELECT * FROM hotel WHERE id = {id}";
+        public static string GetHotelRooms(int id) => $"SELECT * FROM room WHERE HotelId = {id}";
         public static string GetHotelFacilities(int hotelId) => $"SELECT * FROM GetHotelFacilities({hotelId})";
         public static string GetHotelFacilitiesFlags(int hotelId) => $"SELECT * FROM GetHotelFacilities_Flags({hotelId})";
         public static string GetHotelRoomTypes(int hotelId) => $"SELECT * FROM GetHotelRoomTypes({hotelId})";

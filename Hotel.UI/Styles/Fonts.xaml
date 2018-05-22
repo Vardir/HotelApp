@@ -27,15 +27,16 @@
     <system:String x:Key="LightbulbIcon">&#xf0eb;</system:String>
     <system:String x:Key="RefreshIcon">&#xf021;</system:String> 
     <system:String x:Key="LockIcon">&#xf13e;</system:String>
-    <system:String x:Key="KeyUpIcon">&#xf106;</system:String>
-    <system:String x:Key="KeyDownIcon">&#xf107;</system:String>
-    <system:String x:Key="KeyBackIcon">&#xf100;</system:String> 
-    <system:String x:Key="KeySaveIcon">&#xf0c7;</system:String>
+    <system:String x:Key="ButtonUpIcon">&#xf106;</system:String>
+    <system:String x:Key="ButtonDownIcon">&#xf107;</system:String>
+    <system:String x:Key="ButtonBackIcon">&#xf100;</system:String> 
+    <system:String x:Key="ButtonSaveIcon">&#xf0c7;</system:String>
     <system:String x:Key="WarningIcon">&#xf071;</system:String>
     <system:String x:Key="ErrorIcon">&#xf06a;</system:String>
-    <system:String x:Key="InfoIcon">&#xf05a;</system:String> 
-    <system:String x:Key="MessageIcon">&#xf075;</system:String>
+    <system:String x:Key="InfoIcon">&#xf05a;</system:String>
+    <system:String x:Key="MessageIcon">&#xf075;</system:String> 
     <system:String x:Key="ThumbIcon">&#xf08d;</system:String>
+    <system:String x:Key="KeyIcon">&#xf084;</system:String>
 
     <system:String x:Key="StarIcon">&#xf005;</system:String>
     <system:String x:Key="WiFiIcon">&#xf1eb;</system:String>

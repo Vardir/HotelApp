@@ -27,8 +27,7 @@ namespace HotelsApp.Core.ViewModels
         }
         public ObservableCollection<Facility> Facilities { get; }
         public ObservableCollection<RoomTypeViewModel> RoomTypes { get; }
-
-        public ICommand GoBackCommand { get; set; }
+        
         public ICommand LoginCommand { get; set; }
 
         public HotelPageViewModel()
@@ -38,18 +37,18 @@ namespace HotelsApp.Core.ViewModels
         }
         
         protected override void InitializeCommands()
-        {
-            GoBackCommand = new RelayCommand(GoBack);
+        {            
             LoginCommand = new RelayCommand(GoToLogin);
         }
 
+        #region Actions
+        public override void GoBack()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
+        }
         public void GoToLogin()
         {
             IoCContainer.Application.GoTo(ApplicationPage.LoginPage, null);
-        }
-        public void GoBack()
-        {
-            IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
         }
         public void Refresh()
         {
@@ -57,51 +56,41 @@ namespace HotelsApp.Core.ViewModels
 
             Facilities.Clear();
             RoomTypes.Clear();
-            var dataSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelFacilities(Hotel.Id), out string error);
+            var dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelFacilities(Hotel.Id), out string error);
             if (error != null)
             {
                 IoCContainer.Application.ShowMessage(error, MessageType.Error);
                 return;
             }
-            if (dataSet.Tables.Count == 1)
+            
+            foreach (DataRow row in dataTable.Rows)
             {
-                var table = dataSet.Tables[0];
-                foreach (DataRow row in table.Rows)
-                {
-                    Facilities.Add(ItemsFactory.GetFacility(row));
-                }
+                Facilities.Add(ItemsFactory.GetFacility(row));
             }
-            dataSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelRoomTypes(Hotel.Id), out error);
+            dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelRoomTypes(Hotel.Id), out error);
             if (error != null)
             {
                 IoCContainer.Application.ShowMessage(error, MessageType.Error);
                 return;
             }
-            if (dataSet.Tables.Count == 1)
+            
+            foreach (DataRow row in dataTable.Rows)
             {
-                var table = dataSet.Tables[0];
-                foreach (DataRow row in table.Rows)
+                var roomType = new RoomTypeViewModel(ItemsFactory.GetRoomType(row))
                 {
-                    var roomType = new RoomTypeViewModel(ItemsFactory.GetRoomType(row))
-                    {
-                        HotelId = Hotel.Id,
-                        ReserveCommand = new RelayParameterizedCommand(Reserve)
-                    };
-                    RoomTypes.Add(roomType);
-                    var facilitiesSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetRoomTypeFacilities(roomType.Id), out error);
-                    if (error != null)
-                    {
-                        IoCContainer.Application.ShowMessage(error, MessageType.Error);
-                        return;
-                    }
-                    if (facilitiesSet.Tables.Count == 1)
-                    {
-                        var facilitiesTable = facilitiesSet.Tables[0];
-                        foreach (DataRow facilityRow in facilitiesTable.Rows)
-                        {
-                            roomType.Facilities.Add(ItemsFactory.GetOption(facilityRow));
-                        }
-                    }
+                    HotelId = Hotel.Id,
+                    ReserveCommand = new RelayParameterizedCommand(Reserve)
+                };
+                RoomTypes.Add(roomType);
+                var facilitiesTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetRoomTypeFacilities(roomType.Id), out error);
+                if (error != null)
+                {
+                    IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                    return;
+                }                
+                foreach (DataRow facilityRow in facilitiesTable.Rows)
+                {
+                    roomType.Facilities.Add(ItemsFactory.GetOption(facilityRow));
                 }
             }
         }
@@ -111,6 +100,7 @@ namespace HotelsApp.Core.ViewModels
             {
                 IoCContainer.Application.GoTo(ApplicationPage.OrderPage, model, TransitionOptions.KeepData);
             }
-        }
+        } 
+        #endregion
     }
 }

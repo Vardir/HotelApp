@@ -2,10 +2,10 @@
 using System.Windows.Input;
 using HotelsApp.Core.DBTools;
 using HotelsApp.Core.Security;
+using HotelsApp.Core.DataModels;
 using HotelsApp.Core.Extensions;
 using HotelsApp.Core.RelayCommands;
 using HotelsApp.Core.DataModels.Page;
-using HotelsApp.Core.DataModels;
 
 namespace HotelsApp.Core.ViewModels
 {
@@ -27,17 +27,16 @@ namespace HotelsApp.Core.ViewModels
         }
 
         public ICommand LoginCommand { get; set; }
-        public ICommand GoBackCommand { get; set; }
 
         public LoginPageViewModel(){}
         
         protected override void InitializeCommands()
         {
             LoginCommand = new RelayParameterizedCommand(Login);
-            GoBackCommand = new RelayCommand(GoBack);
         }
 
-        public void GoBack()
+        #region Actions
+        public override void GoBack()
         {
             IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
         }
@@ -67,19 +66,24 @@ namespace HotelsApp.Core.ViewModels
                         break;
                 }
             }
-        }
+        } 
+        #endregion
+
         void OpenHotel(int id)
         {
-            var dataSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotel(id), out string _);
-            if (dataSet.Tables.Count != 0)
+            var dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotel(id), out string error);
+            if (error != null)
             {
-                var table = dataSet.Tables[0];
-                if (table.Rows.Count == 1)
-                {
-                    var hotel = new HotelViewModel(ItemsFactory.GetHotel(table.Rows[0]));
-                    IoCContainer.Application.GoTo(ApplicationPage.HotelEditPage, hotel);
-                }
+                IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                return;
             }
+            if (dataTable.Rows.Count == 1)
+            {
+                var hotel = new HotelViewModel(ItemsFactory.GetHotel(dataTable.Rows[0]));
+                IoCContainer.Application.GoTo(ApplicationPage.HotelEditPage, hotel);
+            }
+            else
+                IoCContainer.Application.ShowMessage("An error occurred while retrieving data from server. Please, try again or contact administration", MessageType.Error);
         }
     }
 }

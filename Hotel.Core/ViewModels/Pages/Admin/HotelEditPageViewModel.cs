@@ -29,8 +29,8 @@ namespace HotelsApp.Core.ViewModels
         }
         public ObservableCollection<FacilityViewModel> Facilities { get; }
 
-        public ICommand GoBackCommand { get; set; }
         public ICommand SaveCommand { get; set; }
+        public ICommand ManageRoomsCommand { get; set; }
 
         public HotelEditPageViewModel()
         {
@@ -39,27 +39,33 @@ namespace HotelsApp.Core.ViewModels
         
         protected override void InitializeCommands()
         {
-            GoBackCommand = new RelayCommand(GoBack);
             SaveCommand = new RelayCommand(Save);
+            ManageRoomsCommand = new RelayCommand(ManageRooms);
         }
 
+        #region Actions
+        public override void GoBack()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
+        }
+        public void ManageRooms()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.RoomsManagerPage, Hotel);
+        }
         public void Refresh()
         {
             if (hotel == null) return;
             Facilities.Clear();
-            var dataSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelFacilitiesFlags(Hotel.Id), out string _);
-            if (dataSet.Tables.Count != 0)
+            var dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelFacilitiesFlags(Hotel.Id), out string error);
+            if (error != null)
             {
-                var table = dataSet.Tables[0];
-                foreach (DataRow row in table.Rows)
-                {
-                    Facilities.Add(new FacilityViewModel(ItemsFactory.GetFacility(row)));
-                }
+                IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                return;
             }
-        }
-        public void GoBack()
-        {
-            IoCContainer.Application.GoTo(ApplicationPage.StartPage, null);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                Facilities.Add(new FacilityViewModel(ItemsFactory.GetFacility(row)));
+            }            
         }
         public void Save()
         {
@@ -68,7 +74,8 @@ namespace HotelsApp.Core.ViewModels
             if (error != null)
                 IoCContainer.Application.ShowMessage(error, MessageType.Error);
             else
-                IoCContainer.Application.ShowMessage("Changes committed successfully");            
-        }
+                IoCContainer.Application.ShowMessage("Changes committed successfully");
+        } 
+        #endregion
     }
 }

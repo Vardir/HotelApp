@@ -43,7 +43,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="{StaticResource KeyBackIcon}"
+            <Button Content="{StaticResource ButtonBackIcon}"
                     FontFamily="{StaticResource FontAwesome}"
                     Style="{StaticResource CommandButton}"
                     FontSize="{StaticResource FontSizeLarge}"

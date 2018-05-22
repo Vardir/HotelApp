@@ -58,13 +58,14 @@ namespace HotelsApp.Core.DBTools
         }
         public static Room GetRoom(DataRow row)
         {
-            var extracted = Extract(row, "id", "hotelid", "typeid", "islocked");
+            var extracted = Extract(row, "id", "hotelid", "typeid", "islocked", "roomcode");
             return new Room
             {
                 Id = Unbox<int>(extracted[0]),
                 HotelId = Unbox<int>(extracted[1]),
                 TypeId = Unbox<int>(extracted[2]),
-                IsLocked = Unbox<bool>(extracted[3])
+                IsLocked = Unbox<bool>(extracted[3]),
+                Code = Unbox<int>(extracted[4])
             };
         }
 

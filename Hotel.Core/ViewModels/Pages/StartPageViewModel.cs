@@ -62,6 +62,11 @@ namespace HotelsApp.Core.ViewModels
             LoginCommand = new RelayCommand(GoToLogin);
         }
 
+        #region Actions
+        public override void GoBack()
+        {
+            throw new System.NotImplementedException();
+        }
         public void GoToLogin()
         {
             IoCContainer.Application.GoTo(ApplicationPage.LoginPage, null);
@@ -69,23 +74,19 @@ namespace HotelsApp.Core.ViewModels
         public void Refresh()
         {
             hotelsList.Clear();
-            
-            var dataSet = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetAllHotels(), out string error);
+
+            var dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetAllHotels(), out string error);
             if (error != null)
             {
                 IoCContainer.Application.ShowMessage(error, MessageType.Error);
                 return;
             }
-            if (dataSet.Tables.Count != 0)
+            foreach (DataRow row in dataTable.Rows)
             {
-                var table = dataSet.Tables[0];
-                foreach (DataRow row in table.Rows)
+                hotelsList.Add(new HotelViewModel(ItemsFactory.GetHotel(row))
                 {
-                    hotelsList.Add(new HotelViewModel(ItemsFactory.GetHotel(row))
-                    {
-                        SelectCommand = new RelayParameterizedCommand(SelectHotel)
-                    });
-                }
+                    SelectCommand = new RelayParameterizedCommand(SelectHotel)
+                });
             }
             Hotels.View.Refresh();
             SortingMode = HotelSortMode.Rating;
@@ -100,7 +101,8 @@ namespace HotelsApp.Core.ViewModels
         public void Sort(HotelSortMode sortMode)
         {
             SetSortDescription(sortMode.ToString(), SortDirection);
-        }
+        } 
+        #endregion
 
         void SetSortDescription(string prop, ListSortDirection sortDirection)
         {

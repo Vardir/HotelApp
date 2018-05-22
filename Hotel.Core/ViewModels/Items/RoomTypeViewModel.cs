@@ -20,18 +20,7 @@ namespace HotelsApp.Core.ViewModels
                 }
             }
         }
-        public int Id
-        {
-            get => actualData.Id;
-            set
-            {
-                if (actualData.Id != value)
-                {
-                    actualData.Id = value;
-                    OnPropertyChanged(nameof(Id));
-                }
-            }
-        }
+        public int Id => actualData.Id;
         public int HotelId { get; set; }
         public int Fits
         {

@@ -20,11 +20,11 @@
             <TextBox Text="{Binding Value, ElementName=Container, FallbackValue=0}"
                      Grid.RowSpan="2" Margin="0"
                      Padding="0" VerticalContentAlignment="Center"/>
-            <Button Content="{StaticResource KeyUpIcon}" 
+            <Button Content="{StaticResource ButtonUpIcon}" 
                     FontFamily="{StaticResource FontAwesome}"
                     Grid.Column="1" x:Name="keyUp" 
                     Click="keyUp_Click" Padding="0"/>
-            <Button Content="{StaticResource KeyDownIcon}"
+            <Button Content="{StaticResource ButtonDownIcon}"
                     FontFamily="{StaticResource FontAwesome}"
                     Grid.Column="1" Grid.Row="1" Padding="0"
                     x:Name="keyDown" Click="keyDown_Click"/>

@@ -20,7 +20,7 @@ namespace HotelsApp.Core.DBTools
             connectionString = connection.GetConnectionString();
         }
 
-        public DataSet ReadData(string sql, out string error)
+        public DataTable ReadData(string sql, out string error)
         {
             error = null;
             DbConnection.ConnectionString = connectionString;            
@@ -30,6 +30,7 @@ namespace HotelsApp.Core.DBTools
             {
                 try
                 {
+                    adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
                     adapter.Fill(dataSet);
                 }
                 catch (Exception ex)
@@ -38,15 +39,16 @@ namespace HotelsApp.Core.DBTools
                 }
             }
             DbConnection.Close();
-            return dataSet;
+            if (dataSet.Tables.Count == 1 && error == null)
+                return dataSet.Tables[0];
+            return null;
         }
         public T ReadData<T>(string sql, out string error)
         {
             T result = default(T);
-            DataSet dataSet = ReadData(sql, out error);
-            if (error == null && dataSet.Tables.Count == 1)
+            var tableSet = ReadData(sql, out error);
+            if (error == null && tableSet != null)
             {
-                var tableSet = dataSet.Tables[0];
                 if (tableSet.Rows.Count == 1 && tableSet.Columns.Count == 1)
                 {
                     if (tableSet.Rows[0][0] is T value)
