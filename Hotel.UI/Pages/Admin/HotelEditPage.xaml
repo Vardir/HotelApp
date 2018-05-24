@@ -88,7 +88,8 @@
             <TextBlock Text="Hotel photo" Grid.Column="4"/>
             <TextBox Text="{Binding Hotel.Image}"  IsReadOnly="True"
                      Grid.Row="2" Grid.Column="4" />
-            <Button Content="Select" Grid.Row="2" Grid.Column="6"/>
+            <Button Content="Select" Grid.Row="2" Grid.Column="6"
+                    Command="{Binding OpenFileCommand}"/>
 
             <TextBlock Text="Hotel address" Grid.Row="4"/>
             <TextBox Text="{Binding Hotel.Adress}" Grid.Row="6"

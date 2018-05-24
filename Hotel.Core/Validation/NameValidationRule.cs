@@ -6,7 +6,7 @@ namespace HotelsApp.Core.Validation
 {
     public class NameValidationRule : ValidationRule
     {
-        const string NAME_REGEX = @"^[\p{L}]+$";
+        const string NAME_REGEX = @"^[\p{L}\s]+$";
 
         public NameValidationRule()
         {

@@ -23,6 +23,7 @@ namespace HotelsApp.UI.ValueConverters
             { "pool", "WaterIcon" },
             { "service", "ServiceIcon" },
             { "fitness", "FitnessIcon" },
+            { "time", "ClockIcon" },
             { "spa", "BathIcon" },
             { "bath", "BathIcon" },
             { "safe", "SafeIcon" },
@@ -31,6 +32,13 @@ namespace HotelsApp.UI.ValueConverters
             { "tv", "TVIcon" },
             { "no-sound", "SoundOffIcon" },
             { "hot", "HotIcon" },
+            { "balcony", "BuildingIcon" },
+            { "view", "ViewIcon" },
+            { "hairdryer", "HornIcon" },
+            { "wardrobe", "BoxIcon" },
+            { "elevator", "LevelUpIcon" },
+            { "intercon", "ExchangeIcon" },
+            { "bidet", "WaterIcon" },
         };
 
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)

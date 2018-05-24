@@ -55,12 +55,18 @@
     <system:String x:Key="FitnessIcon">&#xf1ae;</system:String> 
     <system:String x:Key="BathIcon">&#xf2cd;</system:String>
     <system:String x:Key="CupIcon">&#xf0f4;</system:String>
-    <system:String x:Key="SafeIcon">&#xf187;</system:String>
+    <system:String x:Key="SafeIcon">&#xf023;</system:String>
     <system:String x:Key="PhoneIcon">&#xf098;</system:String>
     <system:String x:Key="TVIcon">&#xf26c;</system:String>
-    <system:String x:Key="SoundOffIcon">&#xf026;</system:String> 
+    <system:String x:Key="SoundOffIcon">&#xf026;</system:String>
     <system:String x:Key="HotIcon">&#xf06d;</system:String>
     <system:String x:Key="BedIcon">&#xf236;</system:String>
+    <system:String x:Key="BuildingIcon">&#xf1ad;</system:String>
+    <system:String x:Key="ViewIcon">&#xf06e;</system:String>
+    <system:String x:Key="HornIcon">&#xf0a1;</system:String>
+    <system:String x:Key="BoxIcon">&#xf187;</system:String> 
+    <system:String x:Key="LevelUpIcon">&#xf3bf;</system:String>
+    <system:String x:Key="ExchangeIcon">&#xf362;</system:String>
 
     <system:String x:Key="ArrowCircleLeftIcon">&#xf137;</system:String>
     <system:String x:Key="ExclamationCircleIcon">&#xf06a;</system:String>

@@ -1,18 +1,19 @@
 ﻿using System.Data;
 using HotelsApp.Core.IoC;
-using HotelsApp.Core.DBTools;
-using System.Collections.ObjectModel;
-using HotelsApp.Core.ViewModels.Items;
 using System.Windows.Input;
-using HotelsApp.Core.RelayCommands;
-using HotelsApp.Core.DataModels.Page;
-using HotelsApp.Core.ViewModels.Dialogs;
+using HotelsApp.Core.DBTools;
 using HotelsApp.Core.DataModels;
+using HotelsApp.Core.RelayCommands;
+using System.Collections.ObjectModel;
+using HotelsApp.Core.DataModels.Page;
+using HotelsApp.Core.ViewModels.Items;
+using System;
 
 namespace HotelsApp.Core.ViewModels
 {
     public class HotelEditPageViewModel : BasePageViewModel
     {
+        string fullImagePath;
         HotelViewModel hotel;
 
         public HotelViewModel Hotel
@@ -30,9 +31,10 @@ namespace HotelsApp.Core.ViewModels
         public ObservableCollection<FacilityViewModel> Facilities { get; }
 
         public ICommand SaveCommand { get; set; }
+        public ICommand OpenFileCommand { get; set; }
         public ICommand ManageRoomsCommand { get; set; }
         public ICommand LoadReportsCommand { get; set; }
-
+        
         public HotelEditPageViewModel()
         {
             Facilities = new ObservableCollection<FacilityViewModel>();
@@ -43,6 +45,7 @@ namespace HotelsApp.Core.ViewModels
             SaveCommand = new RelayCommand(Save);
             ManageRoomsCommand = new RelayCommand(ManageRooms);
             LoadReportsCommand = new RelayCommand(LoadReports);
+            OpenFileCommand = new RelayCommand(OpenFile);
         }
 
         #region Actions
@@ -88,11 +91,24 @@ namespace HotelsApp.Core.ViewModels
                     return;
                 }
             }
-            IoCContainer.Application.ShowMessage("Changes committed successfully");
+            if (fullImagePath != null && !IoCContainer.UI.SaveImage(fullImagePath))
+            {
+                IoCContainer.Application.ShowMessage("Can't upload file");
+            }
+            else IoCContainer.Application.ShowMessage("Changes committed successfully");
         } 
         public void LoadReports()
         {
             IoCContainer.Application.GoTo(ApplicationPage.ReportsPage, Hotel);
+        }
+        public void OpenFile()
+        {
+            var fileInfo = IoCContainer.UI.LoadFile("images|*.png;*.jpg;*.bmp;*.jpeg");
+            if (fileInfo != null)
+            {
+                Hotel.Image = fileInfo.Name;
+                fullImagePath = fileInfo.FullName;
+            }
         }
         #endregion
     }

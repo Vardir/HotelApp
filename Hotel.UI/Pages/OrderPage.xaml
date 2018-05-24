@@ -196,7 +196,7 @@
                     </TextBlock>
                     <TextBlock Grid.Column="2" Grid.RowSpan="2"
                                TextWrapping="Wrap" Foreground="Red"
-                               Text="Cant afford such rooms count">
+                               Text="Can't afford such rooms count">
                         <TextBlock.Visibility>
                             <MultiBinding Converter="{c:IsGreaterToVisibilityConverter}">
                                 <Binding Path="RoomsOrdered" />

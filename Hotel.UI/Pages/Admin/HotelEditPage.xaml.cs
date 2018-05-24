@@ -1,6 +1,4 @@
-﻿using System.Security;
-using System.Windows;
-using HotelsApp.Core.Security;
+﻿using System.Windows;
 using HotelsApp.Core.ViewModels;
 
 namespace HotelsApp.UI.Pages
@@ -13,7 +11,6 @@ namespace HotelsApp.UI.Pages
         public HotelEditPage()
         {
             InitializeComponent();
-            Title = "Login page";
             Loaded += StartupPage_Loaded;
             PageContextChanged += (context) =>
             {
