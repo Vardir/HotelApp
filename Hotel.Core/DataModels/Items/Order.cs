@@ -11,6 +11,7 @@ namespace HotelsApp.Core.DataModels
         public int HotelId { get; set; }
         public double TotalPrice { get; set; }
         public string Comments { get; set; }
+        public DateTime DateOrdered { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
     }

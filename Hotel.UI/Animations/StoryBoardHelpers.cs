@@ -71,6 +71,33 @@ namespace HotelsApp.UI.Animations
         }
         #endregion
 
+        #region To/From Top
+        public static void AddSlideFromTop(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
+        {
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(seconds)),
+                From = new Thickness(0, -offset, 0, keepMargin ? offset : 0),
+                To = new Thickness(0),
+                DecelerationRatio = decelerationRatio
+            };
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+            storyboard.Children.Add(animation);
+        }
+        public static void AddSlideToTop(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
+        {
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(seconds)),
+                From = new Thickness(0),
+                To = new Thickness(0, -offset, 0, keepMargin ? offset : 0),
+                DecelerationRatio = decelerationRatio
+            };
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+            storyboard.Children.Add(animation);
+        }
+        #endregion
+
         #region To/From Bottom
         /// <summary>
         /// Slide from bottom animation for storyboard
@@ -165,6 +192,26 @@ namespace HotelsApp.UI.Animations
             };
             Storyboard.SetTargetProperty(slideAnimation, new PropertyPath("Margin"));
             storyboard.Children.Add(slideAnimation);
+        }
+
+        /// <summary>
+        /// Adds a marquee scrolling right to left animation to the storyboard
+        /// </summary>
+        /// <param name="storyboard">The storyboard to add the animation to</param>
+        /// <param name="seconds">The time the animation will take</param>
+        /// <param name="contentOffset">The inner contents size, to start the marquee as soon as that content has scrolled out of view</param>
+        /// <param name="offset">The offset of the parent to scroll within</param>
+        public static void AddMarquee(this Storyboard storyboard, float seconds, double offset = 0, double contentOffset = 0)
+        {
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(seconds)),
+                From = new Thickness(offset, 0, -offset, 0),
+                To = new Thickness(-contentOffset, 0, contentOffset, 0),
+                RepeatBehavior = RepeatBehavior.Forever
+            };
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+            storyboard.Children.Add(animation);
         }
         #endregion
     }

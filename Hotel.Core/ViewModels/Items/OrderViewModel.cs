@@ -8,18 +8,7 @@ namespace HotelsApp.Core.ViewModels.Items
         int days;
         Order actualData;
 
-        public int Id
-        {
-            get => actualData.Id;
-            set
-            {
-                if (actualData.Id != value)
-                {
-                    actualData.Id = value;
-                    OnPropertyChanged(nameof(Id));
-                }
-            }
-        }
+        public int Id => actualData.Id;
         public int Fits
         {
             get => actualData.Fits;
@@ -90,6 +79,18 @@ namespace HotelsApp.Core.ViewModels.Items
                 {
                     actualData.TotalPrice = value;
                     OnPropertyChanged(nameof(TotalPrice));
+                }
+            }
+        }
+        public DateTime DateOrdered
+        {
+            get => actualData.DateOrdered;
+            set
+            {
+                if (actualData.DateOrdered != value)
+                {
+                    actualData.DateOrdered = value;
+                    OnPropertyChanged(nameof(DateOrdered));
                 }
             }
         }

@@ -11,10 +11,38 @@ namespace HotelsApp.Core.ViewModels
 {
     public class RoomsManagerPageViewModel : BasePageViewModel
     {
+        bool applyFilter;
+        int selectedRoomType;
         DataTable rooms;
         DataTable roomPrices;
         HotelViewModel hotel;
 
+        public bool ApplyFilter
+        {
+            get => applyFilter;
+            set
+            {
+                if (applyFilter != value)
+                {
+                    applyFilter = value;
+                    Filter(value);
+                    OnPropertyChanged(nameof(ApplyFilter));
+                }
+            }
+        }
+        public int SelectedRoomType
+        {
+            get => selectedRoomType;
+            set
+            {
+                if (selectedRoomType != value)
+                {
+                    selectedRoomType = value;
+                    Filter(ApplyFilter);
+                    OnPropertyChanged(nameof(SelectedRoomType));
+                }
+            }
+        }
         public DataTable Rooms
         {
             get => rooms;
@@ -56,6 +84,7 @@ namespace HotelsApp.Core.ViewModels
         public ICommand SaveCommand { get; set; }
         public ICommand InsertRoomCommand { get; set; }
         public ICommand DeleteRoomCommand { get; set; }
+        public ICommand FilterCommand { get; set; }
 
         public RoomsManagerPageViewModel()
         {
@@ -67,6 +96,7 @@ namespace HotelsApp.Core.ViewModels
             SaveCommand = new RelayCommand(Save);
             InsertRoomCommand = new RelayCommand(InsertRoom);
             DeleteRoomCommand = new RelayParameterizedCommand(DeleteRoom);
+            FilterCommand = new RelayCommand(() => ApplyFilter = !ApplyFilter);
         }
 
         #region Actions
@@ -97,6 +127,8 @@ namespace HotelsApp.Core.ViewModels
             {
                 RoomTypes.Add(ItemsFactory.GetRoomType(row));
             }
+            if (RoomTypes.Count > 0)
+                SelectedRoomType = RoomTypes[0].Id;
 
             dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelRooms(Hotel.Id), out error);            
             if (error != null)
@@ -161,5 +193,16 @@ namespace HotelsApp.Core.ViewModels
             }
         }
         #endregion
+
+        void Filter(bool apply)
+        {
+            if (Rooms?.DefaultView == null) return;
+            if (apply)
+            {
+                Rooms.DefaultView.RowStateFilter = DataViewRowState.CurrentRows;
+                Rooms.DefaultView.RowFilter = $"TypeId = {selectedRoomType}";
+            }
+            else Rooms.DefaultView.RowFilter = string.Empty;
+        }
     }
 }

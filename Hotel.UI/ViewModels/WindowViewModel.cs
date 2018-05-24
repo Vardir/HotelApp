@@ -63,7 +63,7 @@ namespace HotelsApp.UI.ViewModels
         public WindowViewModel(Window window)
         {
             this.window = window;
-            Title = "Hotels Manager";
+            Title = "MyHotel";
 
             window.StateChanged += (sender, e) =>
             {

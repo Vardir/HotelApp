@@ -7,7 +7,7 @@
              xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
              xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
              xmlns:conv="clr-namespace:HotelsApp.UI.ValueConverters"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" x:Name="container"
              Background="{StaticResource BackgroundUltraLightBrush}"
              d:DesignWidth="500"
              d:DataContext="{x:Static dm:RoomTypeDesignModel.Instance}">
@@ -19,6 +19,8 @@
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="5"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="auto"/>
@@ -58,6 +60,8 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        
+        <TextBlock Text="{Binding Description}" Grid.Row="6"/>
 
         <TextBlock Text="NO PREPAYMENT NEEDED – pay at the property" 
                    Visibility="{Binding NeedsPrepay, Converter={conv:BoolToVisibilityConverter}, ConverterParameter=True}"

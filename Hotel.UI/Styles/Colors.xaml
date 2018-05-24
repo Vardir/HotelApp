@@ -53,6 +53,9 @@
     <Color x:Key="BackgroundBlueLight">#228AE6</Color>
     <SolidColorBrush x:Key="BackgroundBlueLightBrush" Color="{StaticResource BackgroundBlueLight}" />
 
+    <Color x:Key="BackgroundRedLight">#E04343</Color>
+    <SolidColorBrush x:Key="BackgroundRedLightBrush" Color="{StaticResource BackgroundRedLight}" />
+    
     <Color x:Key="BackgroundGreenLight">#62c495</Color>
     <SolidColorBrush x:Key="BackgroundGreenLightBrush" Color="{StaticResource BackgroundGreenLight}" />
 

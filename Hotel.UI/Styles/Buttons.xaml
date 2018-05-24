@@ -172,4 +172,23 @@
         </Setter>
     </Style>
 
+
+    <ControlTemplate TargetType="{x:Type CheckBox}" x:Key="CheckboxFilter">
+        <StackPanel Orientation="Horizontal">
+            <Image>
+                <Image.Style>
+                    <Style>
+                        <Setter Property="Image.Source" Value="/AppName;component/Images/Image1.jpg" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type CheckBox}}}" Value="True">
+                                <Setter Property="Image.Source" Value="/AppName;component/Images/Image2.jpg" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <ContentPresenter Content="{TemplateBinding Content}" 
+                Margin="5,0,0,0" />
+        </StackPanel>
+    </ControlTemplate>
 </ResourceDictionary>

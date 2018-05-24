@@ -34,9 +34,10 @@
     <system:String x:Key="WarningIcon">&#xf071;</system:String>
     <system:String x:Key="ErrorIcon">&#xf06a;</system:String>
     <system:String x:Key="InfoIcon">&#xf05a;</system:String>
-    <system:String x:Key="MessageIcon">&#xf075;</system:String> 
-    <system:String x:Key="ThumbIcon">&#xf08d;</system:String>
+    <system:String x:Key="MessageIcon">&#xf075;</system:String>
+    <system:String x:Key="ThumbIcon">&#xf08d;</system:String> 
     <system:String x:Key="KeyIcon">&#xf084;</system:String>
+    <system:String x:Key="FilterIcon">&#xf0b0;</system:String>
 
     <system:String x:Key="StarIcon">&#xf005;</system:String>
     <system:String x:Key="WiFiIcon">&#xf1eb;</system:String>

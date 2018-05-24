@@ -8,8 +8,7 @@
                 xmlns:conv="clr-namespace:HotelsApp.UI.ValueConverters"
                 xmlns:vm="clr-namespace:HotelsApp.Core.ViewModels;assembly=HotelsApp.Core"
                 xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
-                xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"                
-                xmlns:ctr="clr-namespace:HotelsApp.UI.Controls"
+                xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
                 mc:Ignorable="d" FontSize="{StaticResource FontSizeRegular}"
                 d:DesignHeight="450" d:DesignWidth="800"
                 Title="StartPage" x:Name="page">
@@ -48,7 +47,7 @@
                 <RowDefinition Height="15"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition Height="auto" MaxHeight="300"/>
+                <RowDefinition Height="300"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*"/>
@@ -69,8 +68,19 @@
             </DataGrid>
 
             <TextBlock Text="Rooms" Grid.Row="4" VerticalAlignment="Bottom"/>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                         Grid.Row="4">
+                <ComboBox VerticalAlignment="Center" ItemsSource="{Binding RoomTypes}"
+                          SelectedValue="{Binding SelectedRoomType, Mode=TwoWay}"
+                          SelectedValuePath="Id" DisplayMemberPath="Title"
+                          IsEnabled="{Binding ApplyFilter}"/>
+                <Button Content="{StaticResource FilterIcon}" Style="{StaticResource CommandButton}"
+                        Command="{Binding FilterCommand}"
+                        FontFamily="{StaticResource FontAwesome}" 
+                        FontSize="{StaticResource FontSizeRegular}"
+                        Foreground="{Binding ApplyFilter, Converter={c:BoolToBrushConverter}}"/>
+                <Separator Background="Silver" Height="auto" Width="20"/>
                 <Button Content="{StaticResource PlusIcon}" Style="{StaticResource CommandButton}"
                         Command="{Binding InsertRoomCommand}"
                         FontFamily="{StaticResource FontAwesome}" 
@@ -81,22 +91,24 @@
                         FontFamily="{StaticResource FontAwesome}" 
                         FontSize="{StaticResource FontSizeRegular}"/>
             </StackPanel>
-            <DataGrid Grid.Row="6" AutoGenerateColumns="False"
+            <DataGrid AutoGenerateColumns="False"
                       CanUserAddRows="False" CanUserDeleteRows="False"
-                      CanUserReorderColumns="False" CanUserSortColumns="False"
+                      CanUserReorderColumns="False" CanUserSortColumns="True"
                       ItemsSource="{Binding Rooms.DefaultView}"
-                      x:Name="rooms">
+                      x:Name="rooms" Grid.Row="6"
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Width="auto" 
-                                        IsReadOnly="True" Binding="{Binding Id}" />
+                                    IsReadOnly="True" Binding="{Binding Id}" />
                     <DataGridTextColumn Header="Code" Width="auto" Binding="{Binding RoomCode}" />
                     <DataGridTemplateColumn Header="Type" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox ItemsSource="{Binding ViewModel.RoomTypes, ElementName=page}"
-                                          SelectedValue="{Binding TypeId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                          SelectedValuePath="Id"
-                                          DisplayMemberPath="Title"/>
+                                        SelectedValue="{Binding TypeId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        SelectedValuePath="Id"
+                                        DisplayMemberPath="Title"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

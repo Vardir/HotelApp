@@ -74,8 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Animations\ElementAnimation.cs" />
+    <Compile Include="Animations\AnimationSlideDirection.cs" />
     <Compile Include="Animations\FrameworkElementAnimations.cs" />
+    <Compile Include="Animations\PageAnimation.cs" />
     <Compile Include="Animations\PageAnimationsHelpers.cs" />
     <Compile Include="Animations\StoryBoardHelpers.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="ValueConverters\Base\BaseMultiValueConverter.cs" />
     <Compile Include="ValueConverters\Base\BaseValueConverter.cs" />
     <Compile Include="ValueConverters\BoolInverseConverter.cs" />
+    <Compile Include="ValueConverters\BoolToBrushConverter.cs" />
     <Compile Include="ValueConverters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="ValueConverters\FloatByPercentageConverter.cs" />
     <Compile Include="ValueConverters\Images\PathToImageConverter.cs" />
