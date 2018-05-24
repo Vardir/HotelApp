@@ -12,8 +12,8 @@ namespace HotelsApp.Core.DBTools
             {
                 Id = Unbox<int>(extracted[0]),
                 Title = Unbox<string>(extracted[1]),
-                IsSelected = extracted[2] is int v && v > 0,
-                Tag = Unbox<string>(extracted[3]),
+                IsSelected = Unbox<object>(extracted[2]) is int v && v > 0,
+                Tag = Unbox<string>(extracted[3])
             };
         }
         public static Hotel GetHotel(DataRow row)
@@ -67,7 +67,7 @@ namespace HotelsApp.Core.DBTools
                 IsLocked = Unbox<bool>(extracted[3]),
                 Code = Unbox<int>(extracted[4])
             };
-        }
+        }        
 
         static T Unbox<T>(object value)
         {

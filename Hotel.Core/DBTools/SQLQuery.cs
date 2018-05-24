@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Text;
-using HotelsApp.Core.DataModels;
+using System.Data;
 using HotelsApp.Core.Extensions;
+using HotelsApp.Core.DataModels;
+using System.Collections.Generic;
 using HotelsApp.Core.ViewModels.Items;
 
 namespace HotelsApp.Core.DBTools
@@ -12,9 +12,14 @@ namespace HotelsApp.Core.DBTools
     {
         static StringBuilder builder = new StringBuilder();
 
-        public static string GetAllHotels() => "SELECT * FROM GetHotels()";
+        public static string GetAllHotels() => "SELECT * FROM HotelsView";
         public static string GetRoomTypes() => "SELECT * FROM room_type";
         public static string GetHotel(int id) => $"SELECT * FROM hotel WHERE id = {id}";
+        public static string GetHotelRoomsOnDate(int hotelId, DateTime date) => $"SELECT * FROM GetHotelRoomsOnDate({hotelId}, '{date.ToSQL()}')";
+        public static string GetHotelOrdersOnPeriod(int hotelId, DateTime start, DateTime end)
+        {
+            return $"SELECT * FROM GetHotelOrdersOnPeriod({hotelId}, '{start.ToSQL()}', '{end.ToSQL()}')";
+        }
         public static string GetHotelRooms(int id) => $"SELECT * FROM room WHERE HotelId = {id}";
         public static string GetHotelFacilities(int hotelId) => $"SELECT * FROM GetHotelFacilities({hotelId})";
         public static string GetHotelFacilitiesFlags(int hotelId) => $"SELECT * FROM GetHotelFacilities_Flags({hotelId})";

@@ -3,6 +3,6 @@
     public enum ApplicationPage
     {
         StartPage, HotelPage, OrderPage,
-        LoginPage, HotelEditPage, RoomsManagerPage
+        LoginPage, HotelEditPage, RoomsManagerPage, ReportsPage
     }
 }

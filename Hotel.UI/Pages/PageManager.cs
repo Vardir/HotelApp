@@ -25,23 +25,19 @@ namespace HotelsApp.UI.Pages
                 switch (page)
                 {
                     case ApplicationPage.StartPage:
-                        result = new StartupPage();
-                        break;
+                        result = new StartupPage(); break;
                     case ApplicationPage.HotelPage:
-                        result = new HotelPage();
-                        break;
+                        result = new HotelPage(); break;
                     case ApplicationPage.OrderPage:
-                        result = new OrderPage();
-                        break;
+                        result = new OrderPage(); break;
                     case ApplicationPage.LoginPage:
-                        result = new LoginPage();
-                        break;
+                        result = new LoginPage(); break;
                     case ApplicationPage.HotelEditPage:
-                        result = new HotelEditPage();
-                        break;
+                        result = new HotelEditPage(); break;
                     case ApplicationPage.RoomsManagerPage:
-                        result = new RoomsManagerPage();
-                        break;
+                        result = new RoomsManagerPage(); break;
+                    case ApplicationPage.ReportsPage:
+                        result = new ReportsPagePage(); break;
                 }
                 if (result != null)
                     pages.Add(page, result);
@@ -66,6 +62,8 @@ namespace HotelsApp.UI.Pages
                     return ApplicationPage.HotelEditPage;
                 case RoomsManagerPage p:
                     return ApplicationPage.RoomsManagerPage;
+                case ReportsPagePage p:
+                    return ApplicationPage.ReportsPage;
             }
             return default(ApplicationPage);
         }

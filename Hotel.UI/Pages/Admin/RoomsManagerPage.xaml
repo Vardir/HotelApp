@@ -9,6 +9,7 @@
                 xmlns:vm="clr-namespace:HotelsApp.Core.ViewModels;assembly=HotelsApp.Core"
                 xmlns:dm="clr-namespace:HotelsApp.Core.DesignModels;assembly=HotelsApp.Core"
                 xmlns:c="clr-namespace:HotelsApp.UI.ValueConverters"
+                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                 mc:Ignorable="d" FontSize="{StaticResource FontSizeRegular}"
                 d:DesignHeight="450" d:DesignWidth="800"
                 Title="StartPage" x:Name="page">
@@ -62,8 +63,15 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Type" Width="*"
                                         Binding="{Binding Title}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Price $" 
-                                        Binding="{Binding PricePerFit}"/>
+                    <DataGridTemplateColumn Header="Price $">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <xctk:DecimalUpDown Value="{Binding PricePerFit}"
+                                                    Minimum="1" Maximum="10000"
+                                                    Increment="5" FormatString="0.00"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -101,7 +109,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Width="auto" 
                                     IsReadOnly="True" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Code" Width="auto" Binding="{Binding RoomCode}" />
+                    <DataGridTextColumn Header="№" Width="auto" Binding="{Binding RoomCode}" />
                     <DataGridTemplateColumn Header="Type" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

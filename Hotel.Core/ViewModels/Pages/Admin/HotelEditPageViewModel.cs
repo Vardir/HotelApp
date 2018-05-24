@@ -31,6 +31,7 @@ namespace HotelsApp.Core.ViewModels
 
         public ICommand SaveCommand { get; set; }
         public ICommand ManageRoomsCommand { get; set; }
+        public ICommand LoadReportsCommand { get; set; }
 
         public HotelEditPageViewModel()
         {
@@ -41,6 +42,7 @@ namespace HotelsApp.Core.ViewModels
         {
             SaveCommand = new RelayCommand(Save);
             ManageRoomsCommand = new RelayCommand(ManageRooms);
+            LoadReportsCommand = new RelayCommand(LoadReports);
         }
 
         #region Actions
@@ -88,6 +90,10 @@ namespace HotelsApp.Core.ViewModels
             }
             IoCContainer.Application.ShowMessage("Changes committed successfully");
         } 
+        public void LoadReports()
+        {
+            IoCContainer.Application.GoTo(ApplicationPage.ReportsPage, Hotel);
+        }
         #endregion
     }
 }

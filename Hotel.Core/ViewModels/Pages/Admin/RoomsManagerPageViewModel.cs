@@ -116,19 +116,22 @@ namespace HotelsApp.Core.ViewModels
             }
             RoomPrices = dataTable;
 
-            dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetRoomTypes(), out error);
-            if (error != null)
+            if (RoomTypes.Count == 0)
             {
-                IoCContainer.Application.ShowMessage(error, MessageType.Error);
-                return;
+                dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetRoomTypes(), out error);
+                if (error != null)
+                {
+                    IoCContainer.Application.ShowMessage(error, MessageType.Error);
+                    return;
+                }
+                RoomTypes.Clear();
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    RoomTypes.Add(ItemsFactory.GetRoomType(row));
+                }
+                if (RoomTypes.Count > 0)
+                    SelectedRoomType = RoomTypes[0].Id;
             }
-            RoomTypes.Clear();
-            foreach (DataRow row in dataTable.Rows)
-            {
-                RoomTypes.Add(ItemsFactory.GetRoomType(row));
-            }
-            if (RoomTypes.Count > 0)
-                SelectedRoomType = RoomTypes[0].Id;
 
             dataTable = IoCContainer.Application.ExecuteTableQuery(SQLQuery.GetHotelRooms(Hotel.Id), out error);            
             if (error != null)

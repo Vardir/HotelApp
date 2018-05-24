@@ -35,14 +35,18 @@
                 FontFamily="{StaticResource FontAwesome}" 
                 FontSize="{StaticResource FontSizeLarge}"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="{StaticResource KeyIcon}" Style="{StaticResource CommandButton}"
-                    Command="{Binding ManageRoomsCommand}"
+            <Button Content="{StaticResource BookIcon}" Style="{StaticResource CommandButton}"
+                    Command="{Binding LoadReportsCommand}" ToolTip="Reports"
                     FontFamily="{StaticResource FontAwesome}" 
                     FontSize="{StaticResource FontSizeLarge}"/>
+            <Button Content="{StaticResource KeyIcon}" Style="{StaticResource CommandButton}"
+                    Command="{Binding ManageRoomsCommand}" ToolTip="Manage rooms"
+                    FontFamily="{StaticResource FontAwesome}"
+                    FontSize="{StaticResource FontSizeLarge}"/>
             <Button Content="{StaticResource ButtonSaveIcon}" Style="{StaticResource CommandButton}"
-                Command="{Binding SaveCommand}"
-                FontFamily="{StaticResource FontAwesome}" 
-                FontSize="{StaticResource FontSizeLarge}"/>
+                    Command="{Binding SaveCommand}" ToolTip="Save"
+                    FontFamily="{StaticResource FontAwesome}" 
+                    FontSize="{StaticResource FontSizeLarge}"/>
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="0 25 0 0">

@@ -97,6 +97,7 @@
     <Compile Include="ViewModels\Items\RoomViewModel.cs" />
     <Compile Include="ViewModels\Items\UserViewModel.cs" />
     <Compile Include="ViewModels\Pages\Admin\HotelEditPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\Admin\ReportsPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\Admin\RoomsManagerPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\BasePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\HotelPageViewModel.cs" />
